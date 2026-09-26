@@ -7,6 +7,20 @@ import { buildContentStructure } from '../../src/semantic/structure.js';
 import { serializeText } from '../../src/serialize/text.js';
 
 describe('compact text serialization', () => {
+  it('keeps controls placed in a table header', async () => {
+    const html = '<!doctype html><title>Header</title><table><tr><th>Topic <button>Show</button> <a href="/help">Help</a></th></tr><tr><td>Row</td></tr></table>';
+    const session = await launchUrl(`data:text/html,${encodeURIComponent(html)}`);
+    try {
+      const page = await capturePage(session.page);
+      const nodes = generateSemanticIds(mergeSemanticNodes(page));
+      const text = serializeText(page, buildContentStructure(nodes));
+      expect(text).toMatch(/\[e[0-9a-f]+\] button "Show"/);
+      expect(text).toMatch(/\[e[0-9a-f]+\] link "Help"/);
+    } finally {
+      await session.close();
+    }
+  });
+
   it('emits deterministic page, controls, state and grouped business content', async () => {
     const html = `<!doctype html><title>Orders</title><main><h1>Orders</h1>
       <label for="search">Search</label><input id="search" value="Alice" required><button disabled>Apply</button>

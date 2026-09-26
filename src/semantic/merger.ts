@@ -106,6 +106,7 @@ export function mergeSemanticNodes(captured: CapturedPage): SemanticNode[] {
       nextVisible = node.visible;
     }
     for (const child of dom.children ?? []) visit(child, nextParentId, nextVisible, frameId);
+    for (const shadow of dom.shadowRoots ?? []) visit(shadow, nextParentId, nextVisible, frameId);
     if (dom.contentDocument) {
       const frameKey = attrsForFrame(dom);
       visit(dom.contentDocument, nextParentId, nextVisible, `${frameId ?? 'main'}/${frameKey}`);

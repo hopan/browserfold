@@ -75,6 +75,7 @@ export function serializeText(page: Pick<CapturedPage, 'url' | 'title'>, roots: 
       if (header) {
         const columns = descendants(header).filter((cell) => cell.node.contentKind === 'cell').map((cell) => compact(cell.node.text || cell.node.name));
         if (columns.length) lines.push(`${indent}columns: ${columns.join(' | ')}`);
+        for (const child of descendants(header).filter((child) => renderableControl(child.node))) lines.push(...controlLines(child, `${indent}  `));
       }
       for (const row of rows) {
         if (row === header) continue;
