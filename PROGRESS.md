@@ -23,15 +23,20 @@ Hoàn tất. Test: `tests/extract/accessibility.test.ts`; code: `src/extract/acc
 
 - Red: `npm test -- tests/extract/accessibility.test.ts` — fail (exit 1), thiếu module `src/extract/accessibility.js`, 0 test chạy.
 - Green: cùng lệnh — pass, 1 file / 1 test với Chromium thật. `npm run typecheck` pass.
-- Mã lưu local: sẽ bổ sung sau commit item 2.
+- Mã lưu local: `83c6f2f` (`feat: capture raw DOM and accessibility trees`).
 
 ## Item 3 — Extract accessibility + DOM
 
-Chưa làm.
+Hoàn tất. Test: `tests/semantic/merger.test.ts`; code: `src/semantic/node.ts`, `src/semantic/merger.ts`.
+
+- Red: `npm test -- tests/semantic/merger.test.ts` — fail (exit 1), thiếu module `src/semantic/merger.js`, 0 test chạy.
+- Green: `npm run typecheck && npm test -- tests/semantic/merger.test.ts` — pass, 1 file / 1 test với Chromium thật.
+- Mã lưu local: sẽ bổ sung sau commit item 3.
 
 ## Sai khác với SPEC.md
 
 - CDP không cung cấp trạng thái tab đang được hệ điều hành focus qua Playwright. Mặc định chọn trang không rỗng có `performance.timeOrigin` mới nhất; `pageIndex` chọn theo thứ tự thời điểm điều hướng tăng dần. Đây là heuristic để xác định "current page"; trang cũ được focus lại cần chỉ định `pageIndex`.
+- Trường `id` ở bước này chỉ là khóa nội bộ `dom:<backendNodeId>` / `ax:<nodeId>`, chưa phải semantic ID của item 8. `interactive` để `false` tạm thời cho đến item 4; `visible` dựa trên AX `ignored`/thuộc tính DOM cơ bản, chưa phải lọc visibility đầy đủ.
 
 ## Dispatch sau
 
