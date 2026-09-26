@@ -235,7 +235,7 @@ So với baseline hai fixture hiện hành **532/2.142 = 24,84%**, corpus thấp
 
 Lưu ý: số đếm SPA 3/20 và Custom component 3/10 trong phần bối cảnh dispatch 8 thấp hơn dữ liệu `results.json` batch 1 một URL mỗi nhóm. Batch 1 thực tế có 4 URL SPA (kể cả Svelte 403) và 4 URL custom component (kể cả Lit tutorial), nên bảng dùng số đếm trực tiếp từ dữ liệu. Batch 4 thêm 5 URL Iframe nhưng chỉ 3 mẫu phù hợp và đo được: W3Schools lỗi CDP, trang chỉ mục Test Pages không có iframe. Batch 5 thêm hai URL thay thế để Simple và SPA đều vượt một URL đã thử so với mục tiêu. Không giả định tỷ lệ cho URL lỗi hoặc tính hai mẫu không phù hợp vào tổng.
 
-## Actionable Recall/Precision — PILOT (đang xác thực phương pháp)
+## Actionable Recall/Precision — pilot và batch 2
 
 Dispatch 13 đo ngày 2026-09-26 trên **18 URL đã có trong `corpus/results.json`**: 4 Simple, 4 SPA, 2 Dashboard, 2 Ecommerce, 2 Enterprise form, 2 Modal/dropdown, 1 Iframe và 1 Custom component. Script riêng [`corpus/measure_recall.mjs`](../corpus/measure_recall.mjs) tải lại trang vì oracle phải chạy trước capture; kết quả từng node mẫu và số đo ở [`corpus/recall_pilot.json`](../corpus/recall_pilot.json). Chỉ load/đọc DOM, không click, nhập liệu hoặc mở modal. Mỗi trang dùng `domcontentloaded` + 1,2 giây, navigation timeout 30 giây, tiến trình con timeout 60 giây và heap 768 MB. Trang HTTP lỗi/bot block hoặc frame mà oracle không đọc được bị loại khỏi trung bình, không gán điểm giả; lần này **18/18 trang đo được**.
 
@@ -264,11 +264,53 @@ Dispatch 13 đo ngày 2026-09-26 trên **18 URL đã có trong `corpus/results.j
 | Iframe | https://testpages.eviltester.com/pages/embedded-pages/iframes/ | 101 | 101 | 101 | 100,00% | 100,00% |
 | Custom component | https://material-web.dev/components/button/ | 120 | 90 | 57 | 47,50% | 63,33% |
 
-Tổng **3.316 oracle, 3.091 detected, 2.913 match**. Trung bình cộng 18 tỷ lệ trang: **Recall 94,21%; Precision 92,68%**. Tính theo tổng phần tử: **Recall 2.913/3.316 = 87,85%; Precision 2.913/3.091 = 94,24%**. Hai cách tổng hợp khác nhau vì Wikipedia có 1.344 oracle, còn example.com chỉ có 1. Đây là số pilot, không phải kết quả của 89 mẫu hay ngưỡng chấp nhận MVP đã xác nhận.
+Tổng pilot trước sửa **3.316 oracle, 3.091 detected, 2.913 match**. Trung bình cộng 18 tỷ lệ trang: **Recall 94,21%; Precision 92,68%**. Tính theo tổng phần tử: **Recall 2.913/3.316 = 87,85%; Precision 2.913/3.091 = 94,24%**. Hai cách tổng hợp khác nhau vì Wikipedia có 1.344 oracle, còn example.com chỉ có 1. Đây là số pilot, không phải kết quả của 89 mẫu hay ngưỡng chấp nhận MVP đã xác nhận.
 
 **Đánh giá phương pháp:** Match theo backend ID đáng tin hơn ghép xấp xỉ và đã map hết ID oracle trên 18 trang. Kết quả 100%/100% của vài trang đơn giản phản ánh URL có tập control dễ nhận diện, không phải bằng chứng hệ thống hoàn hảo: Wikipedia chỉ đạt 76,79% recall; Material Web Buttons chỉ **57/120 = 47,50%**, dù cả 120 ID đã được map xuyên shadow root. Form AdminLTE có precision **93/134 = 69,40%**. Dispatch 14 bên dưới đã phân loại từng nhóm miss/false positive bằng capture mới; các con số ở bảng trên vẫn là baseline pilot trước sửa. Tương tự, các trang modal/dropdown chỉ ở trạng thái đóng.
 
-**Khuyến nghị trước full 89:** Giữ cơ chế match chính xác này, nhưng chạy lặp một số URL động và kiểm tra tay vài miss/false positive ở Wikipedia, form và Material Web trước khi suy rộng số liệu. Ngay trong quá trình xác thực, web.dev có 35 oracle ở một lần tải và 56 ở lần cuối; DOM động khiến một lần đo không đủ để kết luận độ ổn định. Cần giữ định nghĩa oracle được giao khi so sánh, ghi riêng các native `<option>` ngoài oracle và trạng thái shadow/frame. Chưa chạy 89 trang trong dispatch này.
+**Giới hạn trước full 89:** Giữ cơ chế match chính xác này, nhưng chạy lặp một số URL động và kiểm tra tay vài miss/false positive ở Wikipedia, form và Material Web trước khi suy rộng số liệu. Ngay trong quá trình xác thực, web.dev có 35 oracle ở một lần tải và 56 ở lần cuối; DOM động khiến một lần đo không đủ để kết luận độ ổn định. Cần giữ định nghĩa oracle được giao khi so sánh, ghi riêng các native `<option>` ngoài oracle và trạng thái shadow/frame. Chưa chạy 89 trang trong dispatch này.
+
+### Batch 2 — Dispatch 15
+
+Ngày 2026-09-26, chạy script trên **25 URL mới** từ `corpus/results.json`, không trùng 18 URL pilot: 5 Iframe, 4 Custom component, 3 Dashboard, 3 Ecommerce, 3 Enterprise form, 3 Modal/dropdown, 2 Simple và 2 SPA. Dùng bản sản phẩm sau hai sửa lỗi ở dispatch 14. Giữ nguyên kết quả pilot trong `corpus/recall_pilot.json`; các hàng mới có `batch: 2`, `summary` là tổng tích luỹ và `batch2Summary` là riêng batch này. Phương pháp, timeout và việc chỉ load/đọc như mô tả ở trên.
+
+| Nhóm | URL | Oracle | Detected | Match | Recall | Precision | Ghi chú |
+|---|---|---:|---:|---:|---:|---:|---|
+| Iframe | https://the-internet.herokuapp.com/iframe | 4 | 1 | 1 | 25,00% | 100,00% | — |
+| Iframe | https://testpages.eviltester.com/pages/embedded-pages/external-content/ | 109 | 107 | 106 | 97,25% | 99,07% | — |
+| Iframe | https://testpages.eviltester.com/pages/embedded-pages/external-sites/ | 99 | 105 | 99 | 100,00% | 94,29% | — |
+| Iframe | https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/iframe | 1.447 | 1.547 | 1.428 | 98,69% | 92,31% | — |
+| Iframe | https://the-internet.herokuapp.com/tinymce | 4 | 1 | 1 | 25,00% | 100,00% | — |
+| Custom component | https://lit.dev/tutorials/content/intro-to-lit/00/ | 1 | 1 | 1 | 100,00% | 100,00% | — |
+| Custom component | https://testpages.eviltester.com/pages/web-components/shadow-dom-style/ | 95 | 95 | 95 | 100,00% | 100,00% | — |
+| Custom component | https://testpages.eviltester.com/pages/web-components/shadow-web-component/ | 95 | 95 | 95 | 100,00% | 100,00% | — |
+| Custom component | https://material-web.dev/components/checkbox/ | 62 | 81 | 60 | 96,77% | 74,07% | — |
+| Dashboard | https://preview.tabler.io/ | 107 | 106 | 106 | 99,07% | 100,00% | — |
+| Dashboard | https://adminlte.io/themes/v3/index3.html | 49 | 49 | 49 | 100,00% | 100,00% | — |
+| Dashboard | https://adminlte.io/themes/v3/pages/charts/chartjs.html | 52 | 52 | 52 | 100,00% | 100,00% | — |
+| Ecommerce | https://www.demoblaze.com/prod.html?idp_=1 | 8 | 8 | 8 | 100,00% | 100,00% | — |
+| Ecommerce | https://demowebshop.tricentis.com/digital-downloads | 60 | 69 | 58 | 96,67% | 84,06% | — |
+| Ecommerce | https://demowebshop.tricentis.com/apparel-shoes | 74 | 77 | 66 | 89,19% | 85,71% | — |
+| Enterprise form | https://demoqa.com/automation-practice-form | — | — | — | — | — | Frame tách khi đo oracle |
+| Enterprise form | https://adminlte.io/themes/v3/pages/forms/advanced.html | 96 | 111 | 92 | 95,83% | 82,88% | — |
+| Enterprise form | https://testpages.eviltester.com/apps/client-server-form-validation/ | 105 | 130 | 105 | 100,00% | 80,77% | — |
+| Modal/dropdown | https://getbootstrap.com/docs/5.3/components/offcanvas/ | 214 | 213 | 213 | 99,53% | 100,00% | — |
+| Modal/dropdown | https://getbootstrap.com/docs/5.3/components/accordion/ | 189 | 185 | 185 | 97,88% | 100,00% | — |
+| Modal/dropdown | https://mui.com/material-ui/react-dialog/ | 309 | 271 | 271 | 87,70% | 100,00% | — |
+| Simple | https://en.wikipedia.org/wiki/HTML | 1.948 | 922 | 910 | 46,71% | 98,70% | — |
+| Simple | https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table | 698 | 793 | 673 | 96,42% | 84,87% | — |
+| SPA | https://angular.dev/tutorials/learn-angular | 29 | 25 | 25 | 86,21% | 100,00% | — |
+| SPA | https://angular.dev/overview | 133 | 127 | 127 | 95,49% | 100,00% | — |
+
+Batch 2 đo được **24/25 URL**: **5.987 oracle, 5.171 detected, 4.826 match**. Trung bình theo 24 trang: **Recall 88,89%; Precision 94,86%**. Theo tổng phần tử: **Recall 4.826/5.987 = 80,61%; Precision 4.826/5.171 = 93,33%**. `demoqa.com/automation-practice-form` không có điểm do iframe `about:blank` tách khỏi trang khi oracle đang đọc; trang này bị loại khỏi các trung bình. Trang Lit tutorial tải với title rỗng và chỉ 1 oracle/detected; con số 100% ở đó không đại diện cho UI custom component.
+
+**Tổng tích luỹ 18 pilot + 24 batch 2 đo được (42/43 URL đã thử):** **9.303 oracle, 8.262 detected, 7.739 match**. Trung bình theo trang: **Recall 91,17%; Precision 93,93%**. Gộp theo tổng phần tử: **Recall 7.739/9.303 = 83,19%; Precision 7.739/8.262 = 93,67%**. Đây là phép tổng hợp dữ liệu tích luỹ theo yêu cầu; 18 điểm pilot được đo trước hai sửa lỗi ở dispatch 14, nên không coi bốn tỷ lệ này là phép đo đồng nhất của bản sản phẩm hiện tại.
+
+**Trang dưới 80% ở batch 2:**
+
+- Hai URL The Internet (`/iframe`, `/tinymce`) đều 1/4 recall. Cả hai tải cùng giao diện TinyMCE đang bị khóa bởi thông báo thanh toán. Capture đọc lại cho thấy “Powered by Tiny” được đánh disabled; link “Learn more.” và nút đóng trong vùng `alert` có semantic node nhưng không có ID trong text snapshot. **Nghi ngờ dạng lỗi mới:** text renderer gộp/loại control nằm trong `alert`; để dispatch sau xác minh, không sửa sản phẩm ở đây.
+- Material Web Checkbox precision **60/81 = 74,07%**: 21 detected ngoài oracle gồm link và input trong giao diện custom component; mọi 62 oracle ID đều map được. Nghi ngờ khác biệt giữa điều kiện visible/actionable của oracle và semantic output ở web component; cần phân loại cụ thể sau.
+- Wikipedia HTML recall **910/1.948 = 46,71%**: các miss mẫu như “Bookmarks” nằm dưới `tr[hidden="until-found"]` của navbox gập, đúng dạng bất đồng visibility đã xác nhận ở dispatch 14. Chưa phân loại toàn bộ 1.038 miss của URL này.
 
 ## Điều tra nguyên nhân gap recall/precision — Dispatch 14
 

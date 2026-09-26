@@ -11,13 +11,14 @@ import { serializeText } from '../dist/serialize/text.js';
 
 const source = JSON.parse(await readFile(new URL('./results.json', import.meta.url), 'utf8'));
 const selection = [
-  ['Simple', 0], ['Simple', 2], ['Simple', 7], ['Simple', 14],
-  ['SPA', 0], ['SPA', 1], ['SPA', 5], ['SPA', 9],
-  ['Dashboard', 0], ['Dashboard', 2],
-  ['Ecommerce', 0], ['Ecommerce', 2],
-  ['Form', 0], ['Form', 2],
-  ['Modal/dropdown', 0], ['Modal/dropdown', 1],
-  ['Iframe', 1], ['Custom component', 5],
+  ['Iframe', 0], ['Iframe', 2], ['Iframe', 3], ['Iframe', 4], ['Iframe', 6],
+  ['Custom component', 0], ['Custom component', 2], ['Custom component', 3], ['Custom component', 6],
+  ['Dashboard', 1], ['Dashboard', 3], ['Dashboard', 5],
+  ['Ecommerce', 1], ['Ecommerce', 3], ['Ecommerce', 4],
+  ['Form', 1], ['Form', 3], ['Form', 4],
+  ['Modal/dropdown', 2], ['Modal/dropdown', 5], ['Modal/dropdown', 7],
+  ['Simple', 1], ['Simple', 8],
+  ['SPA', 6], ['SPA', 11],
 ];
 const pages = selection.map(([group, index]) => {
   const choices = source.results.filter((row) => row.group === group && !row.error && !row.excludedReason);
@@ -139,20 +140,28 @@ async function measure(entry) {
 if (process.argv[2] === '--worker') {
   process.stdout.write(`${JSON.stringify(await measure(pages[Number(process.argv[3])]))}\n`);
 } else {
-  const results = [];
-  function summary() {
-    const valid = results.filter((row) => !row.error && row.recall !== null && row.precision !== null);
+  const output = new URL('./recall_pilot.json', import.meta.url);
+  const previous = JSON.parse(await readFile(output, 'utf8'));
+  const results = [...previous.results];
+  const existingUrls = new Set(results.map((row) => row.url));
+  if (existingUrls.size !== results.length) throw new Error('Duplicate URL in existing recall results');
+  if (new Set(pages.map((row) => row.url)).size !== pages.length) throw new Error('Duplicate URL in selection');
+  const overlap = pages.filter((row) => existingUrls.has(row.url) && results.find((result) => result.url === row.url)?.batch !== 2);
+  if (overlap.length) throw new Error(`Selection overlaps earlier batch: ${overlap.map((row) => row.url).join(', ')}`);
+  function summary(rows) {
+    const valid = rows.filter((row) => !row.error && row.recall !== null && row.precision !== null);
     const sum = (key) => valid.reduce((total, row) => total + row[key], 0);
     const oracle = sum('oracle');
     const detected = sum('detected');
     const matched = sum('matched');
-    return { attempted: results.length, measured: valid.length, oracle, detected, matched,
+    return { attempted: rows.length, measured: valid.length, oracle, detected, matched,
       meanRecall: valid.length ? sum('recall') / valid.length : null,
       meanPrecision: valid.length ? sum('precision') / valid.length : null,
       pooledRecall: oracle ? matched / oracle : null,
       pooledPrecision: detected ? matched / detected : null };
   }
   for (const [index, entry] of pages.entries()) {
+    if (existingUrls.has(entry.url)) continue;
     const child = spawnSync(process.execPath, ['--max-old-space-size=768', new URL(import.meta.url).pathname, '--worker', String(index)], {
       timeout: 60_000, encoding: 'utf8', maxBuffer: 1024 * 1024,
     });
@@ -160,8 +169,9 @@ if (process.argv[2] === '--worker') {
     try { result = JSON.parse(child.stdout.trim()); }
     catch { result = { ...entry, error: child.error?.message ?? (child.signal
       ? `Worker killed by ${child.signal}` : `Worker exit ${child.status}: ${child.stderr.slice(-300).trim()}`) }; }
-    results.push(result);
+    results.push({ ...result, batch: 2 });
+    existingUrls.add(entry.url);
     process.stdout.write(`${JSON.stringify(result)}\n`);
-    await writeFile(new URL('./recall_pilot.json', import.meta.url), `${JSON.stringify({ measuredAt: new Date().toISOString(), summary: summary(), results }, null, 2)}\n`);
+    await writeFile(output, `${JSON.stringify({ measuredAt: previous.measuredAt, batch2MeasuredAt: new Date().toISOString(), summary: summary(results), batch2Summary: summary(results.filter((row) => row.batch === 2)), results }, null, 2)}\n`);
   }
 }

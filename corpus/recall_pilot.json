@@ -1,15 +1,16 @@
 {
   "measuredAt": "2026-09-26T08:22:00.367Z",
+  "batch2MeasuredAt": "2026-09-26T08:55:47.862Z",
   "summary": {
-    "attempted": 18,
-    "measured": 18,
-    "oracle": 3316,
-    "detected": 3091,
-    "matched": 2913,
-    "meanRecall": 0.9421368457368777,
-    "meanPrecision": 0.9267511427542389,
-    "pooledRecall": 0.8784680337756333,
-    "pooledPrecision": 0.9424134584276933
+    "attempted": 43,
+    "measured": 42,
+    "oracle": 9303,
+    "detected": 8262,
+    "matched": 7739,
+    "meanRecall": 0.9117278284754418,
+    "meanPrecision": 0.9392560479889382,
+    "pooledRecall": 0.8318821885413308,
+    "pooledPrecision": 0.9366981360445412
   },
   "results": [
     {
@@ -890,6 +891,1229 @@
           "name": "Link to “Filled button”"
         }
       ]
+    },
+    {
+      "group": "Iframe",
+      "url": "https://the-internet.herokuapp.com/iframe",
+      "finalUrl": "https://the-internet.herokuapp.com/iframe",
+      "title": "The Internet",
+      "oracle": 4,
+      "detected": 1,
+      "matched": 1,
+      "recall": 0.25,
+      "precision": 1,
+      "mappedOracle": 4,
+      "frameCount": 1,
+      "frameErrors": [],
+      "missingExamples": [
+        {
+          "id": "bf-oracle-0-1",
+          "tag": "a",
+          "role": null,
+          "label": "Powered by Tiny"
+        },
+        {
+          "id": "bf-oracle-0-3",
+          "tag": "a",
+          "role": null,
+          "label": "Learn more."
+        },
+        {
+          "id": "bf-oracle-0-4",
+          "tag": "button",
+          "role": null,
+          "label": ""
+        }
+      ],
+      "falsePositiveExamples": [],
+      "batch": 2
+    },
+    {
+      "group": "Iframe",
+      "url": "https://testpages.eviltester.com/pages/embedded-pages/external-content/",
+      "finalUrl": "https://testpages.eviltester.com/pages/embedded-pages/external-content/",
+      "title": "iFrames With External Content Test Page | Test Pages",
+      "oracle": 109,
+      "detected": 107,
+      "matched": 106,
+      "recall": 0.9724770642201835,
+      "precision": 0.9906542056074766,
+      "mappedOracle": 106,
+      "frameCount": 2,
+      "frameErrors": [],
+      "missingExamples": [
+        {
+          "id": "bf-oracle-2-1",
+          "tag": "button",
+          "role": null,
+          "label": ""
+        },
+        {
+          "id": "bf-oracle-2-2",
+          "tag": "button",
+          "role": null,
+          "label": ""
+        },
+        {
+          "id": "bf-oracle-2-3",
+          "tag": "a",
+          "role": null,
+          "label": ""
+        }
+      ],
+      "falsePositiveExamples": [
+        {
+          "tag": "div",
+          "name": "YouTube-Videoplayer"
+        }
+      ],
+      "batch": 2
+    },
+    {
+      "group": "Iframe",
+      "url": "https://testpages.eviltester.com/pages/embedded-pages/external-sites/",
+      "finalUrl": "https://testpages.eviltester.com/pages/embedded-pages/external-sites/",
+      "title": "iFrames With External Site Content Test Page | Test Pages",
+      "oracle": 99,
+      "detected": 105,
+      "matched": 99,
+      "recall": 1,
+      "precision": 0.9428571428571428,
+      "mappedOracle": 99,
+      "frameCount": 1,
+      "frameErrors": [],
+      "missingExamples": [],
+      "falsePositiveExamples": [
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "-- Select a URL --"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Evil Tester"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Google"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Wikipedia"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "GitHub"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Internet Archive"
+        }
+      ],
+      "batch": 2
+    },
+    {
+      "group": "Iframe",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/iframe",
+      "finalUrl": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/iframe",
+      "title": "<iframe> HTML inline frame element - HTML | MDN",
+      "oracle": 1447,
+      "detected": 1547,
+      "matched": 1428,
+      "recall": 0.986869384934347,
+      "precision": 0.9230769230769231,
+      "mappedOracle": 1447,
+      "frameCount": 6,
+      "frameErrors": [],
+      "missingExamples": [
+        {
+          "id": "bf-oracle-0-16",
+          "tag": "a",
+          "role": null,
+          "label": ""
+        },
+        {
+          "id": "bf-oracle-0-40",
+          "tag": "a",
+          "role": null,
+          "label": "Try it"
+        },
+        {
+          "id": "bf-oracle-0-44",
+          "tag": "div",
+          "role": "textbox",
+          "label": "<iframe  id=\"inlineFrameExample\"  title=\"Inline Frame Example\"  width=\"300\"  height=\"200\"  src=\"http"
+        },
+        {
+          "id": "bf-oracle-0-49",
+          "tag": "a",
+          "role": null,
+          "label": "Attributes"
+        },
+        {
+          "id": "bf-oracle-0-143",
+          "tag": "a",
+          "role": null,
+          "label": "Deprecated attributes"
+        },
+        {
+          "id": "bf-oracle-0-154",
+          "tag": "a",
+          "role": null,
+          "label": "Usage notes"
+        },
+        {
+          "id": "bf-oracle-0-155",
+          "tag": "a",
+          "role": null,
+          "label": "Scripting"
+        },
+        {
+          "id": "bf-oracle-0-170",
+          "tag": "a",
+          "role": null,
+          "label": "Embedding PDFs"
+        }
+      ],
+      "falsePositiveExamples": [
+        {
+          "tag": "a",
+          "role": "link",
+          "name": "Otari Meet Otari, the open source LLM Control Plane that helps developers control LLM infrastructure"
+        },
+        {
+          "tag": "a",
+          "name": "HTML: Markup language"
+        },
+        {
+          "tag": "a",
+          "name": "Elements"
+        },
+        {
+          "tag": "a",
+          "name": "Global attributes"
+        },
+        {
+          "tag": "a",
+          "name": "Attributes"
+        },
+        {
+          "tag": "a",
+          "name": "See all…"
+        },
+        {
+          "tag": "a",
+          "name": "Responsive images"
+        },
+        {
+          "tag": "a",
+          "name": "HTML cheatsheet"
+        }
+      ],
+      "batch": 2
+    },
+    {
+      "group": "Iframe",
+      "url": "https://the-internet.herokuapp.com/tinymce",
+      "finalUrl": "https://the-internet.herokuapp.com/tinymce",
+      "title": "The Internet",
+      "oracle": 4,
+      "detected": 1,
+      "matched": 1,
+      "recall": 0.25,
+      "precision": 1,
+      "mappedOracle": 4,
+      "frameCount": 1,
+      "frameErrors": [],
+      "missingExamples": [
+        {
+          "id": "bf-oracle-0-1",
+          "tag": "a",
+          "role": null,
+          "label": "Powered by Tiny"
+        },
+        {
+          "id": "bf-oracle-0-3",
+          "tag": "a",
+          "role": null,
+          "label": "Learn more."
+        },
+        {
+          "id": "bf-oracle-0-4",
+          "tag": "button",
+          "role": null,
+          "label": ""
+        }
+      ],
+      "falsePositiveExamples": [],
+      "batch": 2
+    },
+    {
+      "group": "Custom component",
+      "url": "https://lit.dev/tutorials/content/intro-to-lit/00/",
+      "finalUrl": "https://lit.dev/tutorials/content/intro-to-lit/00/",
+      "title": "",
+      "oracle": 1,
+      "detected": 1,
+      "matched": 1,
+      "recall": 1,
+      "precision": 1,
+      "mappedOracle": 1,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [],
+      "falsePositiveExamples": [],
+      "batch": 2
+    },
+    {
+      "group": "Custom component",
+      "url": "https://testpages.eviltester.com/pages/web-components/shadow-dom-style/",
+      "finalUrl": "https://testpages.eviltester.com/pages/web-components/shadow-dom-style/",
+      "title": "Shadow Dom - Style Encapsulation Test Page | Test Pages",
+      "oracle": 95,
+      "detected": 95,
+      "matched": 95,
+      "recall": 1,
+      "precision": 1,
+      "mappedOracle": 95,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [],
+      "falsePositiveExamples": [],
+      "batch": 2
+    },
+    {
+      "group": "Custom component",
+      "url": "https://testpages.eviltester.com/pages/web-components/shadow-web-component/",
+      "finalUrl": "https://testpages.eviltester.com/pages/web-components/shadow-web-component/",
+      "title": "Shadow Dom - Custom Web Component Test Page | Test Pages",
+      "oracle": 95,
+      "detected": 95,
+      "matched": 95,
+      "recall": 1,
+      "precision": 1,
+      "mappedOracle": 95,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [],
+      "falsePositiveExamples": [],
+      "batch": 2
+    },
+    {
+      "group": "Custom component",
+      "url": "https://material-web.dev/components/checkbox/",
+      "finalUrl": "https://material-web.dev/components/checkbox/",
+      "title": "Material Web - Checkbox",
+      "oracle": 62,
+      "detected": 81,
+      "matched": 60,
+      "recall": 0.967741935483871,
+      "precision": 0.7407407407407407,
+      "mappedOracle": 62,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [
+        {
+          "id": "bf-oracle-0-17",
+          "tag": "main",
+          "role": null,
+          "label": "CheckboxCheckboxes allow users to select one or more items from a set. Checkboxes can turn an option"
+        },
+        {
+          "id": "bf-oracle-0-48",
+          "tag": "a",
+          "role": "listitem",
+          "label": ""
+        }
+      ],
+      "falsePositiveExamples": [
+        {
+          "tag": "a",
+          "role": "link",
+          "name": "Skip to main content"
+        },
+        {
+          "tag": "a",
+          "role": "link",
+          "name": "Link to “Interactive Demo”"
+        },
+        {
+          "tag": "button",
+          "role": "button"
+        },
+        {
+          "tag": "a",
+          "role": "link",
+          "name": "Link to “Usage”"
+        },
+        {
+          "tag": "input",
+          "role": "checkbox"
+        },
+        {
+          "tag": "input",
+          "role": "checkbox"
+        },
+        {
+          "tag": "input",
+          "role": "checkbox"
+        },
+        {
+          "tag": "a",
+          "role": "link",
+          "name": "Link to “Label”"
+        }
+      ],
+      "batch": 2
+    },
+    {
+      "group": "Dashboard",
+      "url": "https://preview.tabler.io/",
+      "finalUrl": "https://preview.tabler.io/",
+      "title": "Dashboard - Tabler - Premium and Open Source dashboard template with responsive and high quality UI.",
+      "oracle": 107,
+      "detected": 106,
+      "matched": 106,
+      "recall": 0.9906542056074766,
+      "precision": 1,
+      "mappedOracle": 107,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [
+        {
+          "id": "bf-oracle-0-43",
+          "tag": "a",
+          "role": null,
+          "label": "Sponsor Tabler!"
+        }
+      ],
+      "falsePositiveExamples": [],
+      "batch": 2
+    },
+    {
+      "group": "Dashboard",
+      "url": "https://adminlte.io/themes/v3/index3.html",
+      "finalUrl": "https://adminlte.io/themes/v3/index3.html",
+      "title": "AdminLTE 3 | Dashboard 3",
+      "oracle": 49,
+      "detected": 49,
+      "matched": 49,
+      "recall": 1,
+      "precision": 1,
+      "mappedOracle": 49,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [],
+      "falsePositiveExamples": [],
+      "batch": 2
+    },
+    {
+      "group": "Dashboard",
+      "url": "https://adminlte.io/themes/v3/pages/charts/chartjs.html",
+      "finalUrl": "https://adminlte.io/themes/v3/pages/charts/chartjs.html",
+      "title": "AdminLTE 3 | ChartJS",
+      "oracle": 52,
+      "detected": 52,
+      "matched": 52,
+      "recall": 1,
+      "precision": 1,
+      "mappedOracle": 52,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [],
+      "falsePositiveExamples": [],
+      "batch": 2
+    },
+    {
+      "group": "Ecommerce",
+      "url": "https://www.demoblaze.com/prod.html?idp_=1",
+      "finalUrl": "https://www.demoblaze.com/prod.html?idp_=1",
+      "title": "STORE",
+      "oracle": 8,
+      "detected": 8,
+      "matched": 8,
+      "recall": 1,
+      "precision": 1,
+      "mappedOracle": 8,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [],
+      "falsePositiveExamples": [],
+      "batch": 2
+    },
+    {
+      "group": "Ecommerce",
+      "url": "https://demowebshop.tricentis.com/digital-downloads",
+      "finalUrl": "https://demowebshop.tricentis.com/digital-downloads",
+      "title": "Demo Web Shop. Digital downloads",
+      "oracle": 60,
+      "detected": 69,
+      "matched": 58,
+      "recall": 0.9666666666666667,
+      "precision": 0.8405797101449275,
+      "mappedOracle": 60,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [
+        {
+          "id": "bf-oracle-0-30",
+          "tag": "a",
+          "role": null,
+          "label": "3rd Album"
+        },
+        {
+          "id": "bf-oracle-0-33",
+          "tag": "a",
+          "role": null,
+          "label": "Music 2"
+        }
+      ],
+      "falsePositiveExamples": [
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Grid"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "List"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Position"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Name: A to Z"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Name: Z to A"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Price: Low to High"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Price: High to Low"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Created on"
+        }
+      ],
+      "batch": 2
+    },
+    {
+      "group": "Ecommerce",
+      "url": "https://demowebshop.tricentis.com/apparel-shoes",
+      "finalUrl": "https://demowebshop.tricentis.com/apparel-shoes",
+      "title": "Demo Web Shop. Apparel & Shoes",
+      "oracle": 74,
+      "detected": 77,
+      "matched": 66,
+      "recall": 0.8918918918918919,
+      "precision": 0.8571428571428571,
+      "mappedOracle": 74,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [
+        {
+          "id": "bf-oracle-0-30",
+          "tag": "a",
+          "role": null,
+          "label": "50's Rockabilly Polka Dot Top JR Plus Size"
+        },
+        {
+          "id": "bf-oracle-0-33",
+          "tag": "a",
+          "role": null,
+          "label": "Blue and green Sneaker"
+        },
+        {
+          "id": "bf-oracle-0-36",
+          "tag": "a",
+          "role": null,
+          "label": "Blue Jeans"
+        },
+        {
+          "id": "bf-oracle-0-39",
+          "tag": "a",
+          "role": null,
+          "label": "Casual Golf Belt"
+        },
+        {
+          "id": "bf-oracle-0-42",
+          "tag": "a",
+          "role": null,
+          "label": "Custom T-Shirt"
+        },
+        {
+          "id": "bf-oracle-0-44",
+          "tag": "a",
+          "role": null,
+          "label": "Denim Short with Rhinestones"
+        },
+        {
+          "id": "bf-oracle-0-46",
+          "tag": "a",
+          "role": null,
+          "label": "Genuine Leather Handbag with Cell Phone Holder & Many Pockets"
+        },
+        {
+          "id": "bf-oracle-0-49",
+          "tag": "a",
+          "role": null,
+          "label": "Green and blue Sneaker"
+        }
+      ],
+      "falsePositiveExamples": [
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Grid"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "List"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Position"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Name: A to Z"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Name: Z to A"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Price: Low to High"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Price: High to Low"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Created on"
+        }
+      ],
+      "batch": 2
+    },
+    {
+      "group": "Form",
+      "url": "https://demoqa.com/automation-practice-form",
+      "error": "Oracle could not inspect 1 frame(s): about:blank: Error: frame.evaluate: Frame was detached",
+      "batch": 2
+    },
+    {
+      "group": "Form",
+      "url": "https://adminlte.io/themes/v3/pages/forms/advanced.html",
+      "finalUrl": "https://adminlte.io/themes/v3/pages/forms/advanced.html",
+      "title": "AdminLTE 3 | Advanced form elements",
+      "oracle": 96,
+      "detected": 111,
+      "matched": 92,
+      "recall": 0.9583333333333334,
+      "precision": 0.8288288288288288,
+      "mappedOracle": 96,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [
+        {
+          "id": "bf-oracle-0-44",
+          "tag": "span",
+          "role": "textbox",
+          "label": "Alabama"
+        },
+        {
+          "id": "bf-oracle-0-45",
+          "tag": "span",
+          "role": "combobox",
+          "label": ""
+        },
+        {
+          "id": "bf-oracle-0-51",
+          "tag": "span",
+          "role": "combobox",
+          "label": ""
+        },
+        {
+          "id": "bf-oracle-0-58",
+          "tag": "span",
+          "role": "textbox",
+          "label": "Alabama"
+        }
+      ],
+      "falsePositiveExamples": [
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Alaska"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "California"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Delaware"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Tennessee"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Texas"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Washington"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Alabama"
+        },
+        {
+          "tag": "input",
+          "role": "checkbox"
+        }
+      ],
+      "batch": 2
+    },
+    {
+      "group": "Form",
+      "url": "https://testpages.eviltester.com/apps/client-server-form-validation/",
+      "finalUrl": "https://testpages.eviltester.com/apps/client-server-form-validation/",
+      "title": "Client and Server Form Validation Testing App | Test Pages",
+      "oracle": 105,
+      "detected": 130,
+      "matched": 105,
+      "recall": 1,
+      "precision": 0.8076923076923077,
+      "mappedOracle": 105,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [],
+      "falsePositiveExamples": [
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Afghanistan"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Albania"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Algeria"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Andorra"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Angola"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Antigua and Barbuda"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Argentina"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Armenia"
+        }
+      ],
+      "batch": 2
+    },
+    {
+      "group": "Modal/dropdown",
+      "url": "https://getbootstrap.com/docs/5.3/components/offcanvas/",
+      "finalUrl": "https://getbootstrap.com/docs/5.3/components/offcanvas/",
+      "title": "Offcanvas · Bootstrap v5.3",
+      "oracle": 214,
+      "detected": 213,
+      "matched": 213,
+      "recall": 0.9953271028037384,
+      "precision": 1,
+      "mappedOracle": 214,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [
+        {
+          "id": "bf-oracle-0-4",
+          "tag": "button",
+          "role": null,
+          "label": "Search (Ctrl+K)"
+        }
+      ],
+      "falsePositiveExamples": [],
+      "batch": 2
+    },
+    {
+      "group": "Modal/dropdown",
+      "url": "https://getbootstrap.com/docs/5.3/components/accordion/",
+      "finalUrl": "https://getbootstrap.com/docs/5.3/components/accordion/",
+      "title": "Accordion · Bootstrap v5.3",
+      "oracle": 189,
+      "detected": 185,
+      "matched": 185,
+      "recall": 0.9788359788359788,
+      "precision": 1,
+      "mappedOracle": 189,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [
+        {
+          "id": "bf-oracle-0-4",
+          "tag": "button",
+          "role": null,
+          "label": "Search (Ctrl+K)"
+        },
+        {
+          "id": "bf-oracle-0-140",
+          "tag": "button",
+          "role": null,
+          "label": "Accordion Item #1"
+        },
+        {
+          "id": "bf-oracle-0-141",
+          "tag": "button",
+          "role": null,
+          "label": "Accordion Item #2"
+        },
+        {
+          "id": "bf-oracle-0-142",
+          "tag": "button",
+          "role": null,
+          "label": "Accordion Item #3"
+        }
+      ],
+      "falsePositiveExamples": [],
+      "batch": 2
+    },
+    {
+      "group": "Modal/dropdown",
+      "url": "https://mui.com/material-ui/react-dialog/",
+      "finalUrl": "https://mui.com/material-ui/react-dialog/",
+      "title": "React Dialog component - Material UI",
+      "oracle": 309,
+      "detected": 271,
+      "matched": 271,
+      "recall": 0.8770226537216829,
+      "precision": 1,
+      "mappedOracle": 309,
+      "frameCount": 1,
+      "frameErrors": [],
+      "missingExamples": [
+        {
+          "id": "bf-oracle-0-98",
+          "tag": "a",
+          "role": null,
+          "label": "Introduction"
+        },
+        {
+          "id": "bf-oracle-0-99",
+          "tag": "button",
+          "role": null,
+          "label": ""
+        },
+        {
+          "id": "bf-oracle-0-112",
+          "tag": "a",
+          "role": null,
+          "label": "Basics"
+        },
+        {
+          "id": "bf-oracle-0-113",
+          "tag": "button",
+          "role": null,
+          "label": ""
+        },
+        {
+          "id": "bf-oracle-0-115",
+          "tag": "a",
+          "role": null,
+          "label": "Alerts"
+        },
+        {
+          "id": "bf-oracle-0-116",
+          "tag": "button",
+          "role": null,
+          "label": ""
+        },
+        {
+          "id": "bf-oracle-0-127",
+          "tag": "a",
+          "role": null,
+          "label": "Transitions"
+        },
+        {
+          "id": "bf-oracle-0-128",
+          "tag": "button",
+          "role": null,
+          "label": ""
+        }
+      ],
+      "falsePositiveExamples": [],
+      "batch": 2
+    },
+    {
+      "group": "Simple",
+      "url": "https://en.wikipedia.org/wiki/HTML",
+      "finalUrl": "https://en.wikipedia.org/wiki/HTML",
+      "title": "HTML - Wikipedia",
+      "oracle": 1948,
+      "detected": 922,
+      "matched": 910,
+      "recall": 0.4671457905544148,
+      "precision": 0.9869848156182213,
+      "mappedOracle": 1948,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [
+        {
+          "id": "bf-oracle-0-834",
+          "tag": "a",
+          "role": null,
+          "label": "sister projects"
+        },
+        {
+          "id": "bf-oracle-0-860",
+          "tag": "button",
+          "role": null,
+          "label": "hide"
+        },
+        {
+          "id": "bf-oracle-0-861",
+          "tag": "a",
+          "role": null,
+          "label": "Bookmarks"
+        },
+        {
+          "id": "bf-oracle-0-862",
+          "tag": "a",
+          "role": null,
+          "label": "Extensions"
+        },
+        {
+          "id": "bf-oracle-0-863",
+          "tag": "a",
+          "role": null,
+          "label": "Privacy mode"
+        },
+        {
+          "id": "bf-oracle-0-864",
+          "tag": "a",
+          "role": null,
+          "label": "Web standards"
+        },
+        {
+          "id": "bf-oracle-0-865",
+          "tag": "a",
+          "role": null,
+          "label": "HTML"
+        },
+        {
+          "id": "bf-oracle-0-866",
+          "tag": "a",
+          "role": null,
+          "label": "v5"
+        }
+      ],
+      "falsePositiveExamples": [
+        {
+          "tag": "input",
+          "role": "button",
+          "name": "Main menu"
+        },
+        {
+          "tag": "div",
+          "role": "generic"
+        },
+        {
+          "tag": "input",
+          "role": "button",
+          "name": "140 languages"
+        },
+        {
+          "tag": "input",
+          "role": "button",
+          "name": "Tools"
+        },
+        {
+          "tag": "input",
+          "role": "radio",
+          "name": "Small"
+        },
+        {
+          "tag": "input",
+          "role": "radio",
+          "name": "Standard"
+        },
+        {
+          "tag": "input",
+          "role": "radio",
+          "name": "Large"
+        },
+        {
+          "tag": "input",
+          "role": "radio",
+          "name": "Standard"
+        }
+      ],
+      "batch": 2
+    },
+    {
+      "group": "Simple",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table",
+      "finalUrl": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/table",
+      "title": "<table> HTML table element - HTML | MDN",
+      "oracle": 698,
+      "detected": 793,
+      "matched": 673,
+      "recall": 0.9641833810888252,
+      "precision": 0.8486759142496847,
+      "mappedOracle": 698,
+      "frameCount": 8,
+      "frameErrors": [],
+      "missingExamples": [
+        {
+          "id": "bf-oracle-0-16",
+          "tag": "a",
+          "role": null,
+          "label": ""
+        },
+        {
+          "id": "bf-oracle-0-39",
+          "tag": "a",
+          "role": null,
+          "label": "Try it"
+        },
+        {
+          "id": "bf-oracle-0-43",
+          "tag": "div",
+          "role": "textbox",
+          "label": "<table>  <caption>    Front-end web developer course 2021  </caption>  <thead>    <tr>      <th scop"
+        },
+        {
+          "id": "bf-oracle-0-45",
+          "tag": "a",
+          "role": null,
+          "label": "Attributes"
+        },
+        {
+          "id": "bf-oracle-0-47",
+          "tag": "a",
+          "role": null,
+          "label": "Deprecated attributes"
+        },
+        {
+          "id": "bf-oracle-0-82",
+          "tag": "a",
+          "role": null,
+          "label": "Visual layout of table contents"
+        },
+        {
+          "id": "bf-oracle-0-93",
+          "tag": "a",
+          "role": null,
+          "label": "Table layers and transparency"
+        },
+        {
+          "id": "bf-oracle-0-94",
+          "tag": "a",
+          "role": null,
+          "label": "Accessibility"
+        }
+      ],
+      "falsePositiveExamples": [
+        {
+          "tag": "a",
+          "role": "link",
+          "name": "Otari Meet Otari, the open source LLM Control Plane that helps developers control LLM infrastructure"
+        },
+        {
+          "tag": "a",
+          "name": "HTML: Markup language"
+        },
+        {
+          "tag": "a",
+          "name": "Elements"
+        },
+        {
+          "tag": "a",
+          "name": "Global attributes"
+        },
+        {
+          "tag": "a",
+          "name": "Attributes"
+        },
+        {
+          "tag": "a",
+          "name": "See all…"
+        },
+        {
+          "tag": "a",
+          "name": "Responsive images"
+        },
+        {
+          "tag": "a",
+          "name": "HTML cheatsheet"
+        }
+      ],
+      "batch": 2
+    },
+    {
+      "group": "SPA",
+      "url": "https://angular.dev/tutorials/learn-angular",
+      "finalUrl": "https://angular.dev/tutorials/learn-angular",
+      "title": "Learn Angular • Angular",
+      "oracle": 29,
+      "detected": 25,
+      "matched": 25,
+      "recall": 0.8620689655172413,
+      "precision": 1,
+      "mappedOracle": 29,
+      "frameCount": 3,
+      "frameErrors": [],
+      "missingExamples": [
+        {
+          "id": "bf-oracle-0-15",
+          "tag": "button",
+          "role": null,
+          "label": "chevron_right"
+        },
+        {
+          "id": "bf-oracle-0-17",
+          "tag": "a",
+          "role": null,
+          "label": "Link to How to use this tutorial"
+        },
+        {
+          "id": "bf-oracle-0-19",
+          "tag": "a",
+          "role": null,
+          "label": "Link to Using AI for Development"
+        },
+        {
+          "id": "bf-oracle-0-29",
+          "tag": "div",
+          "role": "separator",
+          "label": ""
+        }
+      ],
+      "falsePositiveExamples": [],
+      "batch": 2
+    },
+    {
+      "group": "SPA",
+      "url": "https://angular.dev/overview",
+      "finalUrl": "https://angular.dev/overview",
+      "title": "What is Angular? • Angular",
+      "oracle": 133,
+      "detected": 127,
+      "matched": 127,
+      "recall": 0.9548872180451128,
+      "precision": 1,
+      "mappedOracle": 133,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [
+        {
+          "id": "bf-oracle-0-72",
+          "tag": "a",
+          "role": null,
+          "label": "Link to Features that power your development"
+        },
+        {
+          "id": "bf-oracle-0-79",
+          "tag": "a",
+          "role": null,
+          "label": "Link to Develop applications faster than ever"
+        },
+        {
+          "id": "bf-oracle-0-84",
+          "tag": "a",
+          "role": null,
+          "label": "Link to Ship with confidence"
+        },
+        {
+          "id": "bf-oracle-0-87",
+          "tag": "a",
+          "role": null,
+          "label": "Link to Works at any scale"
+        },
+        {
+          "id": "bf-oracle-0-93",
+          "tag": "a",
+          "role": null,
+          "label": "Link to Open-source first"
+        },
+        {
+          "id": "bf-oracle-0-96",
+          "tag": "a",
+          "role": null,
+          "label": "Link to A thriving community"
+        }
+      ],
+      "falsePositiveExamples": [],
+      "batch": 2
     }
-  ]
+  ],
+  "batch2Summary": {
+    "attempted": 25,
+    "measured": 24,
+    "oracle": 5987,
+    "detected": 5171,
+    "matched": 4826,
+    "meanRecall": 0.888921065529365,
+    "meanPrecision": 0.9486347269149631,
+    "pooledRecall": 0.8060798396525806,
+    "pooledPrecision": 0.933281763682073
+  }
 }
