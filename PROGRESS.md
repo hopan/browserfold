@@ -119,7 +119,6 @@ Hoàn tất. Test: `tests/serialize/text.test.ts`; code: `src/serialize/text.ts`
 
 ## Dispatch sau
 
-11. CLI.
 12. JSON debug output.
 13. Automated tests cho toàn MVP và các tiêu chí chấp nhận (token ratio, recall, precision, determinism).
 
@@ -132,6 +131,14 @@ Hoàn tất iframe cùng origin. Test: `tests/semantic/frames.test.ts`; code: `s
 - Red: `npm test -- tests/semantic/frames.test.ts` — fail (1 test), không tìm thấy nút Pay trong iframe.
 - Green: cùng lệnh — pass, 1 file / 1 test với Chromium thật và iframe `srcdoc` cùng origin. DOM trong `contentDocument` được mở rộng bằng `DOM.describeNode`, node con giữ `frameId` và ancestry qua iframe; text có `FRAME "Payment"`.
 
+### Item 11 — CLI
+
+Hoàn tất. Test: `tests/cli/index.test.ts`; code: `src/cli/index.ts`, `package.json`.
+
+- Red: `npm test -- tests/cli/index.test.ts` — fail (exit 1), thiếu module `src/cli/index.js`.
+- Green: cùng lệnh — pass, 1 file / 1 test với Chromium thật; `capture URL` xuất text ra stdout, `-o` ghi file. CLI có đường CDP với `--page`, parser lỗi đầu vào rõ ràng và bin `browserfold`.
+
 ## Sai khác với SPEC.md — dispatch 4
 
 - Nội dung iframe cross-origin chưa được bảo đảm: Chromium có thể đặt frame ở CDP target riêng và không cung cấp `contentDocument` qua session trang cha. Bước này chỉ xác nhận iframe cùng origin.
+- CLI hiện hỗ trợ chế độ `automation` mặc định; `content`, `--geometry` và các giới hạn `--max-*` trong SPEC chưa có cơ chế tương ứng ở pipeline hiện tại, nên chưa nhận các option đó. `--format json` thuộc item 12.

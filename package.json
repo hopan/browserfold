@@ -2,6 +2,7 @@
   "name": "browserfold",
   "version": "1.0.0",
   "description": "Semantic browser-state extraction for automation",
+  "bin": { "browserfold": "dist/cli/index.js" },
   "scripts": {
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
