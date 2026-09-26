@@ -1,6 +1,6 @@
 # Corpus trang thật — dispatch 7–11: token ratio
 
-Đo ngày **2026-09-26** trên Chromium/Playwright, không click, nhập liệu hoặc gửi form. Đây là corpus thủ công theo SPEC.md mục 28–29, không phải test CI. Năm batch đã thử **103 URL công khai riêng biệt**; **91** trả về phép đo, trong đó **89** là mẫu đạt tiêu chí đại diện; **12** lỗi và **2** mẫu đo được nhưng không phù hợp nhóm. Số URL đã thử đạt hoặc vượt mục tiêu ở cả tám nhóm của mục 29. Dữ liệu thô, gồm URL lỗi, ở [`corpus/results.json`](corpus/results.json); script chạy lại ở [`corpus/measure.mjs`](corpus/measure.mjs).
+Đo ngày **2026-09-26** trên Chromium/Playwright, không click, nhập liệu hoặc gửi form. Đây là corpus thủ công theo [SPEC.md](SPEC.md) mục 28–29, không phải test CI. Năm batch đã thử **103 URL công khai riêng biệt**; **91** trả về phép đo, trong đó **89** là mẫu đạt tiêu chí đại diện; **12** lỗi và **2** mẫu đo được nhưng không phù hợp nhóm. Số URL đã thử đạt hoặc vượt mục tiêu ở cả tám nhóm của mục 29. Dữ liệu thô, gồm URL lỗi, ở [`corpus/results.json`](../corpus/results.json); script chạy lại ở [`corpus/measure.mjs`](../corpus/measure.mjs).
 
 ## Cách đo
 
@@ -45,7 +45,7 @@ Hai trang Bootstrap minh họa modal/dropdown trong trạng thái mặc định;
 | Theo tổng token | 30.739 / 1.353.732 | **2,27%** | Đạt ≤10% và stretch ≤5% |
 | Trung bình tỷ lệ từng trang | Σ 16 tỷ lệ / 16 | **5,02%** | Đạt ≤10%; vượt stretch ≤5% khoảng 0,02 điểm % |
 
-Baseline hai fixture trên HEAD `ad865b1`, đo lại bằng `npm test -- tests/acceptance.test.ts`, là **532/2.142 = 24,84%** (login 112/546; management 420/1596). PROGRESS.md ghi 24,74% ở phép đo trước dispatch 6; sau ba fix ở dispatch 6, baseline hiện hành là 24,84%. So với baseline hiện hành, pilot thấp hơn **22,57 điểm %** theo tổng token và **19,82 điểm %** theo trung bình trang. Ba mẫu riêng vẫn vượt 10%: example.com, motherfuckingwebsite.com và sản phẩm Demo Web Shop.
+Baseline hai fixture trên HEAD `ad865b1`, đo lại bằng `npm test -- tests/acceptance.test.ts`, là **532/2.142 = 24,84%** (login 112/546; management 420/1596). [PROGRESS.md](PROGRESS.md) ghi 24,74% ở phép đo trước dispatch 6; sau ba fix ở dispatch 6, baseline hiện hành là 24,84%. So với baseline hiện hành, pilot thấp hơn **22,57 điểm %** theo tổng token và **19,82 điểm %** theo trung bình trang. Ba mẫu riêng vẫn vượt 10%: example.com, motherfuckingwebsite.com và sản phẩm Demo Web Shop.
 
 ## URL lỗi và giới hạn diễn giải
 

@@ -1,16 +1,17 @@
 {
   "name": "browserfold",
   "version": "1.0.0",
-  "description": "Semantic browser-state extraction for automation",
+  "description": "Compact semantic UI snapshots from browser DOM and accessibility data for LLM agents",
+  "repository": "https://github.com/hopan/browserfold",
   "bin": { "browserfold": "dist/cli/index.js" },
   "scripts": {
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
     "build": "tsc"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["browser", "playwright", "llm", "dom", "accessibility", "semantic"],
+  "author": "hopan",
+  "license": "MIT",
   "type": "module",
   "dependencies": {
     "playwright": "^1.63.0"

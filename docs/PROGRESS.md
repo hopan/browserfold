@@ -1,6 +1,6 @@
-# BrowserFold — tiến độ dispatch 1–5
+# BrowserFold — tiến độ dự án
 
-Đã triển khai item 1–13 của mục 25 trong `SPEC.md`. Các ngưỡng chấp nhận ở mục 28 chưa đạt; chi tiết ở dispatch 5.
+Đã triển khai item 1–13 của mục 25 trong [`SPEC.md`](SPEC.md). Các ngưỡng chấp nhận ở mục 28 chưa đạt; chi tiết ở dispatch 5.
 
 ## Setup
 
@@ -160,12 +160,12 @@ Hoàn tất bộ đo ở `tests/acceptance.test.ts` với hai fixture HTML cố 
 
 - TDD red: `npm test -- tests/acceptance.test.ts` lần đầu exit 1 vì text thiếu `Page 1 of 6`. Chuyển các assertion độc lập sang `expect.soft` để in đầy đủ số đo ngay cả khi một tiêu chí lỗi; không đổi fixture, ngưỡng, oracle hay cách tính để làm test pass. Lần chạy tiếp exit 1 với 4 assertion thất bại (phân trang, token ratio, recall, precision); determinism pass.
 - Đếm token bằng regex Unicode `/[\p{L}\p{N}_]+|[^\s]/gu` áp dụng giống nhau cho HTML DOM do `page.content()` trả về và Semantic UI Snapshot text. Đây là phép xấp xỉ ổn định, đếm cả cú pháp markup và dấu câu, không phải số token của một model cụ thể. Mẫu số là HTML/DOM gốc thực tế sau Chromium parse, không phải URL `data:` hay JSON debug. Tỷ lệ tổng được tính `Σ token snapshot / Σ token DOM` trên hai trang; cũng báo từng trang.
-- Ngưỡng nguyên văn trong SPEC.md mục 28: `semantic snapshot <= 10% of raw DOM token count`; `Stretch target: <= 5%`. Đo được login **112/546 = 20,51%**, quản lý **418/1596 = 26,19%**, tổng **530/2142 = 24,74%**. **Không đạt** ngưỡng MVP 10% và mốc mở rộng 5%. Snapshot vẫn chứa ID hash dài, dòng URL và một dòng mỗi hành động/hàng; `src/serialize/text.ts` là nơi trực tiếp quyết định chi phí này. Fixture chỉ gồm hai trang nên số đo là baseline hữu hạn, chưa phải benchmark 90 trang ở mục 29.
+- Ngưỡng nguyên văn trong [SPEC.md](SPEC.md) mục 28: `semantic snapshot <= 10% of raw DOM token count`; `Stretch target: <= 5%`. Đo được login **112/546 = 20,51%**, quản lý **418/1596 = 26,19%**, tổng **530/2142 = 24,74%**. **Không đạt** ngưỡng MVP 10% và mốc mở rộng 5%. Snapshot vẫn chứa ID hash dài, dòng URL và một dòng mỗi hành động/hàng; `src/serialize/text.ts` là nơi trực tiếp quyết định chi phí này. Fixture chỉ gồm hai trang nên số đo là baseline hữu hạn, chưa phải benchmark 90 trang ở mục 29.
 - Ngưỡng nguyên văn: `>= 95% of visible actionable controls represented`. Oracle là danh sách ID của 25 control thực sự khả dụng trên hai fixture, gồm cả ba `<option>` của select; mỗi control chỉ được tính là có mặt khi node đúng ID được đánh dấu visible/interactive và semantic ID của nó thực sự có trong text. Đo được **22/25 = 88%**, **không đạt**. Thiếu `status-all`, `status-open`, `status-closed`: `src/serialize/text.ts` xuất combobox và giá trị hiện tại nhưng không xuất từng option. Đây là recall của control khả dụng trong snapshot text, không phải recall của mọi DOM node.
 - Ngưỡng nguyên văn: `False interactive elements: < 5%`. Mẫu số là toàn bộ node visible được `mergeSemanticNodes` đánh dấu `interactive: true`; false positive là node không thuộc oracle control khả dụng. Đo được **4/29 = 13,79% false interactive**, tương ứng **25/29 = 86,21% precision**, **không đạt**. Bốn node là nút disabled `unavailable`, thẻ `a` không `href` `empty-anchor`, `role=button` không handler `fake-button`, và phần trang trí có `tabindex=0` `focus-decoration`. `src/semantic/interactive.ts` hiện dùng role/tag/tabindex mà chưa xét khả dụng hoặc handler thực tế. Định nghĩa precision này theo mục 29 (`% captured controls actually actionable`), không dùng false-positive rate trên toàn bộ DOM.
 - SPEC.md chỉ ghi `Two snapshots of an unchanged page should produce semantically identical output`, **không định lượng số lần hay một tỷ lệ pass cụ thể**. Test chạy **3 capture** liên tiếp trên cùng trang quản lý không đổi, so sánh toàn bộ text và danh sách semantic ID theo đúng thứ tự: **3/3 giống hệt**, đạt yêu cầu hai snapshot giống nhau.
 - Tiêu chí chức năng mục 28: trang login giữ email, password, submit, checkbox, validation error và link. Trang quản lý giữ bảng/hàng/header, giá trị filter, list, status/alert và quan hệ hành động theo hàng; các mục này **đạt** trên fixture. Riêng trạng thái phân trang `Page 1 of 6` bị mất dù link Previous/Next còn: **không đạt** phần pagination state. Nội dung span này bị `extractVisibleContent` lọc trước khi `serializeText` chạy. Không dùng screenshot.
-- SPEC.md mục 29 nêu corpus 90 trang và các metric latency, ID stability qua state, test success rate nhưng **không định lượng ngưỡng chấp nhận MVP** cho các metric đó. Bộ đo hiện chỉ bao phủ hai fixture đại diện; chưa thể suy rộng số liệu thành chất lượng trên toàn bộ corpus. Các metric cần agent thực thi hành động hoặc nhiều trạng thái trang nằm ngoài item 13 và không được bịa ngưỡng.
+- [SPEC.md](SPEC.md) mục 29 nêu corpus 90 trang và các metric latency, ID stability qua state, test success rate nhưng **không định lượng ngưỡng chấp nhận MVP** cho các metric đó. Bộ đo hiện chỉ bao phủ hai fixture đại diện; chưa thể suy rộng số liệu thành chất lượng trên toàn bộ corpus. Các metric cần agent thực thi hành động hoặc nhiều trạng thái trang nằm ngoài item 13 và không được bịa ngưỡng.
 
 ## MVP HOÀN TẤT — tổng kết
 
@@ -252,3 +252,11 @@ Thêm **16 URL mới** vào `corpus/measure.mjs`: 7 Simple, 5 SPA, và một URL
 - Batch 5: **16 URL thử, 14 đo được và tính tổng, 2 lỗi**. Riêng batch 5: **71.886/1.350.319 = 5,32%** theo tổng token và **5,34%** trung bình tỷ lệ từng trang; ba mẫu riêng vượt 10%.
 - Tích luỹ năm batch: **103 URL riêng biệt đã thử**, đủ hoặc vượt mục tiêu URL ở cả tám nhóm; **91** trả số đo, loại hai mẫu không phù hợp, còn **89 mẫu** tính tổng. Theo tổng token **273.916/8.029.631 = 3,41%**; trung bình tỷ lệ từng trang **5,38%**; **19/89** mẫu riêng vượt 10%.
 - Corpus **hoàn tất chỉ tiêu 100 URL đã thử theo nhóm**, nhưng chưa có 100 mẫu đo được và chưa đo các metric khác của SPEC mục 29. Token ratio tích luỹ đạt MVP ≤10% theo cả hai phép tổng hợp; stretch ≤5% chỉ đạt theo tổng token. Baseline fixture vẫn **24,84%**, nên **MVP tổng thể chưa được chấp nhận**. Bảng từng URL, tiến độ và kết luận cuối ở [`CORPUS_REPORT.md`](CORPUS_REPORT.md).
+
+## Dispatch 12 — OSS polish
+
+- Thêm README hướng dẫn cài/build, dùng CLI và ví dụ text được capture thật; ghi rõ số liệu corpus và trạng thái acceptance chưa đạt. Thêm MIT LICENSE (2026, hopan).
+- Chuyển SPEC, PROGRESS và CORPUS_REPORT vào `docs/`, cập nhật các liên kết tài liệu và liên kết dữ liệu corpus. Giữ `corpus/` ở root.
+- Bổ sung metadata npm, đồng bộ license trong lockfile, bỏ chú thích cũ ở entry point và thêm `.env*` vào `.gitignore`. Audit working tree và lịch sử file được thêm chưa thấy credential thật; các match từ khóa thuộc tài liệu, số đo, fixture và logic redaction.
+- Thêm CI cho push/PR vào `master`: `npm ci`, Chromium Playwright, typecheck, build và toàn bộ `npm test`. Không chạy đo corpus vì phụ thuộc website bên ngoài. CI hiện sẽ đỏ do acceptance ratio fixture đã biết, giữ nguyên ngưỡng test.
+- Kiểm tra cuối: `npm run typecheck` và `npm run build` pass. `npm test` có **12/13 file pass, 14/15 test pass**; một assertion acceptance ratio fail: **532/2142 = 24,84% > 10%**. Recall 25/25 và false interactive 0/25 đạt ngưỡng.

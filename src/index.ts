@@ -1,2 +1,2 @@
-// Public API will be assembled in a later MVP dispatch.
+// Reserve the package entry point until the library API is implemented.
 export {};
