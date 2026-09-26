@@ -104,7 +104,13 @@ Hoàn tất. Test: `tests/serialize/text.test.ts`; code: `src/serialize/text.ts`
 - Red: `npm test -- tests/serialize/text.test.ts` — fail (exit 1), thiếu module `src/serialize/text.js`, 0 test chạy.
 - Green: cùng lệnh — pass, 1 file / 1 test với Chromium thật; hai capture cùng trang cho cùng output, bao gồm PAGE/UI, trạng thái control, hàng bảng và hành động đúng hàng, list/card, lọc nội dung ẩn và prose không liên quan. Trong vòng chỉnh sửa, test phát hiện tên nút bị lặp trong ô bảng; sửa serializer để ô chứa control không xuất thành dữ liệu.
 - `npm run typecheck` pass.
-- Mã lưu local: (điền sau commit).
+- Mã lưu local: `fd1528f` (`feat: serialize compact semantic UI snapshots`).
+
+## Kiểm tra cuối dispatch 3
+
+- `npm test` — pass, 9 file / 10 test (dispatch 1+2+3), chạy toàn bộ một lần sau item 9.
+- `npm run typecheck` — pass.
+- `npm run build` — pass.
 
 ## Sai khác với SPEC.md — dispatch 3
 
