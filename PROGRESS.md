@@ -129,6 +129,7 @@ Hoàn tất iframe cùng origin. Test: `tests/semantic/frames.test.ts`; code: `s
 
 - Red: `npm test -- tests/semantic/frames.test.ts` — fail (1 test), không tìm thấy nút Pay trong iframe.
 - Green: cùng lệnh — pass, 1 file / 1 test với Chromium thật và iframe `srcdoc` cùng origin. DOM trong `contentDocument` được mở rộng bằng `DOM.describeNode`, node con giữ `frameId` và ancestry qua iframe; text có `FRAME "Payment"`.
+- Mã lưu local: `b82f707` (`feat: capture same-origin iframe content with frame context`). `npm run typecheck` pass.
 
 ### Item 11 — CLI
 
@@ -136,6 +137,7 @@ Hoàn tất. Test: `tests/cli/index.test.ts`; code: `src/cli/index.ts`, `package
 
 - Red: `npm test -- tests/cli/index.test.ts` — fail (exit 1), thiếu module `src/cli/index.js`.
 - Green: cùng lệnh — pass, 1 file / 1 test với Chromium thật; `capture URL` xuất text ra stdout, `-o` ghi file. CLI có đường CDP với `--page`, parser lỗi đầu vào rõ ràng và bin `browserfold`.
+- Mã lưu local: `bd21bac` (`feat: add capture CLI for text snapshots`). `npm run typecheck` pass.
 
 ### Item 12 — JSON debug output
 
@@ -143,6 +145,13 @@ Hoàn tất. Test: `tests/serialize/json.test.ts`; code: `src/serialize/json.ts`
 
 - Red: `npm test -- tests/serialize/json.test.ts` — fail (1 test), CLI báo `JSON output is not yet available`.
 - Green: cùng lệnh — pass, 1 file / 1 test với Chromium thật; `--format json` xuất page metadata, toàn bộ cây semantic node (kể cả node ẩn/không được giữ trong text compact), frame context, source và các quan hệ control/content.
+- Mã lưu local: `6274e08` (`feat: expose full semantic tree as JSON debug output`). `npm run typecheck` pass.
+
+## Kiểm tra cuối dispatch 4
+
+- `npm test` — pass, 12 file / 13 test (dispatch 1+2+3+4), chạy toàn bộ một lần sau item 12.
+- `npm run typecheck` — pass.
+- `npm run build` — pass.
 
 ## Sai khác với SPEC.md — dispatch 4
 
