@@ -219,3 +219,12 @@ Chạy script thủ công `corpus/measure.mjs` trên 23 URL công khai, ngoài `
 - Pipeline được sửa để giới hạn truy vấn style/box CDP đồng thời ở 24 và giữ khóa tổ tiên semantic ID bằng hash độ dài cố định. Trước sửa, trang thật DOM lớn có thể làm Node hết bộ nhớ. `npm run build` và `tests/extract/accessibility.test.ts`, `tests/semantic/identity.test.ts` pass; acceptance vẫn fail duy nhất ở ngưỡng token fixture 10%, với số đo 24,84%.
 
 Bảng từng URL, lỗi, cách đo và giới hạn: [`CORPUS_REPORT.md`](CORPUS_REPORT.md). Dữ liệu máy đọc được: `corpus/results.json`.
+
+## Dispatch 8 — corpus batch 2
+
+Mở rộng `corpus/measure.mjs` bằng **20 URL mới** (4 iframe, 4 custom component/Web Component, 3 dashboard, 3 ecommerce, 3 enterprise form, 3 modal/dropdown), không trùng 23 URL batch 1. Chạy `npm run build && node corpus/measure.mjs --from 23`; script dùng lại toàn bộ pipeline, timeout và phép đếm token của dispatch 7, giữ nguyên 23 dòng batch 1 rồi nối kết quả batch 2 vào `corpus/results.json`. URL form Test Pages ban đầu sai trả 404, đã sửa sang đường dẫn hợp lệ và đo lại. Chỉ load và đọc trang, không click, nhập liệu hoặc gửi form.
+
+- Batch 2: **20 URL thử, 19 đo được và đạt tiêu chí nhóm, 1 lỗi CDP** ở W3Schools iframe; không gán token ratio cho lỗi. Kiểm tra DOM sau render xác nhận ba trang iframe Test Pages có 2/2/1 iframe và bốn trang Web Component có shadow root (1/2/1/74). Không thử vượt bot detection.
+- Tích luỹ batch 1 + 2: **43 URL riêng biệt**, 36 trả số đo; loại một Lit tutorial batch 1 chưa render shadow root, còn **35 mẫu** tính tổng. Theo tổng token **61.835/2.259.702 = 2,74%**; trung bình tỷ lệ từng trang **5,12%**. Cả hai đạt MVP ≤10%; tổng token đạt stretch ≤5%, trung bình trang vượt stretch khoảng 0,12 điểm %. Bảy trang riêng vượt 10%.
+- Tiến độ tính cả lỗi và mẫu bị loại: Simple **4/20**, SPA **4/20**, Dashboard **5/10**, Ecommerce **6/10**, Enterprise form **5/10**, Modal/dropdown **5/10**, Iframe **6/10**, Custom component **8/10**. Bối cảnh đầu dispatch ghi SPA 3/20 và Custom component 3/10, nhưng mỗi nhóm đã có 4 URL trong `results.json` batch 1; bảng tiến độ dùng dữ liệu thô thực tế.
+- Giới hạn giữ nguyên: DOM `page.content()` không gồm nội dung iframe/shadow DOM; modal, popover và dropdown được đọc ở trạng thái đóng; form là demo công khai. Bảng từng URL, lỗi và diễn giải số đo: [`CORPUS_REPORT.md`](CORPUS_REPORT.md).

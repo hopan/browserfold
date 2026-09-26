@@ -33,7 +33,31 @@ const pages = [
   { group: 'Ecommerce', url: 'https://www.demoblaze.com/prod.html?idp_=1' },
   { group: 'Custom component', url: 'https://lit.dev/tutorials/content/intro-to-lit/00/' },
   { group: 'Custom component', url: 'https://lit.dev/playground/' },
+  { batch: 2, group: 'Iframe', url: 'https://testpages.eviltester.com/pages/embedded-pages/iframes/' },
+  { batch: 2, group: 'Iframe', url: 'https://testpages.eviltester.com/pages/embedded-pages/external-content/' },
+  { batch: 2, group: 'Iframe', url: 'https://testpages.eviltester.com/pages/embedded-pages/external-sites/' },
+  { batch: 2, group: 'Iframe', url: 'https://www.w3schools.com/html/tryit.asp?filename=tryhtml_iframe' },
+  { batch: 2, group: 'Custom component', url: 'https://testpages.eviltester.com/pages/web-components/shadow-dom-style/' },
+  { batch: 2, group: 'Custom component', url: 'https://testpages.eviltester.com/pages/web-components/shadow-web-component/' },
+  { batch: 2, group: 'Custom component', url: 'https://testpages.eviltester.com/pages/web-components/shadow-widget/' },
+  { batch: 2, group: 'Custom component', url: 'https://material-web.dev/components/button/' },
+  { batch: 2, group: 'Dashboard', url: 'https://adminlte.io/themes/v3/index2.html' },
+  { batch: 2, group: 'Dashboard', url: 'https://adminlte.io/themes/v3/index3.html' },
+  { batch: 2, group: 'Dashboard', url: 'https://laravel.adminlte.io/demo/dashboard-v2' },
+  { batch: 2, group: 'Ecommerce', url: 'https://demowebshop.tricentis.com/books' },
+  { batch: 2, group: 'Ecommerce', url: 'https://demowebshop.tricentis.com/digital-downloads' },
+  { batch: 2, group: 'Ecommerce', url: 'https://demowebshop.tricentis.com/apparel-shoes' },
+  { batch: 2, group: 'Form', url: 'https://adminlte.io/themes/v3/pages/forms/general.html' },
+  { batch: 2, group: 'Form', url: 'https://adminlte.io/themes/v3/pages/forms/advanced.html' },
+  { batch: 2, group: 'Form', url: 'https://testpages.eviltester.com/apps/client-server-form-validation/' },
+  { batch: 2, group: 'Modal/dropdown', url: 'https://getbootstrap.com/docs/5.3/components/offcanvas/' },
+  { batch: 2, group: 'Modal/dropdown', url: 'https://getbootstrap.com/docs/5.3/components/popovers/' },
+  { batch: 2, group: 'Modal/dropdown', url: 'https://getbootstrap.com/docs/5.3/components/navs-tabs/' },
 ];
+
+if (new Set(pages.map((page) => page.url)).size !== pages.length) {
+  throw new Error('Duplicate corpus URL');
+}
 
 // Same Unicode regex as tests/acceptance.test.ts. It counts markup punctuation.
 function tokenCount(value) {
@@ -87,7 +111,8 @@ if (process.argv[2] === '--worker') {
 } else {
   const start = process.argv[2] === '--from' ? Number(process.argv[3]) : 0;
   if (!Number.isInteger(start) || start < 0 || start > pages.length) throw new Error('Invalid --from index');
-  const previous = start ? JSON.parse(await readFile(new URL('./results.json', import.meta.url), 'utf8')).results : [];
+  const existing = start ? JSON.parse(await readFile(new URL('./results.json', import.meta.url), 'utf8')) : null;
+  const previous = existing?.results ?? [];
   if (previous.length !== start || previous.some((row, index) => row.url !== pages[index].url)) {
     throw new Error('Existing results do not match the URL list before --from');
   }
@@ -108,7 +133,8 @@ if (process.argv[2] === '--worker') {
     process.stdout.write(`${JSON.stringify(result)}\n`);
     // Keep partial results if the process is interrupted.
     await writeFile(new URL('./results.json', import.meta.url), JSON.stringify({
-      measuredAt: new Date().toISOString(),
+      measuredAt: existing?.measuredAt ?? new Date().toISOString(),
+      batch2MeasuredAt: new Date().toISOString(),
       method: 'Chromium page.content() before capturePage; same page; 1200ms stabilization; Unicode regex from tests/acceptance.test.ts',
       results,
     }, null, 2) + '\n');
