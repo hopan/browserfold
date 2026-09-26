@@ -266,6 +266,103 @@ Dispatch 13 đo ngày 2026-09-26 trên **18 URL đã có trong `corpus/results.j
 
 Tổng **3.316 oracle, 3.091 detected, 2.913 match**. Trung bình cộng 18 tỷ lệ trang: **Recall 94,21%; Precision 92,68%**. Tính theo tổng phần tử: **Recall 2.913/3.316 = 87,85%; Precision 2.913/3.091 = 94,24%**. Hai cách tổng hợp khác nhau vì Wikipedia có 1.344 oracle, còn example.com chỉ có 1. Đây là số pilot, không phải kết quả của 89 mẫu hay ngưỡng chấp nhận MVP đã xác nhận.
 
-**Đánh giá phương pháp:** Match theo backend ID đáng tin hơn ghép xấp xỉ và đã map hết ID oracle trên 18 trang. Kết quả 100%/100% của vài trang đơn giản phản ánh URL có tập control dễ nhận diện, không phải bằng chứng hệ thống hoàn hảo: Wikipedia chỉ đạt 76,79% recall; Material Web Buttons chỉ **57/120 = 47,50%**, dù cả 120 ID đã được map xuyên shadow root. Form AdminLTE có precision **93/134 = 69,40%**; nhiều `<option>` native xuất hiện trong snapshot nhưng nằm ngoài selector oracle, nên không nên tự diễn giải mọi false positive là control vô dụng. Tương tự, các trang modal/dropdown chỉ ở trạng thái đóng.
+**Đánh giá phương pháp:** Match theo backend ID đáng tin hơn ghép xấp xỉ và đã map hết ID oracle trên 18 trang. Kết quả 100%/100% của vài trang đơn giản phản ánh URL có tập control dễ nhận diện, không phải bằng chứng hệ thống hoàn hảo: Wikipedia chỉ đạt 76,79% recall; Material Web Buttons chỉ **57/120 = 47,50%**, dù cả 120 ID đã được map xuyên shadow root. Form AdminLTE có precision **93/134 = 69,40%**. Dispatch 14 bên dưới đã phân loại từng nhóm miss/false positive bằng capture mới; các con số ở bảng trên vẫn là baseline pilot trước sửa. Tương tự, các trang modal/dropdown chỉ ở trạng thái đóng.
 
 **Khuyến nghị trước full 89:** Giữ cơ chế match chính xác này, nhưng chạy lặp một số URL động và kiểm tra tay vài miss/false positive ở Wikipedia, form và Material Web trước khi suy rộng số liệu. Ngay trong quá trình xác thực, web.dev có 35 oracle ở một lần tải và 56 ở lần cuối; DOM động khiến một lần đo không đủ để kết luận độ ổn định. Cần giữ định nghĩa oracle được giao khi so sánh, ghi riêng các native `<option>` ngoài oracle và trạng thái shadow/frame. Chưa chạy 89 trang trong dispatch này.
+
+## Điều tra nguyên nhân gap recall/precision — Dispatch 14
+
+Ngày 2026-09-26, tải lại đúng ba URL bằng Chromium `domcontentloaded` + 1,2 giây, navigation timeout 30 giây và tiến trình timeout 180 giây cho ba trang. Gắn oracle ID trước capture, xuất debug JSON bằng cùng `serializeJson` với CLI `--format json`, rồi match chính xác `backendNodeId` và chỉ tính control có semantic ID trong text. Cả ba lần tải **trước sửa** tái hiện đúng pilot: Material 57/120, Wikipedia 1032/1344, AdminLTE 93/134; mọi oracle ID đều map được. Các ID `probe-*` dưới đây là ID tạm của lần tải này, không ổn định qua lần tải khác. Không click hay mở nội dung gập.
+
+### Material Web Buttons
+
+Trong 63 oracle miss trước sửa, **62 ở shadow root mở**: 37 chỉ có AX-only semantic node nhưng `interactive:false`, 25 không có semantic node tương ứng; một `<main tabindex="0">` ở light DOM bị heuristic interactive loại. Các nút thực nằm sâu trong shadow root của `md-*`, bao gồm root lồng trong `top-app-bar`, `nav-drawer`, `lit-island` và `copy-code-button`. Dòng `src/extract/dom.ts:21` cũ gọi CDP với `pierce:false`; các vòng duyệt `expandFrames`/`collect` cũ chỉ theo `children` và `contentDocument`. `src/semantic/merger.ts:108-112` cũ cũng chỉ theo hai nhánh đó. AX fallback ở `merger.ts:121-127` không có DOM attributes; `interactive.ts:27-37` chỉ cho role button/link tương tác khi có `tabindex` hoặc dấu hiệu intent trên chính node. Đây là mất DOM identity và thuộc tính của control bên trong shadow root, không phải lỗi ghép ID. Không thấy bằng chứng merge/dedupe xóa control liền kề: `merger.ts` tạo một node cho mỗi DOM element và bỏ qua AX node đã ghép theo backend ID (`:55-59`, `:103-128`). Closed root không được oracle JS duyệt; điều tra này chỉ nói về open root.
+
+Mẫu **20 miss cụ thể trước sửa** (role oracle đều không khai báo tường minh; `—` là label DOM rỗng vì nội dung nằm ở slot/AX). Cột shadow/custom là quan sát trên chính element; thứ tự custom từ gần ra xa:
+
+| Oracle ID | Tag | Text/label | Shadow | Custom ancestor gần nhất |
+|---|---|---|---|---|
+| probe-1 | button | — | Có | md-icon-button |
+| probe-2 | a | Material Web | Có | top-app-bar |
+| probe-3 | a | — | Có | md-icon-button |
+| probe-4 | button | — | Có | md-icon-button |
+| probe-38 | main | Buttons… | Không | nav-drawer |
+| probe-44 | button | — | Có | md-elevated-button |
+| probe-45 | button | — | Có | md-filled-button |
+| probe-46 | button | — | Có | md-filled-tonal-button |
+| probe-47 | button | — | Có | md-outlined-button |
+| probe-48 | button | — | Có | md-text-button |
+| probe-54 | button | — | Có | md-outlined-button |
+| probe-55 | button | — | Có | md-filled-button |
+| probe-56 | button | — | Có | md-icon-button → copy-code-button |
+| probe-57 | button | — | Có | md-filled-tonal-button |
+| probe-58 | button | — | Có | md-text-button |
+| probe-59 | button | — | Có | md-icon-button → copy-code-button |
+| probe-61 | button | — | Có | md-icon-button → copy-code-button |
+| probe-63 | button | — | Có | md-icon-button → copy-code-button |
+| probe-65 | button | — | Có | md-elevated-button |
+| probe-66 | button | — | Có | md-icon-button → copy-code-button |
+
+Test fixture mới có hai **open** shadow root lồng nhau và `<button>` nội bộ: đỏ vì không có DOM node/backend ID; sau khi CDP pierce và duyệt `shadowRoots` đệ quy, xanh. Chỉ giữ `shadowRootType === 'open'`: CDP `pierce:true` còn trả user-agent shadow root của `<input type="password">`, từng làm lộ giá trị vào semantic text trong lần chạy trung gian; test redaction cũ bắt được và đã xanh lại sau lọc. Trên URL thật sau sửa: **118/120 recall = 98,33%**, detected 153, precision 118/153 = 77,12%. Hai miss còn lại là `<main tabindex="0">` không có intent và một `<a>` lồng trong `md-list-item` mà text renderer không in ID riêng; không mở rộng heuristic/tabindex hoặc in cả control lồng nhau vì có nguy cơ tạo action trùng.
+
+### Wikipedia Graph theory
+
+Trước sửa có 312 miss: **295 link ở dưới `<tr hidden="until-found">` của navbox gập** bị BrowserFold đánh `visible:false`; 17 control ở hàng tiêu đề bảng có `visible:true`, `interactive:true` nhưng thiếu ID trong text (4 button và 13 link). Oracle pilot kiểm tra `display`/`visibility`/`opacity` và bounding rect của từng ancestor, nhưng **không kiểm tra thuộc tính `hidden`** (`corpus/measure_recall.mjs`, hàm `tagOracleElements`); child link trong tr gập vẫn có bounding rect dương trong CDP/JS. Đối chiếu raw path cho cả 295 miss đều tìm thấy ancestor `tr[hidden="until-found"]` với CDP box 0×0; ví dụ link “History” có box 50×16 nhưng ancestor tr 0×0. `merger.ts:72-76` loại mọi ancestor có `hidden`. Đây là bất đồng định nghĩa visibility của oracle, không phải 295 link thật bị merge/dedupe mất; **không sửa sản phẩm để hiện nội dung đang gập**. Kết luận 76,79% pilot vì vậy không thể đọc như recall trên control đang hiện.
+
+Mẫu **20 miss cụ thể trước sửa** (tất cả không ở shadow root, không ở custom element; role HTML mặc định button/link, thuộc tính role không khai báo):
+
+| Oracle ID | Tag | Text/label | Nguyên nhân |
+|---|---|---|---|
+| probe-1014 | button | show | Tiêu đề bảng không được in |
+| probe-1015 | a | v | Tiêu đề bảng không được in |
+| probe-1016 | a | t | Tiêu đề bảng không được in |
+| probe-1017 | a | e | Tiêu đề bảng không được in |
+| probe-1018 | a | mathematics | Tiêu đề bảng không được in |
+| probe-1019 | a | History | `tr[hidden="until-found"]` |
+| probe-1020 | a | Timeline | `tr[hidden="until-found"]` |
+| probe-1021 | a | Future | `tr[hidden="until-found"]` |
+| probe-1022 | a | Lists | `tr[hidden="until-found"]` |
+| probe-1023 | a | Glossary | `tr[hidden="until-found"]` |
+| probe-1024 | a | Foundations | `tr[hidden="until-found"]` |
+| probe-1025 | a | Category theory | `tr[hidden="until-found"]` |
+| probe-1026 | a | Information theory | `tr[hidden="until-found"]` |
+| probe-1027 | a | Mathematical logic | `tr[hidden="until-found"]` |
+| probe-1028 | a | Order theory | `tr[hidden="until-found"]` |
+| probe-1029 | a | Philosophy of mathematics | `tr[hidden="until-found"]` |
+| probe-1030 | a | Set theory | `tr[hidden="until-found"]` |
+| probe-1031 | a | Type theory | `tr[hidden="until-found"]` |
+| probe-1032 | a | Algebra | `tr[hidden="until-found"]` |
+| probe-1033 | a | Abstract | `tr[hidden="until-found"]` |
+
+Lỗi 17 control có thật ở `src/serialize/text.ts:71-86`: renderer chọn hàng đầu có `<th>` làm header, in `columns`, rồi `continue` khi duyệt rows nên không in control dưới header. Fixture bảng nhỏ có button/link trong `<th>` đỏ trước sửa và xanh sau khi in control ở header. Chạy lại Wikipedia: **1049/1344 = 78,05%** theo oracle pilot, đúng 17 match tăng thêm; 295 miss còn lại đều dưới `hidden="until-found"`. Nếu loại đúng 295 phần tử này khỏi mẫu số visibility thì 1049/1049 control đang hiện được match trong lần tải đó; đây là phép phân tích nguyên nhân, **không phải sửa lại số pilot hay đổi oracle**.
+
+### AdminLTE form
+
+Toàn bộ **41/41 detected không match** được phân loại: **29 `<option>` native = 70,73%** (không có role tường minh, oracle selector cố ý không gồm `option`), còn **12 `<input>` = 29,27%**: 2 file, 6 checkbox, 4 radio. Kiểm tra computed style trên URL thật: cả 12 input này thuộc lớp custom-file/custom-control và có `opacity:0` cùng box dương (ví dụ `#exampleInputFile` 378×38, `#customCheckbox1` 16×20); oracle loại theo `opacity <= 0`, trong khi `merger.ts:72-76` không xét opacity và `interactive.ts:8,27-31` coi input native là interactive. Đây là mismatch visibility đo được, không phải đoán rằng tất cả đều là option. Control custom có label nhìn thấy và vẫn là input hành động; không sửa bằng cách loại mọi opacity-zero input vì sẽ làm mất thao tác qua những control này. `interactive.ts:8,31` và `serialize/text.ts:44-49` giải thích `<option>` xuất hiện như control con của select; giữ nguyên để không phá fixture acceptance cần option.
+
+Mẫu **20 detected ngoài oracle** (backend ID của lần tải; tất cả light DOM, không nằm trong custom element):
+
+| Backend ID | Tag/role | Label/ngữ cảnh |
+|---:|---|---|
+| 654 | input/button | File input Choose file Browse |
+| 697 | option/option | Value 1 |
+| 700 | option/option | Value 2 |
+| 703 | option/option | Value 3 |
+| 979 | option/option | option 1 |
+| 982 | option/option | option 2 |
+| 985 | option/option | option 3 |
+| 988 | option/option | option 4 |
+| 991 | option/option | option 5 |
+| 1073 | input/checkbox | Custom Checkbox |
+| 1076 | input/checkbox | Custom Checkbox checked |
+| 1082 | input/checkbox | Custom Checkbox with custom color |
+| 1085 | input/checkbox | Custom Checkbox with custom color outline |
+| 1090 | input/radio | Custom Radio |
+| 1093 | input/radio | Custom Radio checked |
+| 1099 | input/radio | Custom Radio with custom color |
+| 1102 | input/radio | Custom Radio with custom color outline |
+| 1202 | input/checkbox | Toggle this custom switch element |
+| 1206 | input/checkbox | Toggle this custom switch element with custom colors |
+| 1232 | input/button | Choose file Browse |
+
+**Kiểm tra cuối:** test RED rồi GREEN cho nested shadow và table header. `npm run typecheck` và `npm run build` pass. Toàn bộ `npm test`: **13/14 file, 16/17 test pass**; assertion duy nhất fail vẫn là token ratio fixture cũ **532/2142 = 24,84% > 10%**, trong khi acceptance recall 25/25, false interactive 0/25 và determinism đều pass. Không sửa `tests/acceptance.test.ts` hoặc ngưỡng.
