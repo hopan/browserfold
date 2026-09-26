@@ -1,4 +1,4 @@
-# BrowserFold — tiến độ dispatch 1–2
+# BrowserFold — tiến độ dispatch 1–3
 
 Phạm vi đã hoàn tất: item 1–7 của mục 25 trong `SPEC.md`.
 
@@ -88,9 +88,18 @@ Hoàn tất. Test: `tests/semantic/relationships.test.ts`; code: `src/semantic/n
 
 ## Dispatch sau
 
-8. Generate semantic IDs.
-9. Output compact text.
 10. Handle iframe.
 11. CLI.
 12. JSON debug output.
 13. Automated tests cho toàn MVP và các tiêu chí chấp nhận (token ratio, recall, precision, determinism).
+
+## Dispatch 3 — item 8–9
+
+### Item 8 — Generate semantic IDs
+
+Hoàn tất. Test: `tests/semantic/identity.test.ts`; code: `src/semantic/identity.ts`.
+
+- Red: `npm test -- tests/semantic/identity.test.ts` — fail (exit 1), thiếu module `src/semantic/identity.js`, 0 test chạy.
+- Green: cùng lệnh — pass, 1 file / 1 test với Chromium thật; hai lần capture cùng trang cho cùng ID, đổi trạng thái disabled vẫn giữ ID, các tham chiếu cha và quan hệ hợp lệ. `npm run typecheck` pass.
+- Semantic ID là `e` + 10 ký tự đầu SHA-256 của fingerprint gồm frame, role/name, tag, thuộc tính định danh, tổ tiên và thứ tự trong nhóm anh em cùng fingerprint; khi trùng prefix hash sẽ kéo dài ID.
+- Mã lưu local: (điền sau commit).
