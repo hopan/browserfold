@@ -31,7 +31,13 @@ Hoàn tất. Test: `tests/semantic/merger.test.ts`; code: `src/semantic/node.ts`
 
 - Red: `npm test -- tests/semantic/merger.test.ts` — fail (exit 1), thiếu module `src/semantic/merger.js`, 0 test chạy.
 - Green: `npm run typecheck && npm test -- tests/semantic/merger.test.ts` — pass, 1 file / 1 test với Chromium thật.
-- Mã lưu local: sẽ bổ sung sau commit item 3.
+- Mã lưu local: `fe05091` (`feat: merge accessibility and DOM into semantic nodes`).
+
+## Kiểm tra cuối dispatch
+
+- `npm test` — pass, 3 file / 4 test. Chạy toàn bộ test đã viết đúng một lần sau khi hoàn tất ba item.
+- `npm run typecheck` — pass.
+- `npm run build` — pass.
 
 ## Sai khác với SPEC.md
 
