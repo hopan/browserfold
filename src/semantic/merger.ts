@@ -73,6 +73,7 @@ export function mergeSemanticNodes(captured: CapturedPage): SemanticNode[] {
           && !['script', 'style', 'noscript', 'template'].includes(dom.nodeName.toLowerCase())
           && dom.layout?.display !== 'none' && dom.layout?.visibility !== 'hidden'
           && dom.layout?.visibility !== 'collapse'
+          && (dom.layout?.opacity === undefined || Number(dom.layout.opacity) > 0)
           && !(dom.layout?.width === 0 && dom.layout?.height === 0),
         interactive: false,
         frameId,

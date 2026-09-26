@@ -5,6 +5,21 @@ import { mergeSemanticNodes } from '../../src/semantic/merger.js';
 import { extractVisibleContent } from '../../src/semantic/content.js';
 
 describe('visible automation content', () => {
+  it('excludes zero-opacity controls and controls inside zero-opacity menus', async () => {
+    const html = `<!doctype html><button style="opacity:0" aria-label="Remove dependency">×</button>
+      <nav style="opacity:0;pointer-events:none"><div role="menuitem" tabindex="-1">New File</div></nav>
+      <button>Visible action</button>`;
+    const session = await launchUrl(`data:text/html,${encodeURIComponent(html)}`);
+    try {
+      const nodes = mergeSemanticNodes(await capturePage(session.page));
+      expect(nodes.find((node) => node.name === 'Remove dependency')?.visible).toBe(false);
+      expect(nodes.find((node) => node.name === 'New File')?.visible).toBe(false);
+      expect(nodes.find((node) => node.name === 'Visible action')?.visible).toBe(true);
+    } finally {
+      await session.close();
+    }
+  });
+
   it('keeps actionable context and removes hidden, decorative and duplicate content', async () => {
     const html = `<!doctype html><title>Content</title><main>
       <style>.gone{display:none}.invisible{visibility:hidden}</style><script>window.secret='script noise'</script>

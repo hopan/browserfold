@@ -11,7 +11,7 @@ export interface RawDomNode {
   contentDocument?: RawDomNode;
   shadowRoots?: RawDomNode[];
   shadowRootType?: string;
-  layout?: { display?: string; visibility?: string; cursor?: string; width?: number; height?: number };
+  layout?: { display?: string; visibility?: string; opacity?: string; cursor?: string; width?: number; height?: number };
 }
 
 export interface RawDomTree {
@@ -63,6 +63,7 @@ export async function captureDom(session: CDPSession): Promise<RawDomTree> {
       node.layout = {
         display: entries?.find((entry) => entry.name === 'display')?.value,
         visibility: entries?.find((entry) => entry.name === 'visibility')?.value,
+        opacity: entries?.find((entry) => entry.name === 'opacity')?.value,
         cursor: entries?.find((entry) => entry.name === 'cursor')?.value,
         width: model?.width,
         height: model?.height,
