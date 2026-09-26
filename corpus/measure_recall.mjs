@@ -58,7 +58,10 @@ function tagOracleElements(frameNumber) {
             const id = `bf-oracle-${frameNumber}-${++ordinal}`;
             element.setAttribute('data-bf-oracle-id', id);
             result.push({ id, tag: element.localName, role: element.getAttribute('role'),
-              label: (element.getAttribute('aria-label') || element.textContent || '').trim().slice(0, 100) });
+              label: (element.getAttribute('aria-label') || element.textContent || '').trim().slice(0, 100),
+              frameNumber, inShadow: element.getRootNode() instanceof ShadowRoot,
+              ancestors: (() => { const names = []; for (let current = parent(element); current && names.length < 5; current = parent(current)) names.push(current.localName + (current.getAttribute('role') ? `[role=${current.getAttribute('role')}]` : '')); return names; })(),
+              html: element.outerHTML.slice(0, 300) });
           }
         }
       }
@@ -86,7 +89,7 @@ function markerMap(root) {
   return ids;
 }
 
-async function measure(entry) {
+async function measure(entry, inspect = false) {
   const browser = await chromium.launch({ headless: true });
   const page = await browser.newPage();
   page.setDefaultTimeout(30_000);
@@ -121,6 +124,13 @@ async function measure(entry) {
     const matchedIds = new Set(detected.map((node) => markers.get(node.source?.backendNodeId)).filter((id) => id && oracleIds.has(id)));
     const unmatchedDetected = detected.filter((node) => !oracleIds.has(markers.get(node.source?.backendNodeId)));
     const missing = oracle.filter((item) => !matchedIds.has(item.id));
+    const diagnostic = inspect ? {
+      oracle, missing, nodes: nodes.filter((node) => markers.has(node.source?.backendNodeId)).map((node) => ({
+        oracleId: markers.get(node.source?.backendNodeId), tag: node.tag, role: node.role,
+        name: node.name, id: node.id, visible: node.visible, interactive: node.interactive,
+        inText: snapshot.includes(`[${node.id}]`), enabled: node.enabled,
+      })), snapshot: snapshot.slice(0, 12000),
+    } : {};
     return { ...entry, finalUrl: page.url(), title, oracle: oracle.length, detected: detected.length,
       matched: matchedIds.size, recall: oracle.length ? matchedIds.size / oracle.length : null,
       precision: detected.length ? matchedIds.size / detected.length : null,
@@ -128,6 +138,7 @@ async function measure(entry) {
       frameCount: page.frames().length - 1, frameErrors,
       missingExamples: missing.slice(0, 8),
       falsePositiveExamples: unmatchedDetected.slice(0, 8).map((node) => ({ tag: node.tag, role: node.role, name: node.name?.slice(0, 100) })),
+      ...diagnostic,
     };
   } catch (error) {
     return { ...entry, error: error instanceof Error ? error.message : String(error) };
@@ -137,7 +148,15 @@ async function measure(entry) {
   }
 }
 
-if (process.argv[2] === '--worker') {
+if (process.argv[2] === '--inspect-url') {
+  process.stdout.write(`${JSON.stringify(await measure({ group: 'Iframe', url: process.argv[3] }, true))}\n`);
+} else if (process.argv[2] === '--worker-pilot') {
+  const previous = JSON.parse(await readFile(new URL('./recall_pilot.json', import.meta.url), 'utf8'));
+  const pilot = previous.results.filter((row) => row.batch !== 2);
+  const entry = pilot[Number(process.argv[3])];
+  if (!entry) throw new Error(`Missing pilot row ${process.argv[3]}`);
+  process.stdout.write(`${JSON.stringify(await measure({ group: entry.group, url: entry.url }))}\n`);
+} else if (process.argv[2] === '--worker') {
   process.stdout.write(`${JSON.stringify(await measure(pages[Number(process.argv[3])]))}\n`);
 } else {
   const output = new URL('./recall_pilot.json', import.meta.url);
@@ -159,6 +178,32 @@ if (process.argv[2] === '--worker') {
       meanPrecision: valid.length ? sum('precision') / valid.length : null,
       pooledRecall: oracle ? matched / oracle : null,
       pooledPrecision: detected ? matched / detected : null };
+  }
+  if (process.argv[2] === '--rerun-pilot') {
+    const pilot = results.filter((row) => row.batch !== 2);
+    if (pilot.length !== 18) throw new Error(`Expected 18 pilot URLs, found ${pilot.length}`);
+    const rerun = [];
+    for (const [index, entry] of pilot.entries()) {
+      const child = spawnSync(process.execPath, ['--max-old-space-size=768', new URL(import.meta.url).pathname, '--worker-pilot', String(index)], {
+        timeout: 60_000, encoding: 'utf8', maxBuffer: 1024 * 1024,
+      });
+      let result;
+      try { result = JSON.parse(child.stdout.trim()); }
+      catch { result = { group: entry.group, url: entry.url, error: child.error?.message ?? (child.signal
+        ? `Worker killed by ${child.signal}` : `Worker exit ${child.status}: ${child.stderr.slice(-300).trim()}`) }; }
+      rerun.push(result);
+      process.stdout.write(`${index + 1}/${pilot.length} ${JSON.stringify(result)}\n`);
+    }
+    const batch2 = results.filter((row) => row.batch === 2);
+    const updated = [...rerun.map((row) => ({ ...row, batch: 1 })), ...batch2];
+    const pilotRemeasuredAt = new Date().toISOString();
+    await writeFile(output, `${JSON.stringify({ ...previous,
+      pilotOriginalMeasuredAt: previous.pilotOriginalMeasuredAt ?? previous.measuredAt,
+      measuredAt: pilotRemeasuredAt, pilotRemeasuredAt,
+      baseline: 'post-dispatch-14',
+      baselineProductCommit: spawnSync('git', ['rev-parse', '--short', 'HEAD'], { encoding: 'utf8' }).stdout.trim(),
+      summary: summary(updated), pilotSummary: summary(rerun), results: updated }, null, 2)}\n`);
+    process.exit(0);
   }
   for (const [index, entry] of pages.entries()) {
     if (existingUrls.has(entry.url)) continue;
