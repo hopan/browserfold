@@ -234,3 +234,38 @@ So với baseline hai fixture hiện hành **532/2.142 = 24,84%**, corpus thấp
 | **Tổng** | **23** | **20** | **22** | **22** | **16** | **103/100** | **89** |
 
 Lưu ý: số đếm SPA 3/20 và Custom component 3/10 trong phần bối cảnh dispatch 8 thấp hơn dữ liệu `results.json` batch 1 một URL mỗi nhóm. Batch 1 thực tế có 4 URL SPA (kể cả Svelte 403) và 4 URL custom component (kể cả Lit tutorial), nên bảng dùng số đếm trực tiếp từ dữ liệu. Batch 4 thêm 5 URL Iframe nhưng chỉ 3 mẫu phù hợp và đo được: W3Schools lỗi CDP, trang chỉ mục Test Pages không có iframe. Batch 5 thêm hai URL thay thế để Simple và SPA đều vượt một URL đã thử so với mục tiêu. Không giả định tỷ lệ cho URL lỗi hoặc tính hai mẫu không phù hợp vào tổng.
+
+## Actionable Recall/Precision — PILOT (đang xác thực phương pháp)
+
+Dispatch 13 đo ngày 2026-09-26 trên **18 URL đã có trong `corpus/results.json`**: 4 Simple, 4 SPA, 2 Dashboard, 2 Ecommerce, 2 Enterprise form, 2 Modal/dropdown, 1 Iframe và 1 Custom component. Script riêng [`corpus/measure_recall.mjs`](../corpus/measure_recall.mjs) tải lại trang vì oracle phải chạy trước capture; kết quả từng node mẫu và số đo ở [`corpus/recall_pilot.json`](../corpus/recall_pilot.json). Chỉ load/đọc DOM, không click, nhập liệu hoặc mở modal. Mỗi trang dùng `domcontentloaded` + 1,2 giây, navigation timeout 30 giây, tiến trình con timeout 60 giây và heap 768 MB. Trang HTTP lỗi/bot block hoặc frame mà oracle không đọc được bị loại khỏi trung bình, không gán điểm giả; lần này **18/18 trang đo được**.
+
+**Oracle độc lập:** DOM query mới trong script chọn `button`, `a[href]`, `input:not([type="hidden"])`, `select`, `textarea`, các role `button/link/checkbox/radio/switch/menuitem/menuitemcheckbox/menuitemradio/tab/combobox/option/slider/spinbutton/searchbox/textbox`, `[contenteditable=""]`, `[contenteditable="true"]` và `[tabindex]` chỉ khi giá trị là số không âm. Phần tử phải có bounding rect rộng/cao dương, computed style và mọi ancestor không `display:none`/`visibility:hidden` (cũng loại `visibility:collapse` và opacity 0), không có `disabled` property, `aria-disabled="true"` hoặc `aria-hidden="true"` trên chính nó, và không nằm dưới ancestor `aria-hidden="true"`. Oracle duyệt cả frame đọc được và shadow root mở. Nó **không import/gọi** `src/semantic/interactive.ts`. Theo đúng selector được giao, `<option>` native thiếu role tường minh không thuộc oracle; đây là khác biệt với oracle ID thủ công của hai fixture acceptance.
+
+**Match chính xác theo DOM identity:** `--format json` hiện đã có `source.backendNodeId` cho semantic node, nên không cần sửa output hoặc logic sản phẩm. Oracle gắn `data-bf-oracle-id` tạm lên phần tử đạt điều kiện; sau capture, script nối attribute này với `backendNodeId` trong cây DOM CDP, cộng cây CDP đọc riêng với `pierce:true` để bao phủ shadow root. Một node BrowserFold là *detected* khi `visible && interactive` **và** `[semantic ID]` của nó thực sự có trong text snapshot. Giao là detected node có `source.backendNodeId` trùng oracle ID; không ghép theo label/role/bounding box. Định nghĩa này đo control có trong output text như acceptance recall, còn precision dùng chính tập detected đó. Lần chạy cuối map được **3.316/3.316** oracle ID; không có mất match do thiếu backend ID ở mẫu này. Script lưu số `mappedOracle` để phát hiện lỗi tương tự ở lần chạy sau.
+
+| Nhóm | URL | Oracle | Detected | Match | Recall | Precision |
+|---|---|---:|---:|---:|---:|---:|
+| Simple | https://example.com/ | 1 | 1 | 1 | 100,00% | 100,00% |
+| Simple | https://www.paulgraham.com/startupideas.html | 24 | 24 | 24 | 100,00% | 100,00% |
+| Simple | https://news.ycombinator.com/ | 230 | 230 | 230 | 100,00% | 100,00% |
+| Simple | https://en.wikipedia.org/wiki/Graph_theory | 1.344 | 1.080 | 1.032 | 76,79% | 95,56% |
+| SPA | https://github.com/microsoft/playwright | 252 | 267 | 245 | 97,22% | 91,76% |
+| SPA | https://vuejs.org/examples/#hello-world | 46 | 45 | 45 | 97,83% | 100,00% |
+| SPA | https://vuejs.org/guide/introduction.html | 117 | 116 | 111 | 94,87% | 95,69% |
+| SPA | https://web.dev/learn/performance | 56 | 56 | 53 | 94,64% | 94,64% |
+| Dashboard | https://adminlte.io/themes/v3/index.html | 72 | 78 | 72 | 100,00% | 92,31% |
+| Dashboard | https://adminlte.io/themes/v3/index2.html | 89 | 89 | 89 | 100,00% | 100,00% |
+| Ecommerce | https://demowebshop.tricentis.com/build-your-own-computer | 83 | 85 | 80 | 96,39% | 94,12% |
+| Ecommerce | https://demowebshop.tricentis.com/books | 69 | 74 | 63 | 91,30% | 85,14% |
+| Enterprise form | https://getbootstrap.com/docs/5.3/examples/checkout/ | 25 | 29 | 25 | 100,00% | 86,21% |
+| Enterprise form | https://adminlte.io/themes/v3/pages/forms/general.html | 93 | 134 | 93 | 100,00% | 69,40% |
+| Modal/dropdown | https://getbootstrap.com/docs/5.3/components/modal/ | 248 | 247 | 247 | 99,60% | 100,00% |
+| Modal/dropdown | https://getbootstrap.com/docs/5.3/components/dropdowns/ | 346 | 345 | 345 | 99,71% | 100,00% |
+| Iframe | https://testpages.eviltester.com/pages/embedded-pages/iframes/ | 101 | 101 | 101 | 100,00% | 100,00% |
+| Custom component | https://material-web.dev/components/button/ | 120 | 90 | 57 | 47,50% | 63,33% |
+
+Tổng **3.316 oracle, 3.091 detected, 2.913 match**. Trung bình cộng 18 tỷ lệ trang: **Recall 94,21%; Precision 92,68%**. Tính theo tổng phần tử: **Recall 2.913/3.316 = 87,85%; Precision 2.913/3.091 = 94,24%**. Hai cách tổng hợp khác nhau vì Wikipedia có 1.344 oracle, còn example.com chỉ có 1. Đây là số pilot, không phải kết quả của 89 mẫu hay ngưỡng chấp nhận MVP đã xác nhận.
+
+**Đánh giá phương pháp:** Match theo backend ID đáng tin hơn ghép xấp xỉ và đã map hết ID oracle trên 18 trang. Kết quả 100%/100% của vài trang đơn giản phản ánh URL có tập control dễ nhận diện, không phải bằng chứng hệ thống hoàn hảo: Wikipedia chỉ đạt 76,79% recall; Material Web Buttons chỉ **57/120 = 47,50%**, dù cả 120 ID đã được map xuyên shadow root. Form AdminLTE có precision **93/134 = 69,40%**; nhiều `<option>` native xuất hiện trong snapshot nhưng nằm ngoài selector oracle, nên không nên tự diễn giải mọi false positive là control vô dụng. Tương tự, các trang modal/dropdown chỉ ở trạng thái đóng.
+
+**Khuyến nghị trước full 89:** Giữ cơ chế match chính xác này, nhưng chạy lặp một số URL động và kiểm tra tay vài miss/false positive ở Wikipedia, form và Material Web trước khi suy rộng số liệu. Ngay trong quá trình xác thực, web.dev có 35 oracle ở một lần tải và 56 ở lần cuối; DOM động khiến một lần đo không đủ để kết luận độ ổn định. Cần giữ định nghĩa oracle được giao khi so sánh, ghi riêng các native `<option>` ngoài oracle và trạng thái shadow/frame. Chưa chạy 89 trang trong dispatch này.
