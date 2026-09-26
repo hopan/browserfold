@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Vertical scroll fixture</title></head>
+<body>
+  <div id="vertical-container" style="height: 200px; overflow-y: auto">
+    <ul id="items"></ul>
+  </div>
+  <script>
+    for (let index = 1; index <= 50; index++) {
+      const item = document.createElement('li');
+      item.style.height = '44px';
+      const button = document.createElement('button');
+      button.id = `vertical-item-${index}`;
+      button.textContent = `Vertical item ${index}`;
+      item.append(button);
+      document.querySelector('#items').append(item);
+    }
+  </script>
+</body>
+</html>
