@@ -7,6 +7,7 @@ export function extractVisibleContent(nodes: SemanticNode[]): SemanticNode[] {
   const kept: SemanticNode[] = [];
   const textSeen = new Set<string>();
   const byId = new Map(nodes.map((node) => [node.id, node]));
+  const referencedDescriptions = new Set(nodes.flatMap((node) => node.source?.describedBy?.split(/\s+/) ?? []));
   function inCard(node: SemanticNode): boolean {
     let ancestor = node.parentId ? byId.get(node.parentId) : undefined;
     while (ancestor) {
@@ -31,6 +32,7 @@ export function extractVisibleContent(nodes: SemanticNode[]): SemanticNode[] {
     if (kind) node.contentKind = kind;
     const useful = node.interactive || kind !== undefined || structuralTags.has(tag)
       || tag === 'label' || role === 'dialog' || role === 'navigation'
+      || (node.source?.domId !== undefined && referencedDescriptions.has(node.source.domId))
       || (tag === 'p' && inCard(node))
       || (node.text !== undefined && /error|invalid|failed|required/i.test(node.text));
     if (!useful) continue;

@@ -27,5 +27,5 @@ export interface SemanticNode {
   semanticParentId?: string;
   relation?: string;
   contentKind?: 'heading' | 'text' | 'table' | 'row' | 'cell' | 'list' | 'item' | 'card' | 'status' | 'alert';
-  source?: { selector?: string; backendNodeId?: number };
+  source?: { selector?: string; backendNodeId?: number; domId?: string; htmlFor?: string; describedBy?: string };
 }

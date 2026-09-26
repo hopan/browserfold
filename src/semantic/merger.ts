@@ -76,7 +76,12 @@ export function mergeSemanticNodes(captured: CapturedPage): SemanticNode[] {
           && !(dom.layout?.width === 0 && dom.layout?.height === 0),
         interactive: false,
         parentId,
-        source: dom.backendNodeId === undefined ? undefined : { backendNodeId: dom.backendNodeId },
+        source: {
+          ...(dom.backendNodeId === undefined ? {} : { backendNodeId: dom.backendNodeId }),
+          domId: attrs.get('id'),
+          htmlFor: attrs.get('for'),
+          describedBy: attrs.get('aria-describedby'),
+        },
       };
       node.type = attrs.get('type');
       if (node.tag === 'article' || attrs.get('class')?.split(/\s+/).includes('card')) node.contentKind = 'card';
