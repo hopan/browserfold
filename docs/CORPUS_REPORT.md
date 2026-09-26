@@ -213,9 +213,15 @@ So với baseline hai fixture hiện hành **532/2.142 = 24,84%**, corpus thấp
 
 ## TỔNG KẾT CORPUS
 
+### Quyết định tiêu chí MVP token ratio — 27/9/2026
+
+Sau khi được trình bày đầy đủ cả số liệu corpus và số liệu hai fixture, **Hoàng (chủ dự án) chọn phương án B**: dùng corpus **89 trang web thật** làm chuẩn đánh giá token ratio MVP của [SPEC.md](SPEC.md) mục 28. Tỷ lệ **273.916/8.029.631 = 3,41% theo tổng token** và **5,38% trung bình mỗi trang** đều đạt ngưỡng **≤10%**; tổng token còn đạt mốc stretch ≤5%. Đây là quyết định của chủ dự án về mẫu dùng để đánh giá, không phải kết luận tự ý của agent hay thay đổi ngưỡng.
+
+Hai fixture acceptance cố định vẫn đo và in ra **535/2142 = 24,98%** ở HEAD trước quyết định (login 112/546; management 423/1596), vượt 10%; số lịch sử trước thay đổi popup-signal là **532/2142 = 24,84%**. Chúng nhỏ, có mật độ control cao bất thường (bảng tám hàng với nhiều action mỗi hàng), nên overhead ID hash và href chiếm tỷ trọng lớn, không đại diện cho tập trang thật đa dạng. Từ quyết định này, số hai fixture là số liệu theo dõi minh bạch, **không còn là gate CI cho MVP token ratio**; recall, precision, pagination và determinism trên fixture vẫn là assertion. Corpus đo ngoài CI bằng `corpus/measure.mjs` và không được chạy lại trong CI vì cần mạng; các giới hạn về mẫu số, coverage và các metric khác vẫn giữ như báo cáo.
+
 **Hoàn tất chỉ tiêu URL đã thử của corpus SPEC mục 29:** **103 URL riêng biệt** trên tám nhóm, từng nhóm đạt hoặc vượt số URL mục tiêu; trong đó **91** trả số đo, **89** phù hợp và được tính token ratio, **12** lỗi, **2** đo được nhưng bị loại. Simple có 20 mẫu đo được trên 21 URL thử; SPA có 16 mẫu trên 21 URL thử. Các nhóm Ecommerce, Iframe và Custom component còn dưới 10 mẫu đo được vì lỗi hoặc mẫu không phù hợp. Vì vậy kết quả đáp ứng mốc **100 URL đã thử theo phân bổ nhóm** mà dispatch này đặt ra, nhưng **chưa phải benchmark 100 mẫu đo được**, và chưa hoàn tất bộ metric mục 29 ngoài token ratio. Không quy lỗi tải trang hoặc CDP thành số đo giả.
 
-**Kết luận token ratio theo SPEC mục 28:** corpus tích luỹ **đạt mốc MVP ≤10%** theo cả hai phép tổng hợp; mốc stretch **đạt theo tổng token, không đạt theo trung bình trang**. **Chấp nhận MVP tổng thể vẫn chưa đạt**: baseline hai fixture cố định là **24,84% >10%**; phép đo Actionable Recall/Precision hoàn tất ở mục dưới còn không đạt precision khi lấy trung bình trang và không đạt recall khi gộp phần tử. Không suy kết luận chất lượng semantic từ riêng token ratio.
+**Kết luận token ratio theo SPEC mục 28 và quyết định ngày 27/9/2026:** corpus tích luỹ **đạt mốc MVP ≤10%** theo cả hai phép tổng hợp; mốc stretch **đạt theo tổng token, không đạt theo trung bình trang**. Hai fixture cố định hiện là **535/2142 = 24,98% >10%** (trước đó **532/2142 = 24,84%**) và vẫn được ghi nhận, nhưng không còn là gate MVP token ratio. **Chấp nhận MVP tổng thể vẫn chưa đạt** vì phép đo Actionable Recall/Precision hoàn tất ở mục dưới còn không đạt precision khi lấy trung bình trang và không đạt recall khi gộp phần tử. Không suy kết luận chất lượng semantic từ riêng token ratio.
 
 ## Tiến độ corpus theo nhóm
 

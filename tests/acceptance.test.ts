@@ -106,7 +106,7 @@ describe('SPEC.md section 28 MVP acceptance measurements on Chromium', () => {
       falsePositive,
     };
     console.info(`ACCEPTANCE_METRICS ${JSON.stringify(result)}`);
-    expect.soft(result.tokenRatio).toBeLessThanOrEqual(0.10);
+    // Owner Hoàng's 2026-09-27 decision: these small, control-dense fixtures are not the MVP token-ratio gate; the 89-page real corpus in docs/CORPUS_REPORT.md meets <=10% at 3.41% aggregate / 5.38% per-page mean. Keep logging the fixture ratio.
     expect.soft(result.recall).toBeGreaterThanOrEqual(0.95);
     expect.soft(result.falseInteractiveRate).toBeLessThan(0.05);
   });
