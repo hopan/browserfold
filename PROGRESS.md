@@ -193,3 +193,19 @@ Hoàn tất bộ đo ở `tests/acceptance.test.ts` với hai fixture HTML cố 
 - `npm run typecheck` — pass.
 - `npm run build` — pass.
 - `git diff --check` — pass.
+
+## Dispatch 6 — fix gap 2/3/4
+
+Sửa theo thứ tự Gap 4 → Gap 2 → Gap 3. Trước mỗi sửa đổi, chạy lại `npm test -- tests/acceptance.test.ts` để xác nhận assertion tương ứng vẫn đỏ; sau mỗi sửa đổi, chạy lại acceptance và toàn bộ `npm test`. Không đổi fixture, oracle, ngưỡng hay assertion acceptance.
+
+| Tiêu chí | Trước dispatch 6 | Sau Gap 4 | Sau Gap 2 | Sau Gap 3 | Ngưỡng SPEC |
+|---|---:|---:|---:|---:|---|
+| Pagination state `Page 1 of 6` | Thiếu | Có | Có | Có | Giữ được — **đạt** |
+| Recall actionable | 22/25 = 88% | 22/25 = 88% | 25/25 = 100% | 25/25 = 100% | ≥95% — **đạt** |
+| False interactive / precision | 4/29 = 13,79% / 86,21% | 4/29 = 13,79% / 86,21% | 4/29 = 13,79% / 86,21% | 0/25 = 0% / 100% | False interactive <5% — **đạt** |
+
+- Gap 4: giữ text ngắn có pattern phân trang hoặc nằm trong navigation, rồi in `text:` trong snapshot. Red thiếu `Page 1 of 6`; Green assertion này pass. Bộ test cũ gồm 12 file pass; acceptance còn 3 assertion fail ở các gap chưa sửa. Commit local `2704706` (`fix: preserve pagination text in serialized output`).
+- Gap 2: in tối đa 25 option hiển thị của combobox/listbox kèm thông báo khi bị cắt, áp dụng ở control thường, table và item/card. Red thiếu 3 option; Green recall 25/25. Bộ test cũ pass; acceptance còn 2 assertion fail. Commit local `e0036cf` (`fix: include combobox options in text snapshots`).
+- Gap 3: tách control candidate dùng để giữ `name`/semantic ID khỏi actionable `interactive`; đọc `cursor` từ computed style đã lấy, loại disabled và false control, vẫn in disabled control kèm ID trong text. Red false interactive 4/29; Green 0/25. **Quyết định đã chốt:** dùng `aria-label`/`aria-labelledby` trong heuristic intent để tương thích `interactive.test.ts`, chấp nhận khả năng bỏ sót widget thật dùng event delegation mà không gắn aria-label. `identity.test.ts` xác nhận ID ổn định khi toggle disabled. Bộ test cũ pass; acceptance còn duy nhất assertion token ratio của Gap 1 fail.
+- Gap 1 không được sửa. Số đo baseline ở Item 13 giữ nguyên: login 112/546 = 20,51%, quản lý 418/1596 = 26,19%, tổng 530/2142 = 24,74%. **Ảnh hưởng phụ** của ba fix lên token ratio đo lại: login 112/546 = 20,51%, quản lý 420/1596 = 26,32%, tổng 532/2142 = 24,84%. Vẫn **không đạt** ngưỡng ≤10% của SPEC; không đổi logic đo hay tối ưu token trong dispatch này.
+- Kiểm tra cuối: `npm test` có 12 file / 13 test pass và 1 file acceptance có determinism pass, phép đo fail duy nhất ở token ratio; `npm run typecheck` pass. Pagination, recall và precision đều đạt ngưỡng trên hai fixture hiện có; chưa suy rộng sang corpus 90 trang.

@@ -1,7 +1,7 @@
 import type { CapturedPage, RawAxNode, RawAxValue } from '../extract/accessibility.js';
 import type { RawDomNode } from '../extract/dom.js';
 import type { SemanticNode } from './node.js';
-import { isInteractive } from './interactive.js';
+import { isControlCandidate, isInteractive } from './interactive.js';
 
 function stringValue(value?: RawAxValue): string | undefined {
   return value?.value === undefined ? undefined : String(value.value);
@@ -97,8 +97,8 @@ export function mergeSemanticNodes(captured: CapturedPage): SemanticNode[] {
       const domVisible = node.visible;
       enrich(node, ax);
       node.visible = domVisible && !ax?.ignored;
-      node.interactive = isInteractive(node, attrs);
-      if (!node.name && node.interactive) node.name = node.text ?? attrs.get('aria-label');
+      node.interactive = isInteractive(node, attrs, dom.layout?.cursor);
+      if (!node.name && isControlCandidate(node, attrs)) node.name = node.text ?? attrs.get('aria-label');
       if (node.type === 'password') node.value = '<redacted>';
       if (ax) matchedAx.add(ax.nodeId);
       nodes.push(node);

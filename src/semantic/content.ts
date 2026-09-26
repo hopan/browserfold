@@ -1,6 +1,7 @@
 import type { SemanticNode } from './node.js';
 
 const structuralTags = new Set(['table', 'thead', 'tbody', 'tfoot', 'tr', 'th', 'td', 'ul', 'ol', 'li', 'dl', 'dt', 'dd', 'form', 'fieldset']);
+const controlRoles = new Set(['button', 'link', 'textbox', 'checkbox', 'radio', 'combobox', 'option', 'slider', 'spinbutton', 'switch', 'tab', 'menuitem', 'treeitem']);
 const paginationText = /\bpage\s+\d+\s*(of|\/)\s*\d+\b|\b\d+\s*[-–]\s*\d+\s+of\s+\d+\b/i;
 
 /** Keep visible automation context while excluding empty wrappers and duplicate AX text. */
@@ -44,6 +45,7 @@ export function extractVisibleContent(nodes: SemanticNode[]): SemanticNode[] {
     if (kind) node.contentKind = kind;
     else if (contextText) node.contentKind = 'text';
     const useful = node.interactive || kind !== undefined || structuralTags.has(tag)
+      || (node.enabled === false && controlRoles.has(role))
       || contextText
       || tag === 'label' || tag === 'iframe' || role === 'dialog' || role === 'navigation'
       || (node.source?.domId !== undefined && referencedDescriptions.has(node.source.domId))

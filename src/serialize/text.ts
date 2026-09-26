@@ -33,6 +33,11 @@ function controlLine(node: SemanticNode): string {
 
 const optionOwners = new Set(['combobox', 'listbox']);
 const MAX_OPTIONS = 25;
+const controlRoles = new Set(['button', 'link', 'textbox', 'checkbox', 'radio', 'combobox', 'option', 'slider', 'spinbutton', 'switch', 'tab', 'menuitem', 'treeitem']);
+
+function renderableControl(node: SemanticNode): boolean {
+  return node.interactive || (node.enabled === false && controlRoles.has(node.role ?? ''));
+}
 
 function controlLines(entry: StructuredNode, indent: string): string[] {
   const out = [`${indent}${controlLine(entry.node)}`];
@@ -73,10 +78,10 @@ export function serializeText(page: Pick<CapturedPage, 'url' | 'title'>, roots: 
       }
       for (const row of rows) {
         if (row === header) continue;
-        const cells = descendants(row).filter((cell) => cell.node.contentKind === 'cell' && !descendants(cell).some((child) => child.node.interactive));
+        const cells = descendants(row).filter((cell) => cell.node.contentKind === 'cell' && !descendants(cell).some((child) => renderableControl(child.node)));
         const values = cells.map((cell) => compact(cell.node.text || cell.node.name)).filter(Boolean);
         lines.push(`${indent}[r${row.node.id.slice(1)}]${values.length ? ` ${values.join(' | ')}` : ''}`);
-        for (const child of descendants(row).filter((child) => child.node.interactive)) lines.push(...controlLines(child, `${indent}  `));
+        for (const child of descendants(row).filter((child) => renderableControl(child.node))) lines.push(...controlLines(child, `${indent}  `));
       }
       return;
     }
@@ -88,14 +93,14 @@ export function serializeText(page: Pick<CapturedPage, 'url' | 'title'>, roots: 
     if (node.contentKind === 'item' || node.contentKind === 'card') {
       const summary = itemText(entry);
       lines.push(`${indent}[item${node.id.slice(1)}]${summary ? ` ${summary}` : ''}`);
-      for (const child of descendants(entry).filter((child) => child.node.interactive)) lines.push(...controlLines(child, `${indent}  `));
+      for (const child of descendants(entry).filter((child) => renderableControl(child.node))) lines.push(...controlLines(child, `${indent}  `));
       return;
     }
     if (node.contentKind === 'text') {
       lines.push(`${indent}text: ${quoted(node.text!)}`);
       return;
     }
-    if (node.interactive || ['heading', 'alert', 'status'].includes(node.contentKind ?? '')) {
+    if (renderableControl(node) || ['heading', 'alert', 'status'].includes(node.contentKind ?? '')) {
       lines.push(...controlLines(entry, indent));
       return;
     }
