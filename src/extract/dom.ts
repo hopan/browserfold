@@ -10,6 +10,7 @@ export interface RawDomNode {
   children?: RawDomNode[];
   contentDocument?: RawDomNode;
   shadowRoots?: RawDomNode[];
+  layout?: { display?: string; visibility?: string; width?: number; height?: number };
 }
 
 export interface RawDomTree {
@@ -17,5 +18,27 @@ export interface RawDomTree {
 }
 
 export async function captureDom(session: CDPSession): Promise<RawDomTree> {
-  return await session.send('DOM.getDocument', { depth: -1, pierce: false }) as RawDomTree;
+  const tree = await session.send('DOM.getDocument', { depth: -1, pierce: false }) as RawDomTree;
+  await session.send('CSS.enable');
+  const elements: RawDomNode[] = [];
+  function collect(node: RawDomNode): void {
+    if (node.nodeType === 1) elements.push(node);
+    for (const child of node.children ?? []) collect(child);
+  }
+  collect(tree.root);
+  await Promise.all(elements.map(async (node) => {
+    const [style, box] = await Promise.all([
+      session.send('CSS.getComputedStyleForNode', { nodeId: node.nodeId }).catch(() => undefined),
+      session.send('DOM.getBoxModel', { nodeId: node.nodeId }).catch(() => undefined),
+    ]);
+    const entries = (style as { computedStyle?: Array<{ name: string; value: string }> } | undefined)?.computedStyle;
+    const model = (box as { model?: { width: number; height: number } } | undefined)?.model;
+    node.layout = {
+      display: entries?.find((entry) => entry.name === 'display')?.value,
+      visibility: entries?.find((entry) => entry.name === 'visibility')?.value,
+      width: model?.width,
+      height: model?.height,
+    };
+  }));
+  return tree;
 }

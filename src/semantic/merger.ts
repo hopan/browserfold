@@ -59,8 +59,9 @@ export function mergeSemanticNodes(captured: CapturedPage): SemanticNode[] {
   const nodes: SemanticNode[] = [];
   const matchedAx = new Set<string>();
 
-  function visit(dom: RawDomNode, parentId?: string): void {
+  function visit(dom: RawDomNode, parentId?: string, parentVisible = true): void {
     let nextParentId = parentId;
+    let nextVisible = parentVisible;
     if (dom.nodeType === 1) {
       const attrs = attributes(dom);
       const ax = dom.backendNodeId === undefined ? undefined : axByBackend.get(dom.backendNodeId);
@@ -68,7 +69,11 @@ export function mergeSemanticNodes(captured: CapturedPage): SemanticNode[] {
       const node: SemanticNode = {
         id,
         tag: dom.nodeName.toLowerCase(),
-        visible: !attrs.has('hidden') && attrs.get('aria-hidden') !== 'true',
+        visible: parentVisible && !attrs.has('hidden') && attrs.get('aria-hidden') !== 'true'
+          && !['script', 'style', 'noscript', 'template'].includes(dom.nodeName.toLowerCase())
+          && dom.layout?.display !== 'none' && dom.layout?.visibility !== 'hidden'
+          && dom.layout?.visibility !== 'collapse'
+          && !(dom.layout?.width === 0 && dom.layout?.height === 0),
         interactive: false,
         parentId,
         source: dom.backendNodeId === undefined ? undefined : { backendNodeId: dom.backendNodeId },
@@ -82,14 +87,17 @@ export function mergeSemanticNodes(captured: CapturedPage): SemanticNode[] {
       if (attrs.has('readonly')) node.readonly = true;
       if (attrs.has('disabled')) node.enabled = false;
       if (attrs.has('checked')) node.checked = true;
+      const domVisible = node.visible;
       enrich(node, ax);
+      node.visible = domVisible && !ax?.ignored;
       node.interactive = isInteractive(node, attrs);
       if (node.type === 'password') node.value = '<redacted>';
       if (ax) matchedAx.add(ax.nodeId);
       nodes.push(node);
       nextParentId = id;
+      nextVisible = node.visible;
     }
-    for (const child of dom.children ?? []) visit(child, nextParentId);
+    for (const child of dom.children ?? []) visit(child, nextParentId, nextVisible);
   }
 
   visit(captured.dom.root);
