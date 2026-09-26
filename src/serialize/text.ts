@@ -31,6 +31,20 @@ function controlLine(node: SemanticNode): string {
   return parts.join(' ');
 }
 
+const optionOwners = new Set(['combobox', 'listbox']);
+const MAX_OPTIONS = 25;
+
+function controlLines(entry: StructuredNode, indent: string): string[] {
+  const out = [`${indent}${controlLine(entry.node)}`];
+  if (!optionOwners.has(entry.node.role ?? '')) return out;
+  const options = descendants(entry).filter((child) => child.node.role === 'option' && child.node.visible);
+  for (const option of options.slice(0, MAX_OPTIONS)) {
+    out.push(`${indent}  [${option.node.id}] option ${quoted(option.node.name || option.node.text || '')}${option.node.enabled === false ? ' disabled' : ''}`);
+  }
+  if (options.length > MAX_OPTIONS) out.push(`${indent}  options: ${MAX_OPTIONS} of ${options.length} shown`);
+  return out;
+}
+
 function itemText(entry: StructuredNode): string {
   return [entry.node.text, ...descendants(entry).filter((child) => !child.node.interactive && !child.children.some((grandchild) => grandchild.node.interactive))
     .map((child) => child.node.text)]
@@ -62,7 +76,7 @@ export function serializeText(page: Pick<CapturedPage, 'url' | 'title'>, roots: 
         const cells = descendants(row).filter((cell) => cell.node.contentKind === 'cell' && !descendants(cell).some((child) => child.node.interactive));
         const values = cells.map((cell) => compact(cell.node.text || cell.node.name)).filter(Boolean);
         lines.push(`${indent}[r${row.node.id.slice(1)}]${values.length ? ` ${values.join(' | ')}` : ''}`);
-        for (const child of descendants(row).filter((child) => child.node.interactive)) lines.push(`${indent}  ${controlLine(child.node)}`);
+        for (const child of descendants(row).filter((child) => child.node.interactive)) lines.push(...controlLines(child, `${indent}  `));
       }
       return;
     }
@@ -74,7 +88,7 @@ export function serializeText(page: Pick<CapturedPage, 'url' | 'title'>, roots: 
     if (node.contentKind === 'item' || node.contentKind === 'card') {
       const summary = itemText(entry);
       lines.push(`${indent}[item${node.id.slice(1)}]${summary ? ` ${summary}` : ''}`);
-      for (const child of descendants(entry).filter((child) => child.node.interactive)) lines.push(`${indent}  ${controlLine(child.node)}`);
+      for (const child of descendants(entry).filter((child) => child.node.interactive)) lines.push(...controlLines(child, `${indent}  `));
       return;
     }
     if (node.contentKind === 'text') {
@@ -82,7 +96,7 @@ export function serializeText(page: Pick<CapturedPage, 'url' | 'title'>, roots: 
       return;
     }
     if (node.interactive || ['heading', 'alert', 'status'].includes(node.contentKind ?? '')) {
-      lines.push(`${indent}${controlLine(node)}`);
+      lines.push(...controlLines(entry, indent));
       return;
     }
     for (const child of entry.children) render(child, indent);
