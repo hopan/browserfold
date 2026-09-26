@@ -237,22 +237,22 @@ Lưu ý: số đếm SPA 3/20 và Custom component 3/10 trong phần bối cản
 
 ## Actionable Recall/Precision — pilot và batch 2
 
-Dispatch 13 đo ngày 2026-09-26 trên **18 URL đã có trong `corpus/results.json`**: 4 Simple, 4 SPA, 2 Dashboard, 2 Ecommerce, 2 Enterprise form, 2 Modal/dropdown, 1 Iframe và 1 Custom component. Script riêng [`corpus/measure_recall.mjs`](../corpus/measure_recall.mjs) tải lại trang vì oracle phải chạy trước capture; kết quả từng node mẫu và số đo ở [`corpus/recall_pilot.json`](../corpus/recall_pilot.json). Chỉ load/đọc DOM, không click, nhập liệu hoặc mở modal. Mỗi trang dùng `domcontentloaded` + 1,2 giây, navigation timeout 30 giây, tiến trình con timeout 60 giây và heap 768 MB. Trang HTTP lỗi/bot block hoặc frame mà oracle không đọc được bị loại khỏi trung bình, không gán điểm giả; lần này **18/18 trang đo được**.
+Dispatch 13 chọn **18 URL đã có trong `corpus/results.json`**: 4 Simple, 4 SPA, 2 Dashboard, 2 Ecommerce, 2 Enterprise form, 2 Modal/dropdown, 1 Iframe và 1 Custom component. Script riêng [`corpus/measure_recall.mjs`](../corpus/measure_recall.mjs) tải lại trang vì oracle phải chạy trước capture; kết quả từng node mẫu và số đo ở [`corpus/recall_pilot.json`](../corpus/recall_pilot.json). Chỉ load/đọc DOM, không click, nhập liệu hoặc mở modal. Mỗi trang dùng `domcontentloaded` + 1,2 giây, navigation timeout 30 giây, tiến trình con timeout 60 giây và heap 768 MB. Trang HTTP lỗi/bot block hoặc frame mà oracle không đọc được bị loại khỏi trung bình, không gán điểm giả; dispatch 16 chạy lại đúng 18 URL này bằng HEAD `845af85` (sau hai sửa dispatch 14): **18/18 trang đo được**.
 
 **Oracle độc lập:** DOM query mới trong script chọn `button`, `a[href]`, `input:not([type="hidden"])`, `select`, `textarea`, các role `button/link/checkbox/radio/switch/menuitem/menuitemcheckbox/menuitemradio/tab/combobox/option/slider/spinbutton/searchbox/textbox`, `[contenteditable=""]`, `[contenteditable="true"]` và `[tabindex]` chỉ khi giá trị là số không âm. Phần tử phải có bounding rect rộng/cao dương, computed style và mọi ancestor không `display:none`/`visibility:hidden` (cũng loại `visibility:collapse` và opacity 0), không có `disabled` property, `aria-disabled="true"` hoặc `aria-hidden="true"` trên chính nó, và không nằm dưới ancestor `aria-hidden="true"`. Oracle duyệt cả frame đọc được và shadow root mở. Nó **không import/gọi** `src/semantic/interactive.ts`. Theo đúng selector được giao, `<option>` native thiếu role tường minh không thuộc oracle; đây là khác biệt với oracle ID thủ công của hai fixture acceptance.
 
-**Match chính xác theo DOM identity:** `--format json` hiện đã có `source.backendNodeId` cho semantic node, nên không cần sửa output hoặc logic sản phẩm. Oracle gắn `data-bf-oracle-id` tạm lên phần tử đạt điều kiện; sau capture, script nối attribute này với `backendNodeId` trong cây DOM CDP, cộng cây CDP đọc riêng với `pierce:true` để bao phủ shadow root. Một node BrowserFold là *detected* khi `visible && interactive` **và** `[semantic ID]` của nó thực sự có trong text snapshot. Giao là detected node có `source.backendNodeId` trùng oracle ID; không ghép theo label/role/bounding box. Định nghĩa này đo control có trong output text như acceptance recall, còn precision dùng chính tập detected đó. Lần chạy cuối map được **3.316/3.316** oracle ID; không có mất match do thiếu backend ID ở mẫu này. Script lưu số `mappedOracle` để phát hiện lỗi tương tự ở lần chạy sau.
+**Match chính xác theo DOM identity:** `--format json` hiện đã có `source.backendNodeId` cho semantic node, nên không cần sửa output hoặc logic sản phẩm. Oracle gắn `data-bf-oracle-id` tạm lên phần tử đạt điều kiện; sau capture, script nối attribute này với `backendNodeId` trong cây DOM CDP, cộng cây CDP đọc riêng với `pierce:true` để bao phủ shadow root. Một node BrowserFold là *detected* khi `visible && interactive` **và** `[semantic ID]` của nó thực sự có trong text snapshot. Giao là detected node có `source.backendNodeId` trùng oracle ID; không ghép theo label/role/bounding box. Định nghĩa này đo control có trong output text như acceptance recall, còn precision dùng chính tập detected đó. Lần chạy lại map được **3.317/3.317** oracle ID; không có mất match do thiếu backend ID ở mẫu này. Script lưu số `mappedOracle` để phát hiện lỗi tương tự ở lần chạy sau.
 
 | Nhóm | URL | Oracle | Detected | Match | Recall | Precision |
 |---|---|---:|---:|---:|---:|---:|
 | Simple | https://example.com/ | 1 | 1 | 1 | 100,00% | 100,00% |
 | Simple | https://www.paulgraham.com/startupideas.html | 24 | 24 | 24 | 100,00% | 100,00% |
-| Simple | https://news.ycombinator.com/ | 230 | 230 | 230 | 100,00% | 100,00% |
-| Simple | https://en.wikipedia.org/wiki/Graph_theory | 1.344 | 1.080 | 1.032 | 76,79% | 95,56% |
+| Simple | https://news.ycombinator.com/ | 229 | 229 | 229 | 100,00% | 100,00% |
+| Simple | https://en.wikipedia.org/wiki/Graph_theory | 1.344 | 1.097 | 1.049 | 78,05% | 95,62% |
 | SPA | https://github.com/microsoft/playwright | 252 | 267 | 245 | 97,22% | 91,76% |
 | SPA | https://vuejs.org/examples/#hello-world | 46 | 45 | 45 | 97,83% | 100,00% |
 | SPA | https://vuejs.org/guide/introduction.html | 117 | 116 | 111 | 94,87% | 95,69% |
-| SPA | https://web.dev/learn/performance | 56 | 56 | 53 | 94,64% | 94,64% |
+| SPA | https://web.dev/learn/performance | 58 | 59 | 58 | 100,00% | 98,31% |
 | Dashboard | https://adminlte.io/themes/v3/index.html | 72 | 78 | 72 | 100,00% | 92,31% |
 | Dashboard | https://adminlte.io/themes/v3/index2.html | 89 | 89 | 89 | 100,00% | 100,00% |
 | Ecommerce | https://demowebshop.tricentis.com/build-your-own-computer | 83 | 85 | 80 | 96,39% | 94,12% |
@@ -262,17 +262,17 @@ Dispatch 13 đo ngày 2026-09-26 trên **18 URL đã có trong `corpus/results.j
 | Modal/dropdown | https://getbootstrap.com/docs/5.3/components/modal/ | 248 | 247 | 247 | 99,60% | 100,00% |
 | Modal/dropdown | https://getbootstrap.com/docs/5.3/components/dropdowns/ | 346 | 345 | 345 | 99,71% | 100,00% |
 | Iframe | https://testpages.eviltester.com/pages/embedded-pages/iframes/ | 101 | 101 | 101 | 100,00% | 100,00% |
-| Custom component | https://material-web.dev/components/button/ | 120 | 90 | 57 | 47,50% | 63,33% |
+| Custom component | https://material-web.dev/components/button/ | 120 | 153 | 118 | 98,33% | 77,12% |
 
-Tổng pilot trước sửa **3.316 oracle, 3.091 detected, 2.913 match**. Trung bình cộng 18 tỷ lệ trang: **Recall 94,21%; Precision 92,68%**. Tính theo tổng phần tử: **Recall 2.913/3.316 = 87,85%; Precision 2.913/3.091 = 94,24%**. Hai cách tổng hợp khác nhau vì Wikipedia có 1.344 oracle, còn example.com chỉ có 1. Đây là số pilot, không phải kết quả của 89 mẫu hay ngưỡng chấp nhận MVP đã xác nhận.
+Pilot đo lại có **3.317 oracle, 3.173 detected, 2.995 match**. Trung bình theo 18 trang: **Recall 97,41%; Precision 93,65%**. Gộp theo phần tử: **Recall 2.995/3.317 = 90,29%; Precision 2.995/3.173 = 94,39%**. Wikipedia vẫn có 1.344 oracle và example.com chỉ có 1, nên hai cách tổng hợp cho tỷ lệ khác nhau. So với lần đo dispatch 13, oracle thay đổi nhẹ trên trang động (Hacker News 230→229, web.dev 56→58); không cộng chồng mẫu cũ.
 
-**Đánh giá phương pháp:** Match theo backend ID đáng tin hơn ghép xấp xỉ và đã map hết ID oracle trên 18 trang. Kết quả 100%/100% của vài trang đơn giản phản ánh URL có tập control dễ nhận diện, không phải bằng chứng hệ thống hoàn hảo: Wikipedia chỉ đạt 76,79% recall; Material Web Buttons chỉ **57/120 = 47,50%**, dù cả 120 ID đã được map xuyên shadow root. Form AdminLTE có precision **93/134 = 69,40%**. Dispatch 14 bên dưới đã phân loại từng nhóm miss/false positive bằng capture mới; các con số ở bảng trên vẫn là baseline pilot trước sửa. Tương tự, các trang modal/dropdown chỉ ở trạng thái đóng.
+**Đánh giá phương pháp:** Match theo backend ID map đủ 3.317 ID oracle. Material Web Buttons tăng từ 57/120 lên **118/120 = 98,33%** nhờ sửa shadow root; Wikipedia Graph theory từ 1.032/1.344 lên **1.049/1.344 = 78,05%** nhờ sửa table header, còn các miss dưới navbox gập theo định nghĩa oracle cũ. Form AdminLTE vẫn có precision **93/134 = 69,40%** do các khác biệt oracle đã phân loại ở dispatch 14. Các trang modal/dropdown chỉ ở trạng thái đóng.
 
 **Giới hạn trước full 89:** Giữ cơ chế match chính xác này, nhưng chạy lặp một số URL động và kiểm tra tay vài miss/false positive ở Wikipedia, form và Material Web trước khi suy rộng số liệu. Ngay trong quá trình xác thực, web.dev có 35 oracle ở một lần tải và 56 ở lần cuối; DOM động khiến một lần đo không đủ để kết luận độ ổn định. Cần giữ định nghĩa oracle được giao khi so sánh, ghi riêng các native `<option>` ngoài oracle và trạng thái shadow/frame. Chưa chạy 89 trang trong dispatch này.
 
 ### Batch 2 — Dispatch 15
 
-Ngày 2026-09-26, chạy script trên **25 URL mới** từ `corpus/results.json`, không trùng 18 URL pilot: 5 Iframe, 4 Custom component, 3 Dashboard, 3 Ecommerce, 3 Enterprise form, 3 Modal/dropdown, 2 Simple và 2 SPA. Dùng bản sản phẩm sau hai sửa lỗi ở dispatch 14. Giữ nguyên kết quả pilot trong `corpus/recall_pilot.json`; các hàng mới có `batch: 2`, `summary` là tổng tích luỹ và `batch2Summary` là riêng batch này. Phương pháp, timeout và việc chỉ load/đọc như mô tả ở trên.
+Ngày 2026-09-26, chạy script trên **25 URL mới** từ `corpus/results.json`, không trùng 18 URL pilot: 5 Iframe, 4 Custom component, 3 Dashboard, 3 Ecommerce, 3 Enterprise form, 3 Modal/dropdown, 2 Simple và 2 SPA. Dùng bản sản phẩm sau hai sửa lỗi ở dispatch 14. Dispatch 16 đã thay đúng 18 hàng pilot cũ bằng phép đo lại; 25 hàng batch 2 (24 kết quả và một lỗi) giữ nguyên. `summary` nay là tổng đồng nhất phiên bản; `pilotSummary` và `batch2Summary` là từng nhóm. Phương pháp, timeout và việc chỉ load/đọc như mô tả ở trên.
 
 | Nhóm | URL | Oracle | Detected | Match | Recall | Precision | Ghi chú |
 |---|---|---:|---:|---:|---:|---:|---|
@@ -304,13 +304,30 @@ Ngày 2026-09-26, chạy script trên **25 URL mới** từ `corpus/results.json
 
 Batch 2 đo được **24/25 URL**: **5.987 oracle, 5.171 detected, 4.826 match**. Trung bình theo 24 trang: **Recall 88,89%; Precision 94,86%**. Theo tổng phần tử: **Recall 4.826/5.987 = 80,61%; Precision 4.826/5.171 = 93,33%**. `demoqa.com/automation-practice-form` không có điểm do iframe `about:blank` tách khỏi trang khi oracle đang đọc; trang này bị loại khỏi các trung bình. Trang Lit tutorial tải với title rỗng và chỉ 1 oracle/detected; con số 100% ở đó không đại diện cho UI custom component.
 
-**Tổng tích luỹ 18 pilot + 24 batch 2 đo được (42/43 URL đã thử):** **9.303 oracle, 8.262 detected, 7.739 match**. Trung bình theo trang: **Recall 91,17%; Precision 93,93%**. Gộp theo tổng phần tử: **Recall 7.739/9.303 = 83,19%; Precision 7.739/8.262 = 93,67%**. Đây là phép tổng hợp dữ liệu tích luỹ theo yêu cầu; 18 điểm pilot được đo trước hai sửa lỗi ở dispatch 14, nên không coi bốn tỷ lệ này là phép đo đồng nhất của bản sản phẩm hiện tại.
+**Baseline cuối đồng nhất phiên bản: 42/43 URL đo được** bằng sản phẩm sau dispatch 14 (HEAD `845af85` lúc đo). Toàn bộ 18 pilot đã đo lại; 24 kết quả batch 2 giữ nguyên vì cũng dùng phiên bản này. Tổng **9.304 oracle, 8.344 detected, 7.821 match**. Trung bình theo trang: **Recall 92,54%; Precision 94,34%**. Gộp theo phần tử: **Recall 7.821/9.304 = 84,06%; Precision 7.821/8.344 = 93,73%**. Đây là **số tổng hợp đáng tin duy nhất** cho corpus recall/precision 42 URL hiện tại; tổng cũ trộn hai phiên bản đã được thay thế. Một URL DemoQA lỗi frame vẫn không có điểm.
 
 **Trang dưới 80% ở batch 2:**
 
-- Hai URL The Internet (`/iframe`, `/tinymce`) đều 1/4 recall. Cả hai tải cùng giao diện TinyMCE đang bị khóa bởi thông báo thanh toán. Capture đọc lại cho thấy “Powered by Tiny” được đánh disabled; link “Learn more.” và nút đóng trong vùng `alert` có semantic node nhưng không có ID trong text snapshot. **Nghi ngờ dạng lỗi mới:** text renderer gộp/loại control nằm trong `alert`; để dispatch sau xác minh, không sửa sản phẩm ở đây.
+- Hai URL The Internet (`/iframe`, `/tinymce`) đều 1/4 recall trên giao diện TinyMCE bị khóa do usage billing. Dispatch 16 đã xác minh bằng capture riêng và đọc code; chi tiết ở mục điều tra dưới.
 - Material Web Checkbox precision **60/81 = 74,07%**: 21 detected ngoài oracle gồm link và input trong giao diện custom component; mọi 62 oracle ID đều map được. Nghi ngờ khác biệt giữa điều kiện visible/actionable của oracle và semantic output ở web component; cần phân loại cụ thể sau.
 - Wikipedia HTML recall **910/1.948 = 46,71%**: các miss mẫu như “Bookmarks” nằm dưới `tr[hidden="until-found"]` của navbox gập, đúng dạng bất đồng visibility đã xác nhận ở dispatch 14. Chưa phân loại toàn bộ 1.038 miss của URL này.
+
+### Điều tra The Internet và TinyMCE — Dispatch 16
+
+Tải lại riêng `/iframe` và `/tinymce` bằng cùng oracle và capture, rồi tải `/tinymce` thêm lần nữa. Cả ba lần đều trả trang bình thường, có một editor iframe và cùng giao diện TinyMCE khóa editor vì **usage billing**; không có CAPTCHA, HTTP lỗi hoặc frame oracle không đọc được. Mỗi URL có **4 oracle ở main frame, 0 trong iframe/shadow root**, **1 detected/match**, nên chỉ có **3 miss/URL** (6 hàng nhưng 3 control duy nhất), không thể lấy mẫu 10–15 miss từ hai trang này. JSON capture/đối chiếu ở [`dispatch16-internet-iframe.json`](../corpus/dispatch16-internet-iframe.json), [`dispatch16-internet-tinymce.json`](../corpus/dispatch16-internet-tinymce.json) và [lần lặp lại](../corpus/dispatch16-internet-tinymce-repeat.json). ID dưới đây là oracle ID tạm, giống nhau do DOM hai trang giống nhau.
+
+| URL | Oracle ID | Tag/role DOM | Text/label | Vị trí | Node sản phẩm và lý do miss |
+|---|---|---|---|---|---|
+| `/iframe` | `bf-oracle-0-1` | `a`/— | Powered by Tiny | main frame, light DOM | AX `link`, `enabled:false`, có ID trong text nhưng `interactive:false` |
+| `/iframe` | `bf-oracle-0-3` | `a`/— | Learn more. | dưới `div[role=alert]`, light DOM | `visible:true`, `interactive:true`, ID vắng trong text |
+| `/iframe` | `bf-oracle-0-4` | `button`/— | Close (tên AX; DOM text rỗng) | dưới `div[role=alert]`, light DOM | `visible:true`, `interactive:true`, ID vắng trong text |
+| `/tinymce` | `bf-oracle-0-1` | `a`/— | Powered by Tiny | main frame, light DOM | AX `link`, `enabled:false`, có ID trong text nhưng `interactive:false` |
+| `/tinymce` | `bf-oracle-0-3` | `a`/— | Learn more. | dưới `div[role=alert]`, light DOM | `visible:true`, `interactive:true`, ID vắng trong text |
+| `/tinymce` | `bf-oracle-0-4` | `button`/— | Close (tên AX; DOM text rỗng) | dưới `div[role=alert]`, light DOM | `visible:true`, `interactive:true`, ID vắng trong text |
+
+**Bằng chứng code:** Oracle trong `corpus/measure_recall.mjs` xét `disabled`/`aria-disabled` ở DOM nhưng không xét trạng thái AX. `src/semantic/merger.ts:38-39` đặt `enabled:false` theo AX, rồi `src/semantic/interactive.ts:27` loại node đó khỏi interactive: giải thích “Powered by Tiny”, không phải mất node/frame. Với hai control còn lại, `src/serialize/text.ts:104-106` in `alert` rồi `return`, bỏ qua các child; JSON cho thấy hai node có backend ID, visible và interactive nhưng text chỉ kết thúc bằng một dòng `alert`. Đây là **bug renderer xác nhận được** ở nhánh alert, không phải lỗi tải trang hay iframe traversal. `/iframe` và `/tinymce` hiện cho cùng UI nên không đại diện hai kiểu iframe độc lập.
+
+**Quyết định:** Giữ cả hai số đo vì trạng thái khóa lặp lại ổn định, nhưng đánh dấu đây là UI billing thay cho editor hoạt động. Chưa sửa renderer trong dispatch này: nhánh `alert` dùng chung cho các trang khác, thay đổi cách in child có thể đổi detected của batch 2 và sẽ buộc đo lại cả batch để giữ baseline 42 URL cùng phiên bản; yêu cầu hiện tại giữ nguyên 24 hàng batch 2. Không diễn giải 25% như lỗi traversal của editor iframe. Một dispatch sửa sau cần fixture alert nhỏ RED→GREEN và đo lại corpus trên commit mới.
 
 ## Điều tra nguyên nhân gap recall/precision — Dispatch 14
 
