@@ -15,11 +15,15 @@ Hoàn tất. Test: `tests/browser/launcher.test.ts`; code: `src/browser/launcher
 
 - Red: `npm test -- tests/browser/launcher.test.ts` — fail (exit 1), thiếu module `src/browser/launcher.js`, 0 test chạy.
 - Green: cùng lệnh — pass, 1 file / 2 test với Chromium thật (launch URL và attach CDP).
-- Mã lưu local: sẽ bổ sung sau commit item 1.
+- Mã lưu local: `a1d76a0` (`feat: launch URL and attach to Chromium over CDP`). `npm run typecheck` pass.
 
 ## Item 2 — Capture page
 
-Chưa làm.
+Hoàn tất. Test: `tests/extract/accessibility.test.ts`; code: `src/extract/accessibility.ts`, `src/extract/dom.ts`.
+
+- Red: `npm test -- tests/extract/accessibility.test.ts` — fail (exit 1), thiếu module `src/extract/accessibility.js`, 0 test chạy.
+- Green: cùng lệnh — pass, 1 file / 1 test với Chromium thật. `npm run typecheck` pass.
+- Mã lưu local: sẽ bổ sung sau commit item 2.
 
 ## Item 3 — Extract accessibility + DOM
 
