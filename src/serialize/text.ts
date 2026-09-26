@@ -77,6 +77,10 @@ export function serializeText(page: Pick<CapturedPage, 'url' | 'title'>, roots: 
       for (const child of descendants(entry).filter((child) => child.node.interactive)) lines.push(`${indent}  ${controlLine(child.node)}`);
       return;
     }
+    if (node.contentKind === 'text') {
+      lines.push(`${indent}text: ${quoted(node.text!)}`);
+      return;
+    }
     if (node.interactive || ['heading', 'alert', 'status'].includes(node.contentKind ?? '')) {
       lines.push(`${indent}${controlLine(node)}`);
       return;

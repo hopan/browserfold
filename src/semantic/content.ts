@@ -1,6 +1,7 @@
 import type { SemanticNode } from './node.js';
 
 const structuralTags = new Set(['table', 'thead', 'tbody', 'tfoot', 'tr', 'th', 'td', 'ul', 'ol', 'li', 'dl', 'dt', 'dd', 'form', 'fieldset']);
+const paginationText = /\bpage\s+\d+\s*(of|\/)\s*\d+\b|\b\d+\s*[-–]\s*\d+\s+of\s+\d+\b/i;
 
 /** Keep visible automation context while excluding empty wrappers and duplicate AX text. */
 export function extractVisibleContent(nodes: SemanticNode[]): SemanticNode[] {
@@ -12,6 +13,14 @@ export function extractVisibleContent(nodes: SemanticNode[]): SemanticNode[] {
     let ancestor = node.parentId ? byId.get(node.parentId) : undefined;
     while (ancestor) {
       if (ancestor.contentKind === 'card') return true;
+      ancestor = ancestor.parentId ? byId.get(ancestor.parentId) : undefined;
+    }
+    return false;
+  }
+  function inNavigation(node: SemanticNode): boolean {
+    let ancestor = node.parentId ? byId.get(node.parentId) : undefined;
+    while (ancestor) {
+      if (ancestor.role === 'navigation' || ancestor.tag === 'nav') return true;
       ancestor = ancestor.parentId ? byId.get(ancestor.parentId) : undefined;
     }
     return false;
@@ -29,8 +38,13 @@ export function extractVisibleContent(nodes: SemanticNode[]): SemanticNode[] {
       : ['ul', 'ol'].includes(tag) ? 'list'
       : tag === 'li' ? 'item'
       : undefined);
+    const contextText = !node.interactive && node.text !== undefined && node.text.length <= 60
+      && /[\p{L}\p{N}]/u.test(node.text)
+      && (paginationText.test(node.text) || inNavigation(node));
     if (kind) node.contentKind = kind;
+    else if (contextText) node.contentKind = 'text';
     const useful = node.interactive || kind !== undefined || structuralTags.has(tag)
+      || contextText
       || tag === 'label' || tag === 'iframe' || role === 'dialog' || role === 'navigation'
       || (node.source?.domId !== undefined && referencedDescriptions.has(node.source.domId))
       || (tag === 'p' && inCard(node))
