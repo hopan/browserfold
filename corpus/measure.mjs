@@ -75,6 +75,28 @@ const pages = [
   { batch: 3, group: 'SPA', url: 'https://developer.chrome.com/docs/devtools/' },
   { batch: 3, group: 'SPA', url: 'https://github.com/microsoft/TypeScript/issues' },
   { batch: 3, group: 'SPA', url: 'https://angular.dev/overview' },
+  { batch: 4, group: 'Dashboard', url: 'https://adminlte.io/themes/v3/pages/charts/chartjs.html' },
+  { batch: 4, group: 'Dashboard', url: 'https://adminlte.io/themes/v3/pages/tables/data.html' },
+  { batch: 4, group: 'Dashboard', url: 'https://laravel.adminlte.io/demo/dashboard-v3' },
+  { batch: 4, group: 'Dashboard', url: 'https://laravel.adminlte.io/demo/widgets/small-box' },
+  { batch: 4, group: 'Ecommerce', url: 'https://demowebshop.tricentis.com/electronics' },
+  { batch: 4, group: 'Ecommerce', url: 'https://demowebshop.tricentis.com/jewelry' },
+  { batch: 4, group: 'Ecommerce', url: 'https://www.demoblaze.com/prod.html?idp_=2' },
+  { batch: 4, group: 'Form', url: 'https://demoqa.com/text-box' },
+  { batch: 4, group: 'Form', url: 'https://demoqa.com/checkbox' },
+  { batch: 4, group: 'Form', url: 'https://laravel.adminlte.io/demo/forms/validation' },
+  { batch: 4, group: 'Form', url: 'https://laravel.adminlte.io/demo/forms/wizard' },
+  { batch: 4, group: 'Modal/dropdown', url: 'https://getbootstrap.com/docs/5.3/components/accordion/' },
+  { batch: 4, group: 'Modal/dropdown', url: 'https://getbootstrap.com/docs/5.3/components/tooltips/' },
+  { batch: 4, group: 'Modal/dropdown', url: 'https://mui.com/material-ui/react-dialog/' },
+  { batch: 4, group: 'Modal/dropdown', url: 'https://mui.com/material-ui/react-menu/' },
+  { batch: 4, group: 'Iframe', url: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/iframe' },
+  { batch: 4, group: 'Iframe', url: 'https://www.w3schools.com/html/html_iframe.asp' },
+  { batch: 4, group: 'Iframe', url: 'https://testpages.eviltester.com/pages/embedded-pages/', excludedReason: 'Index page has no iframe after render' },
+  { batch: 4, group: 'Custom component', url: 'https://material-web.dev/components/checkbox/' },
+  { batch: 4, group: 'Custom component', url: 'https://material-web.dev/components/dialog/' },
+  { batch: 4, group: 'Iframe', url: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/object' },
+  { batch: 4, group: 'Iframe', url: 'https://the-internet.herokuapp.com/tinymce' },
 ];
 
 if (new Set(pages.map((page) => page.url)).size !== pages.length) {
@@ -159,6 +181,9 @@ if (process.argv[2] === '--worker') {
       batch2MeasuredAt: existing?.batch2MeasuredAt ?? new Date().toISOString(),
       ...(results.some((row) => row.batch === 3) && {
         batch3MeasuredAt: existing?.batch3MeasuredAt ?? new Date().toISOString(),
+      }),
+      ...(results.some((row) => row.batch === 4) && {
+        batch4MeasuredAt: existing?.batch4MeasuredAt ?? new Date().toISOString(),
       }),
       method: 'Chromium page.content() before capturePage; same page; 1200ms stabilization; Unicode regex from tests/acceptance.test.ts',
       results,

@@ -1,6 +1,6 @@
-# Corpus trang thật — dispatch 7–9: token ratio
+# Corpus trang thật — dispatch 7–10: token ratio
 
-Đo ngày **2026-09-26** trên Chromium/Playwright, không click, nhập liệu hoặc gửi form. Đây là corpus thủ công theo SPEC.md mục 28–29, không phải test CI hay corpus mục tiêu 100 trang. Ba batch đã thử **65 URL công khai riêng biệt**; **56** trả về phép đo, trong đó **55** là mẫu đạt tiêu chí đại diện; **9** lỗi. Tám nhóm của mục 29 đều có ít nhất một mẫu đạt tiêu chí. Dữ liệu thô, gồm URL lỗi, ở [`corpus/results.json`](corpus/results.json); script chạy lại ở [`corpus/measure.mjs`](corpus/measure.mjs).
+Đo ngày **2026-09-26** trên Chromium/Playwright, không click, nhập liệu hoặc gửi form. Đây là corpus thủ công theo SPEC.md mục 28–29, không phải test CI. Bốn batch đã thử **87 URL công khai riêng biệt**; **77** trả về phép đo, trong đó **75** là mẫu đạt tiêu chí đại diện; **10** lỗi và **2** mẫu đo được nhưng không phù hợp nhóm. Tám nhóm của mục 29 đều có mẫu đạt tiêu chí. Dữ liệu thô, gồm URL lỗi, ở [`corpus/results.json`](corpus/results.json); script chạy lại ở [`corpus/measure.mjs`](corpus/measure.mjs).
 
 ## Cách đo
 
@@ -135,20 +135,68 @@ Batch 3 riêng có **107.871/3.639.975 = 2,96%** theo tổng token và **5,72%**
 
 So với baseline fixture hiện hành **532/2.142 = 24,84%**, corpus tích luỹ thấp hơn **21,96 điểm %** theo tổng token và **19,50 điểm %** theo trung bình trang. **12/55 mẫu riêng vượt 10%**, gồm 5 mẫu Simple mới: Hacker News, MDN, GNU, WCAG 2.2 và RFC 8259. Trang SQLite có DOM gần một triệu token nhưng snapshot chỉ 2.041 token; Paul Graham chỉ 444 token trong snapshot. Hai ứng dụng canvas cũng cho snapshot rất ngắn. Các tỷ lệ này không chứng minh nội dung chính đã được giữ đầy đủ; kích thước DOM và giao diện canvas ảnh hưởng mạnh đến phép so sánh. Chưa đo recall/precision bằng oracle trên trang thật.
 
+## Kết quả từng URL — batch 4 (dispatch 10)
+
+Batch 4 thử **22 URL mới**, không trùng 65 URL cũ: 4 Dashboard, 3 Ecommerce, 4 Enterprise form, 4 Modal/dropdown, 5 Iframe và 2 Custom component. **21** URL trả số đo; một trang W3Schools lỗi CDP. Trang chỉ mục Embedded Content không chứa iframe sau render nên giữ số đo nhưng loại khỏi tổng; **20** mẫu còn lại được tính. Hai URL iframe bổ sung được thêm sau khi phát hiện trang chỉ mục không phù hợp và W3Schools lỗi. Không click, nhập liệu hoặc thử vượt chặn.
+
+| Nhóm SPEC | URL | Snapshot tokens | DOM tokens | Tỷ lệ | Trạng thái |
+|---|---|---:|---:|---:|---|
+| Dashboard | https://adminlte.io/themes/v3/pages/charts/chartjs.html | 650 | 17.875 | 3,64% | Đạt mẫu; trang biểu đồ |
+| Dashboard | https://adminlte.io/themes/v3/pages/tables/data.html | 1.131 | 19.285 | 5,86% | Đạt mẫu; trang bảng |
+| Dashboard | https://laravel.adminlte.io/demo/dashboard-v3 | 675 | 51.967 | 1,30% | Đạt mẫu |
+| Dashboard | https://laravel.adminlte.io/demo/widgets/small-box | 542 | 15.157 | 3,58% | Đạt mẫu; widget dashboard |
+| Ecommerce | https://demowebshop.tricentis.com/electronics | 660 | 5.868 | 11,25% | Đạt mẫu; vượt 10% riêng lẻ |
+| Ecommerce | https://demowebshop.tricentis.com/jewelry | 937 | 7.949 | 11,79% | Đạt mẫu; vượt 10% riêng lẻ |
+| Ecommerce | https://www.demoblaze.com/prod.html?idp_=2 | 188 | 13.232 | 1,42% | Đạt mẫu; trang sản phẩm |
+| Enterprise form | https://demoqa.com/text-box | 176 | 14.540 | 1,21% | Đạt mẫu; form nhập text |
+| Enterprise form | https://demoqa.com/checkbox | 144 | 14.398 | 1,00% | Đạt mẫu; cây checkbox |
+| Enterprise form | https://laravel.adminlte.io/demo/forms/validation | 782 | 16.394 | 4,77% | Đạt mẫu; form validation |
+| Enterprise form | https://laravel.adminlte.io/demo/forms/wizard | 570 | 17.618 | 3,24% | Đạt mẫu; form wizard |
+| Modal/dropdown | https://getbootstrap.com/docs/5.3/components/accordion/ | 2.464 | 54.051 | 4,56% | Đạt mẫu; accordion mặc định |
+| Modal/dropdown | https://getbootstrap.com/docs/5.3/components/tooltips/ | 3.585 | 46.454 | 7,72% | Đạt mẫu; tooltip đóng |
+| Modal/dropdown | https://mui.com/material-ui/react-dialog/ | 3.221 | 176.599 | 1,82% | Đạt mẫu; dialog đóng |
+| Modal/dropdown | https://mui.com/material-ui/react-menu/ | 3.475 | 194.037 | 1,79% | Đạt mẫu; menu đóng |
+| Iframe | https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/iframe | 6.108 | 45.200 | 13,51% | Đạt mẫu; 6 frame |
+| Iframe | https://www.w3schools.com/html/html_iframe.asp | — | — | — | Lỗi `DOM.describeNode`: không tìm thấy node ID |
+| Iframe | https://testpages.eviltester.com/pages/embedded-pages/ | 993 | 62.081 | 1,60% | **Không tính tổng**: trang chỉ mục không có iframe |
+| Custom component | https://material-web.dev/components/checkbox/ | 849 | 11.456 | 7,41% | Đạt mẫu; 52 shadow roots |
+| Custom component | https://material-web.dev/components/dialog/ | 1.214 | 15.696 | 7,73% | Đạt mẫu; 49 shadow roots |
+| Iframe | https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/object | 4.748 | 35.882 | 13,23% | Đạt mẫu; 4 frame |
+| Iframe | https://the-internet.herokuapp.com/tinymce | 205 | 5.977 | 3,43% | Đạt mẫu; 1 iframe |
+
+`frameCount` được lấy từ Playwright sau render; số shadow root được kiểm tra bằng DOM read-only trên hai trang Material Web. Các trang MDN `<iframe>` và `<object>` là tài liệu có ví dụ nhúng, không phải ứng dụng iframe nghiệp vụ. DemoQA và AdminLTE là form demo công khai, không thay thế ứng dụng doanh nghiệp cần đăng nhập. Các component modal/menu được đọc ở trạng thái mặc định, chưa đánh giá trạng thái mở.
+
+## Tổng hợp tích luỹ batch 1 + 2 + 3 + 4 — 75 mẫu đạt tiêu chí
+
+Batch 4 riêng: **32.324/779.635 = 4,15%** theo tổng token và **5,51%** trung bình tỷ lệ từng trang. Trên toàn bộ dữ liệu, loại tutorial Lit batch 1 chưa render shadow root và trang chỉ mục iframe batch 4; không tính 10 URL lỗi. Tính từ token chưa làm tròn, không cộng phần trăm hiển thị trong bảng.
+
+| Phép tổng hợp | Công thức | Kết quả | So với SPEC mục 28 |
+|---|---|---:|---|
+| Theo tổng token | 202.030 / 6.679.312 | **3,02%** | **Đạt** ≤10% và stretch ≤5% |
+| Trung bình tỷ lệ từng trang | Σ 75 tỷ lệ / 75 | **5,39%** | **Đạt** ≤10%; **không đạt** stretch ≤5% (vượt 0,39 điểm %) |
+
+So với baseline hai fixture hiện hành **532/2.142 = 24,84%**, corpus thấp hơn **21,82 điểm %** theo tổng token và **19,45 điểm %** theo trung bình trang. **16/75 mẫu riêng vượt 10%**; batch 4 góp bốn mẫu (hai danh mục Demo Web Shop và hai trang MDN có iframe). DOM lớn, script/markup dùng chung và mẫu số `page.content()` không gồm nội dung iframe/shadow DOM có thể làm tỷ lệ thấp; token ratio không chứng minh snapshot đầy đủ hay chính xác. Chưa có oracle để đo recall/precision trên trang thật, latency, ID stability qua state hoặc test success rate.
+
+## TỔNG KẾT CORPUS
+
+**Chưa đạt corpus 100 trang của SPEC mục 29:** đã thử **87/100 URL** theo phân bổ nhóm (Iframe vượt 1 URL vì có lỗi và một trang bị loại), với **75 mẫu phù hợp và đo được**. Cả tám nhóm đã có đại diện, nhưng nhóm nhiều nhất cũng chỉ có 14/20 mẫu Simple hoặc 9/10 mẫu Dashboard/Form/Modal; Iframe và Custom component đều chỉ có 7/10 mẫu phù hợp. Các thiếu hụt còn lại chủ yếu do giới hạn khoảng 20 URL của dispatch này và URL lỗi/không phù hợp, chưa thể quy cho thiếu trang công khai. Corpus này đủ để đánh giá sơ bộ token ratio trên tám kiểu trang, chưa phải benchmark hoàn chỉnh mục 29.
+
+**Kết luận ngưỡng SPEC mục 28:** token ratio **ĐẠT mốc MVP ≤10%** trên corpus tích luỹ theo cả hai phép tổng hợp; mốc stretch **ĐẠT theo tổng token, KHÔNG ĐẠT theo trung bình trang**. **Chấp nhận MVP tổng thể: KHÔNG ĐẠT**, vì baseline hai fixture cố định vẫn là **24,84% >10%** và corpus này chưa xác nhận semantic coverage ≥95% hay false interactive <5% trên trang thật. Không suy kết luận chất lượng semantic từ riêng token ratio.
+
 ## Tiến độ corpus theo nhóm
 
 Đếm **mọi URL đã thử, kể cả lỗi và mẫu bị loại khỏi tổng**, theo 100 trang mục tiêu của SPEC mục 29:
 
-| Nhóm | Batch 1 | Thêm batch 2 | Thêm batch 3 | Tích luỹ / mục tiêu | Mẫu tính tổng tích luỹ |
-|---|---:|---:|---:|---:|---:|
-| Simple | 4 | 0 | 10 | 14/20 | 14 |
-| SPA | 4 | 0 | 12 | 16/20 | 12 |
-| Dashboard | 2 | 3 | 0 | 5/10 | 5 |
-| Ecommerce | 3 | 3 | 0 | 6/10 | 5 |
-| Enterprise form | 2 | 3 | 0 | 5/10 | 5 |
-| Modal/dropdown | 2 | 3 | 0 | 5/10 | 5 |
-| Iframe | 2 | 4 | 0 | 6/10 | 4 |
-| Custom component | 4 | 4 | 0 | 8/10 | 5 |
-| **Tổng** | **23** | **20** | **22** | **65/100** | **55** |
+| Nhóm | Batch 1 | Thêm batch 2 | Thêm batch 3 | Thêm batch 4 | Tích luỹ / mục tiêu | Mẫu tính tổng tích luỹ |
+|---|---:|---:|---:|---:|---:|---:|
+| Simple | 4 | 0 | 10 | 0 | 14/20 | 14 |
+| SPA | 4 | 0 | 12 | 0 | 16/20 | 12 |
+| Dashboard | 2 | 3 | 0 | 4 | 9/10 | 9 |
+| Ecommerce | 3 | 3 | 0 | 3 | 9/10 | 8 |
+| Enterprise form | 2 | 3 | 0 | 4 | 9/10 | 9 |
+| Modal/dropdown | 2 | 3 | 0 | 4 | 9/10 | 9 |
+| Iframe | 2 | 4 | 0 | 5 | 11/10 | 7 |
+| Custom component | 4 | 4 | 0 | 2 | 10/10 | 7 |
+| **Tổng** | **23** | **20** | **22** | **22** | **87/100** | **75** |
 
-Lưu ý: số đếm SPA 3/20 và Custom component 3/10 trong phần bối cảnh dispatch 8 thấp hơn dữ liệu `results.json` batch 1 một URL mỗi nhóm. Batch 1 thực tế có 4 URL SPA (kể cả Svelte 403) và 4 URL custom component (kể cả Lit tutorial), nên bảng dùng số đếm trực tiếp từ dữ liệu. Iframe chỉ thêm 3 mẫu đo được vì W3Schools gặp lỗi CDP; không giả định tỷ lệ cho URL lỗi hoặc ép thay bằng trang không phù hợp.
+Lưu ý: số đếm SPA 3/20 và Custom component 3/10 trong phần bối cảnh dispatch 8 thấp hơn dữ liệu `results.json` batch 1 một URL mỗi nhóm. Batch 1 thực tế có 4 URL SPA (kể cả Svelte 403) và 4 URL custom component (kể cả Lit tutorial), nên bảng dùng số đếm trực tiếp từ dữ liệu. Batch 4 thêm 5 URL Iframe nhưng chỉ 3 mẫu phù hợp và đo được: W3Schools lỗi CDP, trang chỉ mục Test Pages không có iframe. Không giả định tỷ lệ cho URL lỗi hoặc tính trang chỉ mục vào mẫu đại diện.
