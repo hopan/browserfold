@@ -19,11 +19,21 @@ export interface RawDomTree {
 
 export async function captureDom(session: CDPSession): Promise<RawDomTree> {
   const tree = await session.send('DOM.getDocument', { depth: -1, pierce: false }) as RawDomTree;
+  async function expandFrames(node: RawDomNode): Promise<void> {
+    if (node.contentDocument) {
+      const described = await session.send('DOM.describeNode', { nodeId: node.contentDocument.nodeId, depth: -1, pierce: false }) as { node: RawDomNode };
+      node.contentDocument = described.node;
+      await expandFrames(node.contentDocument);
+    }
+    for (const child of node.children ?? []) await expandFrames(child);
+  }
+  await expandFrames(tree.root);
   await session.send('CSS.enable');
   const elements: RawDomNode[] = [];
   function collect(node: RawDomNode): void {
     if (node.nodeType === 1) elements.push(node);
     for (const child of node.children ?? []) collect(child);
+    if (node.contentDocument) collect(node.contentDocument);
   }
   collect(tree.root);
   await Promise.all(elements.map(async (node) => {

@@ -1,4 +1,4 @@
-# BrowserFold — tiến độ dispatch 1–3
+# BrowserFold — tiến độ dispatch 1–4
 
 Phạm vi đã hoàn tất: item 1–7 của mục 25 trong `SPEC.md`.
 
@@ -119,7 +119,19 @@ Hoàn tất. Test: `tests/serialize/text.test.ts`; code: `src/serialize/text.ts`
 
 ## Dispatch sau
 
-10. Handle iframe.
 11. CLI.
 12. JSON debug output.
 13. Automated tests cho toàn MVP và các tiêu chí chấp nhận (token ratio, recall, precision, determinism).
+
+## Dispatch 4 — item 10–12
+
+### Item 10 — Handle iframe
+
+Hoàn tất iframe cùng origin. Test: `tests/semantic/frames.test.ts`; code: `src/extract/dom.ts`, `src/semantic/merger.ts`, `src/semantic/content.ts`, `src/serialize/text.ts`.
+
+- Red: `npm test -- tests/semantic/frames.test.ts` — fail (1 test), không tìm thấy nút Pay trong iframe.
+- Green: cùng lệnh — pass, 1 file / 1 test với Chromium thật và iframe `srcdoc` cùng origin. DOM trong `contentDocument` được mở rộng bằng `DOM.describeNode`, node con giữ `frameId` và ancestry qua iframe; text có `FRAME "Payment"`.
+
+## Sai khác với SPEC.md — dispatch 4
+
+- Nội dung iframe cross-origin chưa được bảo đảm: Chromium có thể đặt frame ở CDP target riêng và không cung cấp `contentDocument` qua session trang cha. Bước này chỉ xác nhận iframe cùng origin.

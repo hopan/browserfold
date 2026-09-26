@@ -44,6 +44,11 @@ export function serializeText(page: Pick<CapturedPage, 'url' | 'title'>, roots: 
   function render(entry: StructuredNode, indent = ''): void {
     const node = entry.node;
     if (!node.visible) return;
+    if (node.tag === 'iframe') {
+      lines.push(`${indent}FRAME ${quoted(node.name || node.source?.domId || 'iframe')}`);
+      for (const child of entry.children) render(child, indent);
+      return;
+    }
     if (node.contentKind === 'table') {
       lines.push(`${indent}TABLE${node.name ? ` ${compact(node.name)}` : ''}`);
       const rows = descendants(entry).filter((child) => child.node.contentKind === 'row');

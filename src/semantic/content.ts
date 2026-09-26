@@ -31,7 +31,7 @@ export function extractVisibleContent(nodes: SemanticNode[]): SemanticNode[] {
       : undefined);
     if (kind) node.contentKind = kind;
     const useful = node.interactive || kind !== undefined || structuralTags.has(tag)
-      || tag === 'label' || role === 'dialog' || role === 'navigation'
+      || tag === 'label' || tag === 'iframe' || role === 'dialog' || role === 'navigation'
       || (node.source?.domId !== undefined && referencedDescriptions.has(node.source.domId))
       || (tag === 'p' && inCard(node))
       || (node.text !== undefined && /error|invalid|failed|required/i.test(node.text));

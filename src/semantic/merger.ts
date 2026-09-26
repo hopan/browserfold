@@ -59,7 +59,7 @@ export function mergeSemanticNodes(captured: CapturedPage): SemanticNode[] {
   const nodes: SemanticNode[] = [];
   const matchedAx = new Set<string>();
 
-  function visit(dom: RawDomNode, parentId?: string, parentVisible = true): void {
+  function visit(dom: RawDomNode, parentId?: string, parentVisible = true, frameId?: string): void {
     let nextParentId = parentId;
     let nextVisible = parentVisible;
     if (dom.nodeType === 1) {
@@ -75,6 +75,7 @@ export function mergeSemanticNodes(captured: CapturedPage): SemanticNode[] {
           && dom.layout?.visibility !== 'collapse'
           && !(dom.layout?.width === 0 && dom.layout?.height === 0),
         interactive: false,
+        frameId,
         parentId,
         source: {
           ...(dom.backendNodeId === undefined ? {} : { backendNodeId: dom.backendNodeId }),
@@ -97,13 +98,23 @@ export function mergeSemanticNodes(captured: CapturedPage): SemanticNode[] {
       enrich(node, ax);
       node.visible = domVisible && !ax?.ignored;
       node.interactive = isInteractive(node, attrs);
+      if (!node.name && node.interactive) node.name = node.text ?? attrs.get('aria-label');
       if (node.type === 'password') node.value = '<redacted>';
       if (ax) matchedAx.add(ax.nodeId);
       nodes.push(node);
       nextParentId = id;
       nextVisible = node.visible;
     }
-    for (const child of dom.children ?? []) visit(child, nextParentId, nextVisible);
+    for (const child of dom.children ?? []) visit(child, nextParentId, nextVisible, frameId);
+    if (dom.contentDocument) {
+      const frameKey = attrsForFrame(dom);
+      visit(dom.contentDocument, nextParentId, nextVisible, `${frameId ?? 'main'}/${frameKey}`);
+    }
+  }
+
+  function attrsForFrame(dom: RawDomNode): string {
+    const attrs = attributes(dom);
+    return attrs.get('id') ?? attrs.get('name') ?? attrs.get('title') ?? String(dom.backendNodeId ?? dom.nodeId);
   }
 
   visit(captured.dom.root);
