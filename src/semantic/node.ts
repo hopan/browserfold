@@ -26,6 +26,6 @@ export interface SemanticNode {
   parentId?: string;
   semanticParentId?: string;
   relation?: string;
-  contentKind?: 'heading' | 'text' | 'table' | 'row' | 'cell' | 'list' | 'item' | 'status' | 'alert';
+  contentKind?: 'heading' | 'text' | 'table' | 'row' | 'cell' | 'list' | 'item' | 'card' | 'status' | 'alert';
   source?: { selector?: string; backendNodeId?: number };
 }

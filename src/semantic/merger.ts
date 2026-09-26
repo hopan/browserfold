@@ -79,6 +79,7 @@ export function mergeSemanticNodes(captured: CapturedPage): SemanticNode[] {
         source: dom.backendNodeId === undefined ? undefined : { backendNodeId: dom.backendNodeId },
       };
       node.type = attrs.get('type');
+      if (node.tag === 'article' || attrs.get('class')?.split(/\s+/).includes('card')) node.contentKind = 'card';
       node.text = directText(dom);
       node.href = attrs.get('href');
       node.placeholder = attrs.get('placeholder');

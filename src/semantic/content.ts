@@ -6,11 +6,20 @@ const structuralTags = new Set(['table', 'thead', 'tbody', 'tfoot', 'tr', 'th', 
 export function extractVisibleContent(nodes: SemanticNode[]): SemanticNode[] {
   const kept: SemanticNode[] = [];
   const textSeen = new Set<string>();
+  const byId = new Map(nodes.map((node) => [node.id, node]));
+  function inCard(node: SemanticNode): boolean {
+    let ancestor = node.parentId ? byId.get(node.parentId) : undefined;
+    while (ancestor) {
+      if (ancestor.contentKind === 'card') return true;
+      ancestor = ancestor.parentId ? byId.get(ancestor.parentId) : undefined;
+    }
+    return false;
+  }
   for (const node of nodes) {
     if (!node.visible) continue;
     const role = node.role ?? '';
     const tag = node.tag ?? '';
-    const kind = role === 'heading' || /^h[1-6]$/.test(tag) ? 'heading'
+    const kind = node.contentKind ?? (role === 'heading' || /^h[1-6]$/.test(tag) ? 'heading'
       : role === 'status' ? 'status'
       : role === 'alert' ? 'alert'
       : tag === 'table' ? 'table'
@@ -18,10 +27,11 @@ export function extractVisibleContent(nodes: SemanticNode[]): SemanticNode[] {
       : ['td', 'th'].includes(tag) ? 'cell'
       : ['ul', 'ol'].includes(tag) ? 'list'
       : tag === 'li' ? 'item'
-      : undefined;
+      : undefined);
     if (kind) node.contentKind = kind;
     const useful = node.interactive || kind !== undefined || structuralTags.has(tag)
       || tag === 'label' || role === 'dialog' || role === 'navigation'
+      || (tag === 'p' && inCard(node))
       || (node.text !== undefined && /error|invalid|failed|required/i.test(node.text));
     if (!useful) continue;
     const content = (node.text ?? node.name ?? '').trim();
