@@ -53,6 +53,28 @@ const pages = [
   { batch: 2, group: 'Modal/dropdown', url: 'https://getbootstrap.com/docs/5.3/components/offcanvas/' },
   { batch: 2, group: 'Modal/dropdown', url: 'https://getbootstrap.com/docs/5.3/components/popovers/' },
   { batch: 2, group: 'Modal/dropdown', url: 'https://getbootstrap.com/docs/5.3/components/navs-tabs/' },
+  { batch: 3, group: 'Simple', url: 'https://en.wikipedia.org/wiki/Alan_Turing' },
+  { batch: 3, group: 'Simple', url: 'https://en.wikipedia.org/wiki/Photosynthesis' },
+  { batch: 3, group: 'Simple', url: 'https://en.wikipedia.org/wiki/List_of_countries_by_population_(United_Nations)' },
+  { batch: 3, group: 'Simple', url: 'https://news.ycombinator.com/' },
+  { batch: 3, group: 'Simple', url: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table' },
+  { batch: 3, group: 'Simple', url: 'https://www.gnu.org/philosophy/free-sw.html' },
+  { batch: 3, group: 'Simple', url: 'https://www.w3.org/TR/WCAG22/' },
+  { batch: 3, group: 'Simple', url: 'https://www.rfc-editor.org/rfc/rfc8259.html' },
+  { batch: 3, group: 'Simple', url: 'https://www.paulgraham.com/greatwork.html' },
+  { batch: 3, group: 'Simple', url: 'https://www.sqlite.org/lang_select.html' },
+  { batch: 3, group: 'SPA', url: 'https://github.com/vercel/next.js/issues' },
+  { batch: 3, group: 'SPA', url: 'https://github.com/vuejs/core' },
+  { batch: 3, group: 'SPA', url: 'https://gitlab.com/gitlab-org/gitlab' },
+  { batch: 3, group: 'SPA', url: 'https://vuejs.org/guide/introduction.html' },
+  { batch: 3, group: 'SPA', url: 'https://angular.dev/tutorials/learn-angular' },
+  { batch: 3, group: 'SPA', url: 'https://app.diagrams.net/' },
+  { batch: 3, group: 'SPA', url: 'https://excalidraw.com/' },
+  { batch: 3, group: 'SPA', url: 'https://nextjs.org/showcase' },
+  { batch: 3, group: 'SPA', url: 'https://web.dev/learn/performance' },
+  { batch: 3, group: 'SPA', url: 'https://developer.chrome.com/docs/devtools/' },
+  { batch: 3, group: 'SPA', url: 'https://github.com/microsoft/TypeScript/issues' },
+  { batch: 3, group: 'SPA', url: 'https://angular.dev/overview' },
 ];
 
 if (new Set(pages.map((page) => page.url)).size !== pages.length) {
@@ -134,7 +156,10 @@ if (process.argv[2] === '--worker') {
     // Keep partial results if the process is interrupted.
     await writeFile(new URL('./results.json', import.meta.url), JSON.stringify({
       measuredAt: existing?.measuredAt ?? new Date().toISOString(),
-      batch2MeasuredAt: new Date().toISOString(),
+      batch2MeasuredAt: existing?.batch2MeasuredAt ?? new Date().toISOString(),
+      ...(results.some((row) => row.batch === 3) && {
+        batch3MeasuredAt: existing?.batch3MeasuredAt ?? new Date().toISOString(),
+      }),
       method: 'Chromium page.content() before capturePage; same page; 1200ms stabilization; Unicode regex from tests/acceptance.test.ts',
       results,
     }, null, 2) + '\n');

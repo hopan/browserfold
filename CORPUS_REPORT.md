@@ -1,6 +1,6 @@
-# Corpus trang thật — dispatch 7 và 8: token ratio
+# Corpus trang thật — dispatch 7–9: token ratio
 
-Đo ngày **2026-09-26** trên Chromium/Playwright, không click, nhập liệu hoặc gửi form. Đây là corpus thủ công theo SPEC.md mục 28–29, không phải test CI hay corpus mục tiêu 100 trang. Hai batch đã thử **43 URL công khai riêng biệt**; **36** trả về phép đo, trong đó **35** là mẫu đạt tiêu chí đại diện; **7** lỗi. Tám nhóm của mục 29 đều có ít nhất một mẫu đạt tiêu chí. Dữ liệu thô, gồm URL lỗi, ở [`corpus/results.json`](corpus/results.json); script chạy lại ở [`corpus/measure.mjs`](corpus/measure.mjs).
+Đo ngày **2026-09-26** trên Chromium/Playwright, không click, nhập liệu hoặc gửi form. Đây là corpus thủ công theo SPEC.md mục 28–29, không phải test CI hay corpus mục tiêu 100 trang. Ba batch đã thử **65 URL công khai riêng biệt**; **56** trả về phép đo, trong đó **55** là mẫu đạt tiêu chí đại diện; **9** lỗi. Tám nhóm của mục 29 đều có ít nhất một mẫu đạt tiêu chí. Dữ liệu thô, gồm URL lỗi, ở [`corpus/results.json`](corpus/results.json); script chạy lại ở [`corpus/measure.mjs`](corpus/measure.mjs).
 
 ## Cách đo
 
@@ -95,20 +95,60 @@ Giữ nguyên 23 dòng batch 1, thêm 20 dòng batch 2. Trong 36 trang trả s�
 
 So với baseline fixture hiện hành **532/2.142 = 24,84%**, corpus tích luỹ thấp hơn **22,10 điểm %** theo tổng token và **19,72 điểm %** theo trung bình trang. Bảy mẫu riêng vượt 10%: ba mẫu batch 1 đã nêu ở trên, Material Web Buttons và ba danh mục Demo Web Shop của batch 2. Mẫu số `page.content()` không gồm nội dung iframe/shadow DOM; tỷ lệ thấp ở các trang Test Pages còn chịu ảnh hưởng từ menu/markup dùng chung lớn. Đây vẫn chỉ là token ratio, chưa phải phép đánh giá độ đầy đủ nội dung, recall/precision hay trạng thái modal/dropdown mở.
 
+## Kết quả từng URL — batch 3 (dispatch 9)
+
+Batch 3 thử **22 URL mới**: 10 Simple và 12 SPA. **20** trang đo được và được tính tổng; 2 URL SPA lỗi được giữ trong dữ liệu. Hai trang thay thế được thêm sau khi Next.js Showcase trả 403 và developer.chrome.com gặp lỗi CDP; không thử vượt chặn hoặc tương tác với trang. Danh sách Simple gồm bài bách khoa, bảng dân số, tin, tài liệu kỹ thuật và blog. SPA gồm giao diện repo/issues, trang tài liệu nhiều JS và hai ứng dụng canvas. “Đạt mẫu” ở đây xác nhận trang tải và pipeline đo được, không xác nhận snapshot giữ đủ nội dung hoặc tỷ lệ riêng đạt 10%.
+
+| Nhóm SPEC | URL | Snapshot tokens | DOM tokens | Tỷ lệ | Trạng thái |
+|---|---|---:|---:|---:|---|
+| Simple | https://en.wikipedia.org/wiki/Alan_Turing | 20.878 | 640.993 | 3,26% | Đạt mẫu |
+| Simple | https://en.wikipedia.org/wiki/Photosynthesis | 20.432 | 460.131 | 4,44% | Đạt mẫu |
+| Simple | https://en.wikipedia.org/wiki/List_of_countries_by_population_(United_Nations) | 13.768 | 422.971 | 3,26% | Đạt mẫu |
+| Simple | https://news.ycombinator.com/ | 4.268 | 14.563 | 29,31% | Đạt mẫu |
+| Simple | https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table | 6.640 | 47.321 | 14,03% | Đạt mẫu |
+| Simple | https://www.gnu.org/philosophy/free-sw.html | 2.058 | 15.409 | 13,36% | Đạt mẫu |
+| Simple | https://www.w3.org/TR/WCAG22/ | 19.742 | 159.829 | 12,35% | Đạt mẫu |
+| Simple | https://www.rfc-editor.org/rfc/rfc8259.html | 1.494 | 10.344 | 14,44% | Đạt mẫu |
+| Simple | https://www.paulgraham.com/greatwork.html | 444 | 20.292 | 2,19% | Đạt mẫu |
+| Simple | https://www.sqlite.org/lang_select.html | 2.041 | 979.007 | 0,21% | Đạt mẫu |
+| SPA | https://github.com/vercel/next.js/issues | 2.545 | 134.610 | 1,89% | Đạt mẫu |
+| SPA | https://github.com/vuejs/core | 2.662 | 130.670 | 2,04% | Đạt mẫu |
+| SPA | https://gitlab.com/gitlab-org/gitlab | 3.368 | 102.654 | 3,28% | Đạt mẫu |
+| SPA | https://vuejs.org/guide/introduction.html | 1.518 | 56.104 | 2,71% | Đạt mẫu |
+| SPA | https://angular.dev/tutorials/learn-angular | 402 | 57.791 | 0,70% | Đạt mẫu |
+| SPA | https://app.diagrams.net/ | 186 | 80.894 | 0,23% | Đạt mẫu; ứng dụng canvas |
+| SPA | https://excalidraw.com/ | 286 | 30.419 | 0,94% | Đạt mẫu; ứng dụng canvas |
+| SPA | https://nextjs.org/showcase | — | — | — | HTTP 403 |
+| SPA | https://web.dev/learn/performance | 678 | 31.513 | 2,15% | Đạt mẫu |
+| SPA | https://developer.chrome.com/docs/devtools/ | — | — | — | Lỗi `DOM.describeNode`: không tìm thấy node ID |
+| SPA | https://github.com/microsoft/TypeScript/issues | 2.126 | 126.768 | 1,68% | Đạt mẫu |
+| SPA | https://angular.dev/overview | 2.335 | 117.692 | 1,98% | Đạt mẫu |
+
+## Tổng hợp tích luỹ batch 1 + 2 + 3 — 55 mẫu đạt tiêu chí
+
+Batch 3 riêng có **107.871/3.639.975 = 2,96%** theo tổng token và **5,72%** trung bình trang. Trên cả ba batch, giữ nguyên loại trừ một tutorial Lit chưa render shadow root; không tính 9 URL lỗi. Không cộng các tỷ lệ đã làm tròn trong bảng để tính trung bình.
+
+| Phép tổng hợp | Công thức | Kết quả | So với SPEC mục 28 |
+|---|---|---:|---|
+| Theo tổng token | 169.706 / 5.899.677 | **2,88%** | Đạt ≤10% và stretch ≤5% |
+| Trung bình tỷ lệ từng trang | Σ 55 tỷ lệ / 55 | **5,34%** | Đạt ≤10%; vượt stretch ≤5% khoảng 0,34 điểm % |
+
+So với baseline fixture hiện hành **532/2.142 = 24,84%**, corpus tích luỹ thấp hơn **21,96 điểm %** theo tổng token và **19,50 điểm %** theo trung bình trang. **12/55 mẫu riêng vượt 10%**, gồm 5 mẫu Simple mới: Hacker News, MDN, GNU, WCAG 2.2 và RFC 8259. Trang SQLite có DOM gần một triệu token nhưng snapshot chỉ 2.041 token; Paul Graham chỉ 444 token trong snapshot. Hai ứng dụng canvas cũng cho snapshot rất ngắn. Các tỷ lệ này không chứng minh nội dung chính đã được giữ đầy đủ; kích thước DOM và giao diện canvas ảnh hưởng mạnh đến phép so sánh. Chưa đo recall/precision bằng oracle trên trang thật.
+
 ## Tiến độ corpus theo nhóm
 
 Đếm **mọi URL đã thử, kể cả lỗi và mẫu bị loại khỏi tổng**, theo 100 trang mục tiêu của SPEC mục 29:
 
-| Nhóm | Batch 1 | Thêm batch 2 | Tích luỹ / mục tiêu | Mẫu tính tổng tích luỹ |
-|---|---:|---:|---:|---:|
-| Simple | 4 | 0 | 4/20 | 4 |
-| SPA | 4 | 0 | 4/20 | 2 |
-| Dashboard | 2 | 3 | 5/10 | 5 |
-| Ecommerce | 3 | 3 | 6/10 | 5 |
-| Enterprise form | 2 | 3 | 5/10 | 5 |
-| Modal/dropdown | 2 | 3 | 5/10 | 5 |
-| Iframe | 2 | 4 | 6/10 | 4 |
-| Custom component | 4 | 4 | 8/10 | 5 |
-| **Tổng** | **23** | **20** | **43/100** | **35** |
+| Nhóm | Batch 1 | Thêm batch 2 | Thêm batch 3 | Tích luỹ / mục tiêu | Mẫu tính tổng tích luỹ |
+|---|---:|---:|---:|---:|---:|
+| Simple | 4 | 0 | 10 | 14/20 | 14 |
+| SPA | 4 | 0 | 12 | 16/20 | 12 |
+| Dashboard | 2 | 3 | 0 | 5/10 | 5 |
+| Ecommerce | 3 | 3 | 0 | 6/10 | 5 |
+| Enterprise form | 2 | 3 | 0 | 5/10 | 5 |
+| Modal/dropdown | 2 | 3 | 0 | 5/10 | 5 |
+| Iframe | 2 | 4 | 0 | 6/10 | 4 |
+| Custom component | 4 | 4 | 0 | 8/10 | 5 |
+| **Tổng** | **23** | **20** | **22** | **65/100** | **55** |
 
 Lưu ý: số đếm SPA 3/20 và Custom component 3/10 trong phần bối cảnh dispatch 8 thấp hơn dữ liệu `results.json` batch 1 một URL mỗi nhóm. Batch 1 thực tế có 4 URL SPA (kể cả Svelte 403) và 4 URL custom component (kể cả Lit tutorial), nên bảng dùng số đếm trực tiếp từ dữ liệu. Iframe chỉ thêm 3 mẫu đo được vì W3Schools gặp lỗi CDP; không giả định tỷ lệ cho URL lỗi hoặc ép thay bằng trang không phù hợp.
