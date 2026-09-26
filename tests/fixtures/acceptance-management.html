@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Order management</title>
+  <style>
+    body { font-family: system-ui; margin: 2rem auto; max-width: 76rem; color: #263345; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { padding: .6rem; border-bottom: 1px solid #d8dfe8; text-align: left; }
+    .panel { margin: 1rem 0; padding: 1rem; border: 1px solid #c9d3df; }
+  </style>
+</head>
+<body>
+  <header><h1>Order management</h1><p>Review current orders and resolve exceptions.</p></header>
+  <main>
+    <form class="panel" aria-label="Order filters">
+      <label for="query">Search orders</label><input id="query" value="September">
+      <label for="status">Status</label><select id="status"><option id="status-all">All</option><option id="status-open" selected>Open</option><option id="status-closed">Closed</option></select>
+      <label><input id="urgent-only" type="checkbox" checked> Urgent only</label>
+      <button id="apply-filters" type="button" onclick="this.form.dataset.applied='true'">Apply filters</button>
+      <button id="export" type="button" onclick="this.dataset.exported='true'">Export results</button>
+    </form>
+    <div role="status">Showing 8 of 42 orders</div>
+    <div role="alert">One shipment needs an address review</div>
+    <table aria-label="Orders">
+      <thead><tr><th>Order</th><th>Customer</th><th>Status</th><th>Total</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td>ORD-101</td><td>Ada Nguyen</td><td>Open</td><td>$125.00</td><td><button id="open-101" onclick="this.closest('tr').dataset.opened='true'">Open</button></td></tr>
+        <tr><td>ORD-102</td><td>Ben Tran</td><td>Address review</td><td>$84.50</td><td><button id="open-102" onclick="this.closest('tr').dataset.opened='true'">Open</button></td></tr>
+        <tr><td>ORD-103</td><td>Chi Le</td><td>Open</td><td>$40.00</td><td><button id="open-103" onclick="this.closest('tr').dataset.opened='true'">Open</button></td></tr>
+        <tr><td>ORD-104</td><td>Duc Pham</td><td>Paid</td><td>$213.70</td><td><button id="open-104" onclick="this.closest('tr').dataset.opened='true'">Open</button></td></tr>
+        <tr><td>ORD-105</td><td>Eva Vo</td><td>Open</td><td>$19.99</td><td><button id="open-105" onclick="this.closest('tr').dataset.opened='true'">Open</button></td></tr>
+        <tr><td>ORD-106</td><td>Finn Ho</td><td>Review</td><td>$305.25</td><td><button id="open-106" onclick="this.closest('tr').dataset.opened='true'">Open</button></td></tr>
+        <tr><td>ORD-107</td><td>Gia Bui</td><td>Open</td><td>$61.40</td><td><button id="open-107" onclick="this.closest('tr').dataset.opened='true'">Open</button></td></tr>
+        <tr><td>ORD-108</td><td>Hoa Do</td><td>Paid</td><td>$92.15</td><td><button id="open-108" onclick="this.closest('tr').dataset.opened='true'">Open</button></td></tr>
+      </tbody>
+    </table>
+    <nav aria-label="Pagination"><a id="previous" href="#previous">Previous page</a><span>Page 1 of 6</span><a id="next" href="#next">Next page</a></nav>
+    <ul aria-label="Follow-up tasks">
+      <li>Review the address for ORD-102 <a id="task-102" href="#task-102">Inspect task</a></li>
+      <li>Confirm payment for ORD-106 <a id="task-106" href="#task-106">Inspect task</a></li>
+    </ul>
+    <section class="panel" aria-label="Operating notes">
+      <h2>Handling guidelines</h2>
+      <p>Before updating a shipment, compare the destination against the customer's confirmed address and review the latest carrier event. A recent delivery attempt may explain why an otherwise valid address was flagged for manual review.</p>
+      <p>When a payment is pending, check the settlement date and the transaction reference shown in the payment system. Avoid changing order status until the payment event and the customer record agree.</p>
+      <p>The table shows the current working set. Analysts should check whether a filter remains active before interpreting row counts, totals, or the distribution of status values in this view.</p>
+    </section>
+    <button id="unavailable" disabled>Archived action</button>
+    <a id="empty-anchor">Decorative anchor</a>
+    <div id="fake-button" role="button">Visual button with no handler</div>
+    <span id="focus-decoration" tabindex="0">Focusable decoration</span>
+  </main>
+</body>
+</html>

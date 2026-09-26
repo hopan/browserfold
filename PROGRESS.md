@@ -1,6 +1,6 @@
-# BrowserFold — tiến độ dispatch 1–4
+# BrowserFold — tiến độ dispatch 1–5
 
-Phạm vi đã hoàn tất: item 1–7 của mục 25 trong `SPEC.md`.
+Đã triển khai item 1–13 của mục 25 trong `SPEC.md`. Các ngưỡng chấp nhận ở mục 28 chưa đạt; chi tiết ở dispatch 5.
 
 ## Setup
 
@@ -117,10 +117,6 @@ Hoàn tất. Test: `tests/serialize/text.test.ts`; code: `src/serialize/text.ts`
 - ID xuất ra dùng `e` + 10 ký tự hash hex thay vì số tăng dần `e1`, để cùng node giữ ID qua nhiều capture. Row/list item dùng prefix `r`/`item` với cùng hậu tố hash. Chưa có bản đồ ID riêng để resolve hành động (thuộc action interface ngoài MVP).
 - Chưa có giới hạn số hàng, item hay ký tự trong serializer; giới hạn cấu hình và thông báo truncate thuộc phần yêu cầu rộng hơn, chưa có trong item 8–9 của MVP.
 
-## Dispatch sau
-
-13. Automated tests cho toàn MVP và các tiêu chí chấp nhận (token ratio, recall, precision, determinism).
-
 ## Dispatch 4 — item 10–12
 
 ### Item 10 — Handle iframe
@@ -157,3 +153,43 @@ Hoàn tất. Test: `tests/serialize/json.test.ts`; code: `src/serialize/json.ts`
 
 - Nội dung iframe cross-origin chưa được bảo đảm: Chromium có thể đặt frame ở CDP target riêng và không cung cấp `contentDocument` qua session trang cha. Bước này chỉ xác nhận iframe cùng origin.
 - CLI hiện hỗ trợ chế độ `automation` mặc định; `content`, `--geometry` và các giới hạn `--max-*` trong SPEC chưa có cơ chế tương ứng ở pipeline hiện tại, nên chưa nhận các option đó. `--format json` thuộc item 12.
+
+## Item 13 — Đo tiêu chí chấp nhận MVP
+
+Hoàn tất bộ đo ở `tests/acceptance.test.ts` với hai fixture HTML cố định: `tests/fixtures/acceptance-login.html` và `tests/fixtures/acceptance-management.html`. Mỗi phép đo mở trang bằng `launchUrl`, lấy DOM Chromium thật bằng `page.content()`, chạy `capturePage` → `mergeSemanticNodes` → `generateSemanticIds` → `buildContentStructure` → `serializeText`. Không dùng mock. Fixture quản lý có bảng 8 hàng, list, filter, phân trang, status/alert, văn bản dài và cả các trường hợp dễ gắn nhầm `interactive`.
+
+- TDD red: `npm test -- tests/acceptance.test.ts` lần đầu exit 1 vì text thiếu `Page 1 of 6`. Chuyển các assertion độc lập sang `expect.soft` để in đầy đủ số đo ngay cả khi một tiêu chí lỗi; không đổi fixture, ngưỡng, oracle hay cách tính để làm test pass. Lần chạy tiếp exit 1 với 4 assertion thất bại (phân trang, token ratio, recall, precision); determinism pass.
+- Đếm token bằng regex Unicode `/[\p{L}\p{N}_]+|[^\s]/gu` áp dụng giống nhau cho HTML DOM do `page.content()` trả về và Semantic UI Snapshot text. Đây là phép xấp xỉ ổn định, đếm cả cú pháp markup và dấu câu, không phải số token của một model cụ thể. Mẫu số là HTML/DOM gốc thực tế sau Chromium parse, không phải URL `data:` hay JSON debug. Tỷ lệ tổng được tính `Σ token snapshot / Σ token DOM` trên hai trang; cũng báo từng trang.
+- Ngưỡng nguyên văn trong SPEC.md mục 28: `semantic snapshot <= 10% of raw DOM token count`; `Stretch target: <= 5%`. Đo được login **112/546 = 20,51%**, quản lý **418/1596 = 26,19%**, tổng **530/2142 = 24,74%**. **Không đạt** ngưỡng MVP 10% và mốc mở rộng 5%. Snapshot vẫn chứa ID hash dài, dòng URL và một dòng mỗi hành động/hàng; `src/serialize/text.ts` là nơi trực tiếp quyết định chi phí này. Fixture chỉ gồm hai trang nên số đo là baseline hữu hạn, chưa phải benchmark 90 trang ở mục 29.
+- Ngưỡng nguyên văn: `>= 95% of visible actionable controls represented`. Oracle là danh sách ID của 25 control thực sự khả dụng trên hai fixture, gồm cả ba `<option>` của select; mỗi control chỉ được tính là có mặt khi node đúng ID được đánh dấu visible/interactive và semantic ID của nó thực sự có trong text. Đo được **22/25 = 88%**, **không đạt**. Thiếu `status-all`, `status-open`, `status-closed`: `src/serialize/text.ts` xuất combobox và giá trị hiện tại nhưng không xuất từng option. Đây là recall của control khả dụng trong snapshot text, không phải recall của mọi DOM node.
+- Ngưỡng nguyên văn: `False interactive elements: < 5%`. Mẫu số là toàn bộ node visible được `mergeSemanticNodes` đánh dấu `interactive: true`; false positive là node không thuộc oracle control khả dụng. Đo được **4/29 = 13,79% false interactive**, tương ứng **25/29 = 86,21% precision**, **không đạt**. Bốn node là nút disabled `unavailable`, thẻ `a` không `href` `empty-anchor`, `role=button` không handler `fake-button`, và phần trang trí có `tabindex=0` `focus-decoration`. `src/semantic/interactive.ts` hiện dùng role/tag/tabindex mà chưa xét khả dụng hoặc handler thực tế. Định nghĩa precision này theo mục 29 (`% captured controls actually actionable`), không dùng false-positive rate trên toàn bộ DOM.
+- SPEC.md chỉ ghi `Two snapshots of an unchanged page should produce semantically identical output`, **không định lượng số lần hay một tỷ lệ pass cụ thể**. Test chạy **3 capture** liên tiếp trên cùng trang quản lý không đổi, so sánh toàn bộ text và danh sách semantic ID theo đúng thứ tự: **3/3 giống hệt**, đạt yêu cầu hai snapshot giống nhau.
+- Tiêu chí chức năng mục 28: trang login giữ email, password, submit, checkbox, validation error và link. Trang quản lý giữ bảng/hàng/header, giá trị filter, list, status/alert và quan hệ hành động theo hàng; các mục này **đạt** trên fixture. Riêng trạng thái phân trang `Page 1 of 6` bị mất dù link Previous/Next còn: **không đạt** phần pagination state. Nội dung span này bị `extractVisibleContent` lọc trước khi `serializeText` chạy. Không dùng screenshot.
+- SPEC.md mục 29 nêu corpus 90 trang và các metric latency, ID stability qua state, test success rate nhưng **không định lượng ngưỡng chấp nhận MVP** cho các metric đó. Bộ đo hiện chỉ bao phủ hai fixture đại diện; chưa thể suy rộng số liệu thành chất lượng trên toàn bộ corpus. Các metric cần agent thực thi hành động hoặc nhiều trạng thái trang nằm ngoài item 13 và không được bịa ngưỡng.
+
+## MVP HOÀN TẤT — tổng kết
+
+| Item mục 25 | Trạng thái |
+|---|---|
+| 1. Launch URL / attach CDP | Đã triển khai, test pass; chọn tab CDP theo heuristic đã ghi |
+| 2. Capture current page | Đã triển khai, test pass |
+| 3. Extract accessibility + DOM | Đã triển khai, test pass |
+| 4. Detect visible interactive elements | Đã triển khai; phép đo precision chưa đạt |
+| 5. Extract visible automation content | Đã triển khai; pagination state còn thiếu |
+| 6. Preserve table/list/card structure | Đã triển khai, test pass |
+| 7. Preserve control/content relationships | Đã triển khai, test pass |
+| 8. Generate semantic IDs | Đã triển khai; test determinism 3 lần pass |
+| 9. Output compact text | Đã triển khai; token ratio và recall chưa đạt |
+| 10. Handle iframe | Đã triển khai cho iframe cùng origin; cross-origin chưa bảo đảm |
+| 11. CLI | Đã triển khai cho chế độ automation; các option còn thiếu đã ghi ở dispatch 4 |
+| 12. JSON debug output | Đã triển khai, test pass |
+| 13. Automated acceptance measurements | Đã hoàn tất; các assertion thất bại phản ánh số đo thực tế |
+
+13 item đã có implementation hoặc bộ test đo tương ứng. **MVP chưa được chấp nhận theo mục 28 của SPEC.md** vì token ratio, actionable recall, interactive precision và pagination state không đạt. Không hạ ngưỡng hoặc sửa oracle để che kết quả.
+
+## Kiểm tra cuối dispatch 5
+
+- `npm test` — exit 1: 13 file / 15 test, **12 file pass**, 1 file acceptance có 1 test đo fail với 4 assertion (pagination state, ratio, recall, precision), test determinism pass. Các số đo lặp lại đúng baseline ở trên.
+- `npm run typecheck` — pass.
+- `npm run build` — pass.
+- `git diff --check` — pass.

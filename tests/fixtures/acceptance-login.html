@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Member sign in</title>
+  <style>
+    body { font-family: system-ui; max-width: 62rem; margin: auto; color: #243047; }
+    .panel { border: 1px solid #ccd4df; padding: 1.5rem; border-radius: .5rem; }
+    .help { line-height: 1.6; }
+  </style>
+</head>
+<body>
+  <header><h1>Member sign in</h1><p>Manage your account and recent orders in one place.</p></header>
+  <main>
+    <section class="panel" aria-label="Sign in form">
+      <form>
+        <label for="email">Email address</label>
+        <input id="email" type="email" autocomplete="username" required>
+        <label for="password">Password</label>
+        <input id="password" type="password" autocomplete="current-password" required>
+        <label><input id="remember" type="checkbox"> Remember this device</label>
+        <button id="sign-in" type="submit">Sign in</button>
+      </form>
+      <div role="alert">Email address is required</div>
+      <a id="forgot-password" href="#recovery">Forgot password?</a>
+    </section>
+    <section id="recovery" class="help">
+      <h2>Account help</h2>
+      <p>To keep your account safe, use a password that you do not share with other services. If you cannot remember your password, use the recovery link and follow the instructions sent to the email address associated with your account.</p>
+      <p>Security notices and account updates are sent only to the email address recorded in your profile. Review the sender and the destination before entering private details on any page that asks you to sign in.</p>
+      <p>After signing in, you can review orders, change delivery preferences, update contact details, and inspect recent activity. Some settings may require a second verification step before the change takes effect.</p>
+    </section>
+  </main>
+  <footer><p>Support is available during normal business hours. For urgent account issues, consult the help center and follow the published recovery process.</p></footer>
+</body>
+</html>
