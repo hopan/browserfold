@@ -86,13 +86,6 @@ Hoàn tất. Test: `tests/semantic/relationships.test.ts`; code: `src/semantic/n
 - `npm run typecheck` — pass.
 - `npm run build` — pass.
 
-## Dispatch sau
-
-10. Handle iframe.
-11. CLI.
-12. JSON debug output.
-13. Automated tests cho toàn MVP và các tiêu chí chấp nhận (token ratio, recall, precision, determinism).
-
 ## Dispatch 3 — item 8–9
 
 ### Item 8 — Generate semantic IDs
@@ -102,4 +95,25 @@ Hoàn tất. Test: `tests/semantic/identity.test.ts`; code: `src/semantic/identi
 - Red: `npm test -- tests/semantic/identity.test.ts` — fail (exit 1), thiếu module `src/semantic/identity.js`, 0 test chạy.
 - Green: cùng lệnh — pass, 1 file / 1 test với Chromium thật; hai lần capture cùng trang cho cùng ID, đổi trạng thái disabled vẫn giữ ID, các tham chiếu cha và quan hệ hợp lệ. `npm run typecheck` pass.
 - Semantic ID là `e` + 10 ký tự đầu SHA-256 của fingerprint gồm frame, role/name, tag, thuộc tính định danh, tổ tiên và thứ tự trong nhóm anh em cùng fingerprint; khi trùng prefix hash sẽ kéo dài ID.
+- Mã lưu local: `5bdf3b9` (`feat: generate deterministic semantic IDs`).
+
+### Item 9 — Output compact text
+
+Hoàn tất. Test: `tests/serialize/text.test.ts`; code: `src/serialize/text.ts`.
+
+- Red: `npm test -- tests/serialize/text.test.ts` — fail (exit 1), thiếu module `src/serialize/text.js`, 0 test chạy.
+- Green: cùng lệnh — pass, 1 file / 1 test với Chromium thật; hai capture cùng trang cho cùng output, bao gồm PAGE/UI, trạng thái control, hàng bảng và hành động đúng hàng, list/card, lọc nội dung ẩn và prose không liên quan. Trong vòng chỉnh sửa, test phát hiện tên nút bị lặp trong ô bảng; sửa serializer để ô chứa control không xuất thành dữ liệu.
+- `npm run typecheck` pass.
 - Mã lưu local: (điền sau commit).
+
+## Sai khác với SPEC.md — dispatch 3
+
+- ID xuất ra dùng `e` + 10 ký tự hash hex thay vì số tăng dần `e1`, để cùng node giữ ID qua nhiều capture. Row/list item dùng prefix `r`/`item` với cùng hậu tố hash. Chưa có bản đồ ID riêng để resolve hành động (thuộc action interface ngoài MVP).
+- Chưa có giới hạn số hàng, item hay ký tự trong serializer; giới hạn cấu hình và thông báo truncate thuộc phần yêu cầu rộng hơn, chưa có trong item 8–9 của MVP.
+
+## Dispatch sau
+
+10. Handle iframe.
+11. CLI.
+12. JSON debug output.
+13. Automated tests cho toàn MVP và các tiêu chí chấp nhận (token ratio, recall, precision, determinism).
