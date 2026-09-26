@@ -101,7 +101,12 @@ export function serializeText(page: Pick<CapturedPage, 'url' | 'title'>, roots: 
       lines.push(`${indent}text: ${quoted(node.text!)}`);
       return;
     }
-    if (renderableControl(node) || ['heading', 'alert', 'status'].includes(node.contentKind ?? '')) {
+    if (node.contentKind === 'alert' || node.contentKind === 'status') {
+      lines.push(...controlLines(entry, indent));
+      for (const child of entry.children) render(child, indent);
+      return;
+    }
+    if (renderableControl(node) || node.contentKind === 'heading') {
       lines.push(...controlLines(entry, indent));
       return;
     }

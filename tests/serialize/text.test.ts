@@ -7,6 +7,27 @@ import { buildContentStructure } from '../../src/semantic/structure.js';
 import { serializeText } from '../../src/serialize/text.js';
 
 describe('compact text serialization', () => {
+  it('keeps actionable controls inside live regions', async () => {
+    const html = `<!doctype html><title>Alerts</title>
+      <div role="alert">Billing blocked <span><a href="/help">Learn more</a></span><button aria-label="Close"></button></div>
+      <div role="status">Saved <button>Undo</button></div>
+      <div role="alert">Plain warning</div>`;
+    const session = await launchUrl(`data:text/html,${encodeURIComponent(html)}`);
+    try {
+      const page = await capturePage(session.page);
+      const nodes = generateSemanticIds(mergeSemanticNodes(page));
+      const text = serializeText(page, buildContentStructure(nodes));
+      expect(text).toMatch(/\[e[0-9a-f]+\] alert "Billing blocked"/);
+      expect(text).toMatch(/\[e[0-9a-f]+\] link "Learn more"/);
+      expect(text).toMatch(/\[e[0-9a-f]+\] button "Close"/);
+      expect(text).toMatch(/\[e[0-9a-f]+\] status "Saved"/);
+      expect(text).toMatch(/\[e[0-9a-f]+\] button "Undo"/);
+      expect(text).toMatch(/\[e[0-9a-f]+\] alert "Plain warning"/);
+    } finally {
+      await session.close();
+    }
+  });
+
   it('keeps controls placed in a table header', async () => {
     const html = '<!doctype html><title>Header</title><table><tr><th>Topic <button>Show</button> <a href="/help">Help</a></th></tr><tr><td>Row</td></tr></table>';
     const session = await launchUrl(`data:text/html,${encodeURIComponent(html)}`);
