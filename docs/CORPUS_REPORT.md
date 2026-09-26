@@ -215,7 +215,7 @@ So với baseline hai fixture hiện hành **532/2.142 = 24,84%**, corpus thấp
 
 **Hoàn tất chỉ tiêu URL đã thử của corpus SPEC mục 29:** **103 URL riêng biệt** trên tám nhóm, từng nhóm đạt hoặc vượt số URL mục tiêu; trong đó **91** trả số đo, **89** phù hợp và được tính token ratio, **12** lỗi, **2** đo được nhưng bị loại. Simple có 20 mẫu đo được trên 21 URL thử; SPA có 16 mẫu trên 21 URL thử. Các nhóm Ecommerce, Iframe và Custom component còn dưới 10 mẫu đo được vì lỗi hoặc mẫu không phù hợp. Vì vậy kết quả đáp ứng mốc **100 URL đã thử theo phân bổ nhóm** mà dispatch này đặt ra, nhưng **chưa phải benchmark 100 mẫu đo được**, và chưa hoàn tất bộ metric mục 29 ngoài token ratio. Không quy lỗi tải trang hoặc CDP thành số đo giả.
 
-**Kết luận ngưỡng SPEC mục 28:** token ratio tích luỹ **đạt mốc MVP ≤10%** theo cả hai phép tổng hợp; mốc stretch **đạt theo tổng token, không đạt theo trung bình trang**. **Chấp nhận MVP tổng thể vẫn chưa đạt**: baseline hai fixture cố định là **24,84% >10%** và corpus trang thật chưa xác nhận semantic coverage ≥95% hay false interactive <5%. Không suy kết luận chất lượng semantic từ riêng token ratio.
+**Kết luận token ratio theo SPEC mục 28:** corpus tích luỹ **đạt mốc MVP ≤10%** theo cả hai phép tổng hợp; mốc stretch **đạt theo tổng token, không đạt theo trung bình trang**. **Chấp nhận MVP tổng thể vẫn chưa đạt**: baseline hai fixture cố định là **24,84% >10%**; phép đo Actionable Recall/Precision hoàn tất ở mục dưới còn không đạt precision khi lấy trung bình trang và không đạt recall khi gộp phần tử. Không suy kết luận chất lượng semantic từ riêng token ratio.
 
 ## Tiến độ corpus theo nhóm
 
@@ -235,7 +235,7 @@ So với baseline hai fixture hiện hành **532/2.142 = 24,84%**, corpus thấp
 
 Lưu ý: số đếm SPA 3/20 và Custom component 3/10 trong phần bối cảnh dispatch 8 thấp hơn dữ liệu `results.json` batch 1 một URL mỗi nhóm. Batch 1 thực tế có 4 URL SPA (kể cả Svelte 403) và 4 URL custom component (kể cả Lit tutorial), nên bảng dùng số đếm trực tiếp từ dữ liệu. Batch 4 thêm 5 URL Iframe nhưng chỉ 3 mẫu phù hợp và đo được: W3Schools lỗi CDP, trang chỉ mục Test Pages không có iframe. Batch 5 thêm hai URL thay thế để Simple và SPA đều vượt một URL đã thử so với mục tiêu. Không giả định tỷ lệ cho URL lỗi hoặc tính hai mẫu không phù hợp vào tổng.
 
-## Actionable Recall/Precision — pilot, batch 2 và batch 3
+## Actionable Recall/Precision — pilot đến batch 4 (cuối)
 
 Dispatch 13 chọn **18 URL đã có trong `corpus/results.json`**: 4 Simple, 4 SPA, 2 Dashboard, 2 Ecommerce, 2 Enterprise form, 2 Modal/dropdown, 1 Iframe và 1 Custom component. Script riêng [`corpus/measure_recall.mjs`](../corpus/measure_recall.mjs) tải lại trang vì oracle phải chạy trước capture; kết quả từng node mẫu và số đo ở [`corpus/recall_pilot.json`](../corpus/recall_pilot.json). Chỉ load/đọc DOM, không click, nhập liệu hoặc mở modal. Mỗi trang dùng `domcontentloaded` + 1,2 giây, navigation timeout 30 giây, tiến trình con timeout 60 giây và heap 768 MB. Trang HTTP lỗi/bot block hoặc frame mà oracle không đọc được bị loại khỏi trung bình, không gán điểm giả. Dispatch 17 đo lại toàn bộ **42 URL đã có kết quả** bằng commit `c3fa3e0`: **42/42 trang đo được**. URL DemoQA từng lỗi frame ở dispatch 15 không thuộc danh sách 42 URL này.
 
@@ -268,7 +268,7 @@ Pilot đo lại có **3.317 oracle, 3.173 detected, 2.995 match**. Trung bình t
 
 **Đánh giá phương pháp:** Match theo backend ID map đủ 3.317 ID oracle. Material Web Buttons tăng từ 57/120 lên **118/120 = 98,33%** nhờ sửa shadow root; Wikipedia Graph theory từ 1.032/1.344 lên **1.049/1.344 = 78,05%** nhờ sửa table header, còn các miss dưới navbox gập theo định nghĩa oracle cũ. Form AdminLTE vẫn có precision **93/134 = 69,40%** do các khác biệt oracle đã phân loại ở dispatch 14. Các trang modal/dropdown chỉ ở trạng thái đóng.
 
-**Giới hạn trước full 89:** Giữ cơ chế match chính xác này, nhưng chạy lặp một số URL động và kiểm tra tay vài miss/false positive ở Wikipedia, form và Material Web trước khi suy rộng số liệu. Ngay trong quá trình xác thực, web.dev có 35 oracle ở một lần tải và 56 ở lần cuối; DOM động khiến một lần đo không đủ để kết luận độ ổn định. Cần giữ định nghĩa oracle được giao khi so sánh, ghi riêng các native `<option>` ngoài oracle và trạng thái shadow/frame. Chưa chạy 89 trang trong dispatch này.
+**Giới hạn phép đo:** web.dev có 35 oracle ở một lần tải và 56 ở lần cuối; DOM động khiến một lần đo không đủ để kết luận độ ổn định. Cần giữ định nghĩa oracle khi so sánh, ghi riêng các native `<option>` ngoài oracle và trạng thái shadow/frame.
 
 ### Batch 2 — Dispatch 15
 
@@ -303,7 +303,7 @@ Dispatch 15 chọn **25 URL mới** từ `corpus/results.json`, không trùng 18
 
 Batch 2 đo lại **24/24 URL có kết quả**: **5.987 oracle, 5.175 detected, 4.830 match**. Trung bình theo 24 trang: **Recall 93,06%; Precision 94,86%**. Theo tổng phần tử: **Recall 4.830/5.987 = 80,67%; Precision 4.830/5.175 = 93,33%**. `demoqa.com/automation-practice-form` từng lỗi do iframe `about:blank` tách khỏi trang khi oracle đọc và không thuộc baseline 42 URL. Trang Lit tutorial tải với title rỗng và chỉ 1 oracle/detected; con số 100% ở đó không đại diện cho UI custom component.
 
-**Baseline mới đồng nhất phiên bản: 42/42 URL đo được** bằng commit sửa renderer `c3fa3e0`. Cả 18 pilot và 24 URL batch 2 được đo lại, thay toàn bộ số đo cũ; không cộng dồn. Tổng **9.304 oracle, 8.348 detected, 7.825 match**. Trung bình theo trang: **Recall 94,92%; Precision 94,34%**. Gộp theo phần tử: **Recall 7.825/9.304 = 84,10%; Precision 7.825/8.348 = 93,74%**. Trước sửa trên cùng 42 URL: 9.304 oracle, 8.344 detected, 7.821 match; trung bình trang 92,54%/94,34%, gộp phần tử 84,06%/93,73%. Recall trung bình tăng 2,38 điểm %, recall gộp tăng 0,04 điểm %. URL DemoQA lỗi lịch sử không nằm trong baseline này.
+**Baseline đồng nhất phiên bản:** 18 URL pilot và 24 URL batch 2 đã được đo lại bằng commit sửa renderer `c3fa3e0`, thay toàn bộ hàng cũ; các batch tiếp theo dùng cùng code sản phẩm. URL DemoQA lỗi lịch sử không nằm trong baseline 42 URL đó.
 
 **Trang dưới 80% ở batch 2:**
 
@@ -345,14 +345,72 @@ Chọn **25 URL mới** từ các mẫu token ratio của `corpus/results.json`,
 
 **Batch 3:** 23/25 URL đo được, **3.964 oracle, 4.099 detected, 3.859 match**. Trung bình theo trang: **Recall 97,66%; Precision 92,14%**. Gộp theo phần tử: **Recall 3.859/3.964 = 97,35%; Precision 3.859/4.099 = 94,14%**.
 
-**Tích luỹ mới nhất (một phiên bản code): 65/89 URL corpus đã đo**, 67 URL đã thử recall. Tổng **13.268 oracle, 12.447 detected, 11.684 match**. Trung bình theo 65 trang: **Recall 95,89%; Precision 93,56%**. Gộp theo phần tử: **Recall 11.684/13.268 = 88,06%; Precision 11.684/12.447 = 93,87%**. Trong 65 trang đo được: Simple 9, SPA 9, Dashboard 8, Ecommerce 8, Enterprise form 8, Modal/dropdown 8, Iframe 7, Custom component 8. 42 hàng baseline cũ giữ nguyên; không đo lại hay cộng đè.
-
 **Trang batch 3 dưới 80%:**
 
 - `app.diagrams.net/`: Precision **1/4 = 25,00%** nhưng chỉ có **1 oracle**; ba detected ngoài oracle là ô tìm kiếm, nút “+ More Shapes” và link `jgraph/drawio`. Nghi ngờ trạng thái tải ban đầu hoặc điều kiện hiển thị/actionability của UI canvas làm oracle và output khác nhau; **chưa xác nhận nguyên nhân**, để dispatch sau xem xét. Không suy rộng tỷ lệ này cho editor khi đã tải đầy đủ.
 - `docs.python.org/3/tutorial/controlflow.html`: Precision **121/197 = 61,42%**. Tám false positive mẫu đầu đều là `<option>` ngôn ngữ native; đây là dạng đã biết vì oracle không chọn `<option>` thiếu role tường minh. Chưa phân loại toàn bộ 76 detected ngoài oracle.
 
 Material Web Dialog có precision đúng **80,00%** (64/80), sát ngưỡng nhưng không thuộc danh sách dưới 80%; ví dụ detected ngoài oracle gồm link shadow DOM và anchor của mục lục. Các URL còn lại trong batch không dưới 80% recall hoặc precision.
+
+### Dispatch 19 — Actionable Recall/Precision batch 4 (cuối)
+
+Đo toàn bộ **23 URL chưa có hàng** trong `recall_pilot.json` bằng cùng oracle và code sản phẩm; không đo lại 67 hàng cũ. Cả 23 URL đều tải và được ghi; `motherfuckingwebsite.com` có 0 oracle/0 detected nên không có mẫu số cho recall hoặc precision và bị loại khỏi metric. Batch 4 có **22/23 URL có tỷ lệ**, **11.440 oracle, 10.033 detected, 9.818 match**. Trung bình 22 trang: **Recall 95,91%; Precision 94,64%**. Gộp phần tử: **Recall 9.818/11.440 = 85,82%; Precision 9.818/10.033 = 97,86%**.
+
+| Nhóm | URL | Oracle | Detected | Match | Recall | Precision | Ghi chú |
+|---|---|---:|---:|---:|---:|---:|---|
+| Simple | https://motherfuckingwebsite.com/ | 0 | 0 | 0 | — | — | Không có control để tính tỷ lệ |
+| Simple | https://en.wikipedia.org/wiki/Alan_Turing | 2.532 | 1.993 | 1.981 | 78,24% | 99,40% | — |
+| Simple | https://en.wikipedia.org/wiki/List_of_countries_by_population_(United_Nations) | 1.088 | 1.110 | 1.088 | 100,00% | 98,02% | Redirect tới URL `List_of_countries_and_dependencies_by_population_(United_Nations)` |
+| Simple | https://www.paulgraham.com/greatwork.html | 30 | 30 | 30 | 100,00% | 100,00% | — |
+| Enterprise form | https://demoqa.com/automation-practice-form | 18 | 18 | 18 | 100,00% | 100,00% | — |
+| Simple | https://en.wikipedia.org/wiki/Photosynthesis | 2.476 | 2.071 | 2.059 | 83,16% | 99,42% | — |
+| Simple | https://www.rfc-editor.org/rfc/rfc8259.html | 161 | 161 | 161 | 100,00% | 100,00% | — |
+| SPA | https://github.com/vercel/next.js/issues | 174 | 185 | 170 | 97,70% | 91,89% | — |
+| SPA | https://gitlab.com/gitlab-org/gitlab | 157 | 206 | 155 | 98,73% | 75,24% | — |
+| SPA | https://excalidraw.com/ | 27 | 26 | 26 | 96,30% | 100,00% | — |
+| Dashboard | https://laravel.adminlte.io/demo/dashboard-v3 | 48 | 51 | 48 | 100,00% | 94,12% | — |
+| Dashboard | https://laravel.adminlte.io/demo/widgets/small-box | 40 | 40 | 40 | 100,00% | 100,00% | — |
+| Enterprise form | https://laravel.adminlte.io/demo/forms/wizard | 42 | 42 | 42 | 100,00% | 100,00% | — |
+| Modal/dropdown | https://getbootstrap.com/docs/5.3/components/tooltips/ | 222 | 220 | 220 | 99,10% | 100,00% | — |
+| Simple | https://www.rfc-editor.org/rfc/rfc9110.html | 3.393 | 2.773 | 2.770 | 81,64% | 99,89% | — |
+| Simple | https://lobste.rs/ | 223 | 222 | 222 | 99,55% | 100,00% | — |
+| Simple | https://requests.readthedocs.io/en/latest/user/quickstart/ | 53 | 50 | 50 | 94,34% | 100,00% | — |
+| SPA | https://gitlab.com/inkscape/inkscape | 153 | 151 | 151 | 98,69% | 100,00% | — |
+| SPA | https://stackblitz.com/edit/angular-ivy?file=src%2Fapp%2Fapp.component.ts | 62 | 106 | 59 | 95,16% | 55,66% | — |
+| Ecommerce | https://demowebshop.tricentis.com/computers | 57 | 54 | 54 | 94,74% | 100,00% | — |
+| Modal/dropdown | https://getbootstrap.com/docs/5.3/components/toasts/ | 224 | 233 | 223 | 99,55% | 95,71% | — |
+| Simple | https://www.fsf.org/about/what-is-free-software | 127 | 151 | 125 | 98,43% | 82,78% | — |
+| SPA | https://github.com/facebook/react/issues | 133 | 140 | 126 | 94,74% | 90,00% | — |
+
+### TỔNG KẾT Actionable Recall/Precision
+
+**Toàn bộ 90 URL token ratio có thể đo đều có đúng một hàng trong tệp recall tích luỹ:** 87 URL có recall và precision, 2 lỗi cũ (`gnu.org/philosophy/free-sw.html` timeout tải; `angular.dev/tutorials/first-app` lỗi CDP `DOM.describeNode`), 1 URL không có control (`motherfuckingwebsite.com`, 0/0). Theo cách đếm **/89** đã dùng ở các dispatch trước, kết quả là **87/89 URL có metric**. Cần phân biệt: 89 là số mẫu token ratio **đại diện** theo báo cáo, còn 90 URL thử recall bao gồm Lit tutorial, trang có tỷ lệ 1/1 nhưng không đại diện cho custom component; nếu chỉ đếm 89 mẫu đại diện thì **86/89 có metric**. Hàng Lit và toàn bộ 65 kết quả cũ vẫn được giữ trong tổng hợp theo yêu cầu, không sửa hoặc đo đè.
+
+| Phép tính trên 87 URL có metric | Recall (SPEC ≥95%) | Precision (SPEC false interactive <5%, tương đương precision >95%) |
+|---|---|---|
+| Trung bình theo trang | **95,90% — ĐẠT** | **93,84%** (false interactive 6,16%) **— KHÔNG ĐẠT** |
+| Gộp theo phần tử | **21.502/24.708 = 87,02% — KHÔNG ĐẠT** | **21.502/22.480 = 95,65%** (false interactive 4,35%) **— ĐẠT** |
+
+Các tỷ lệ trên dùng tổng **24.708 oracle, 22.480 detected, 21.502 match**. Hai cách tính cho kết luận khác nhau vì trang nhiều control, nhất là Wikipedia, có trọng số lớn trong phép gộp. Không thể kết luận corpus **đạt đồng thời** hai ngưỡng SPEC mục 28 theo cả hai cách tính.
+
+**Các URL còn dưới 80% ở ít nhất một metric** (giữ nguyên định nghĩa oracle; nguyên nhân chỉ ghi khi đã có bằng chứng):
+
+| URL | Metric dưới 80% | Nguyên nhân đã biết hoặc giới hạn điều tra |
+|---|---:|---|
+| `en.wikipedia.org/wiki/Graph_theory` | Recall 78,05% | Phần lớn miss đã kiểm tra nằm trong navbox `tr[hidden="until-found"]`; oracle không loại thuộc tính `hidden`. |
+| `en.wikipedia.org/wiki/HTML` | Recall 46,71% | Miss mẫu ở navbox gập cùng dạng; chưa phân loại toàn bộ 1.038 miss. |
+| `en.wikipedia.org/wiki/Alan_Turing` | Recall 78,24% | Miss mẫu gồm link ở vùng navigation và bảng; chưa xác nhận phân bố nguyên nhân của 551 miss. |
+| `adminlte.io/themes/v3/pages/forms/general.html` | Precision 69,40% | Đã phân loại 41 detected ngoài oracle: 29 `<option>` native và 12 input opacity 0 của custom control. |
+| `material-web.dev/components/button/` | Precision 77,12% | Ví dụ ngoài oracle có link giao diện và shadow DOM; chưa phân loại đủ 35 detected. |
+| `material-web.dev/components/checkbox/` | Precision 74,07% | Ví dụ ngoài oracle có link và input custom component; chưa phân loại đủ 21 detected. |
+| `the-internet.herokuapp.com/iframe` | Recall 75,00% | Link “Powered by Tiny” được AX đánh `enabled:false` trong giao diện TinyMCE khóa billing. |
+| `the-internet.herokuapp.com/tinymce` | Recall 75,00% | Cùng giao diện và nguyên nhân với URL `/iframe`. |
+| `app.diagrams.net/` | Precision 25,00% | Chỉ 1 oracle/4 detected; khác biệt trạng thái tải canvas hoặc điều kiện oracle còn là giả thuyết. |
+| `docs.python.org/3/tutorial/controlflow.html` | Precision 61,42% | Tám false positive mẫu đầu là `<option>` ngôn ngữ native; chưa phân loại toàn bộ 76 detected ngoài oracle. |
+| `gitlab.com/gitlab-org/gitlab` | Precision 75,24% | Mẫu ngoài oracle có liên kết/timestamp ở danh sách dự án; chưa xác nhận nguyên nhân của 51 detected. |
+| `stackblitz.com/edit/angular-ivy` | Precision 55,66% | Mẫu ngoài oracle gồm “New File”, “New Folder”, “Angular Generator”; chưa xác nhận nguyên nhân của 47 detected. |
+
+**Độ đại diện SPEC mục 29:** Cả tám nhóm đều có phép đo, nhưng số mẫu có metric theo nhóm là Simple **18**, SPA **15**, Dashboard **10**, Ecommerce **9**, Enterprise form **10**, Modal/dropdown **10**, Iframe **7**, Custom component **8** (gồm 1 Lit tutorial không đại diện, nên chỉ **7** mẫu đại diện). Do đó corpus đã bao phủ **đủ tên tám nhóm**, nhưng **chưa đạt đủ chỉ tiêu số mẫu đo được** của mục 29 (20/20/10/10/10/10/10/10); những thiếu hụt chủ yếu là URL token ratio lỗi hoặc không có control, và các mẫu iframe/custom component ít hơn mục tiêu. Các trang modal/dropdown chỉ được đo ở trạng thái mặc định; chưa suy rộng sang trạng thái mở.
 
 ### Điều tra The Internet và TinyMCE — Dispatch 16
 

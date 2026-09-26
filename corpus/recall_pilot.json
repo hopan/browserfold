@@ -3,15 +3,15 @@
   "baseline": "post-dispatch-17",
   "baselineProductCommit": "c3fa3e0",
   "summary": {
-    "attempted": 67,
-    "measured": 65,
-    "oracle": 13268,
-    "detected": 12447,
-    "matched": 11684,
-    "meanRecall": 0.9589139051048646,
-    "meanPrecision": 0.9356218768433542,
-    "pooledRecall": 0.8806150135664758,
-    "pooledPrecision": 0.9387000883747088
+    "attempted": 90,
+    "measured": 87,
+    "oracle": 24708,
+    "detected": 22480,
+    "matched": 21502,
+    "meanRecall": 0.958965094527541,
+    "meanPrecision": 0.9383531885095279,
+    "pooledRecall": 0.8702444552371702,
+    "pooledPrecision": 0.9564946619217082
   },
   "pilotSummary": {
     "attempted": 18,
@@ -4565,6 +4565,1674 @@
       ],
       "falsePositiveExamples": [],
       "batch": 3
+    },
+    {
+      "group": "Simple",
+      "url": "https://motherfuckingwebsite.com/",
+      "finalUrl": "https://motherfuckingwebsite.com/",
+      "title": "Motherfucking Website",
+      "oracle": 0,
+      "detected": 0,
+      "matched": 0,
+      "recall": null,
+      "precision": null,
+      "mappedOracle": 0,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [],
+      "falsePositiveExamples": [],
+      "batch": 4
+    },
+    {
+      "group": "Simple",
+      "url": "https://en.wikipedia.org/wiki/Alan_Turing",
+      "finalUrl": "https://en.wikipedia.org/wiki/Alan_Turing",
+      "title": "Alan Turing - Wikipedia",
+      "oracle": 2532,
+      "detected": 1993,
+      "matched": 1981,
+      "recall": 0.7823854660347551,
+      "precision": 0.9939789262418465,
+      "mappedOracle": 2532,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [
+        {
+          "id": "bf-oracle-0-1820",
+          "tag": "a",
+          "role": null,
+          "label": "sister projects",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "div",
+            "div[role=navigation]",
+            "section",
+            "div",
+            "div"
+          ],
+          "html": "<a rel=\"mw:WikiLink\" href=\"https://en.wikipedia.org/wiki/Wikipedia:Wikimedia_sister_projects\" title=\"Wikipedia:Wikimedia sister projects\" data-bf-oracle-id=\"bf-oracle-0-1820\"><span id=\"sister-projects\">sister projects</span></a>"
+        },
+        {
+          "id": "bf-oracle-0-1864",
+          "tag": "a",
+          "role": null,
+          "label": "Turing completeness",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "li",
+            "ul",
+            "div",
+            "td",
+            "tr"
+          ],
+          "html": "<a rel=\"mw:WikiLink\" href=\"https://en.wikipedia.org/wiki/Turing_completeness\" title=\"Turing completeness\" data-bf-oracle-id=\"bf-oracle-0-1864\">Turing completeness</a>"
+        },
+        {
+          "id": "bf-oracle-0-1865",
+          "tag": "a",
+          "role": null,
+          "label": "Turing degree",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "li",
+            "ul",
+            "div",
+            "td",
+            "tr"
+          ],
+          "html": "<a rel=\"mw:WikiLink\" href=\"https://en.wikipedia.org/wiki/Turing_degree\" title=\"Turing degree\" data-bf-oracle-id=\"bf-oracle-0-1865\">Turing degree</a>"
+        },
+        {
+          "id": "bf-oracle-0-1866",
+          "tag": "a",
+          "role": null,
+          "label": "Turing machine",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "li",
+            "ul",
+            "div",
+            "td",
+            "tr"
+          ],
+          "html": "<a rel=\"mw:WikiLink\" href=\"https://en.wikipedia.org/wiki/Turing_machine\" title=\"Turing machine\" data-bf-oracle-id=\"bf-oracle-0-1866\">Turing machine</a>"
+        },
+        {
+          "id": "bf-oracle-0-1867",
+          "tag": "a",
+          "role": null,
+          "label": "Turing pattern",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "li",
+            "ul",
+            "div",
+            "td",
+            "tr"
+          ],
+          "html": "<a rel=\"mw:WikiLink\" href=\"https://en.wikipedia.org/wiki/Turing_pattern\" title=\"Turing pattern\" data-bf-oracle-id=\"bf-oracle-0-1867\">Turing pattern</a>"
+        },
+        {
+          "id": "bf-oracle-0-1868",
+          "tag": "a",
+          "role": null,
+          "label": "Turing's proof",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "li",
+            "ul",
+            "div",
+            "td",
+            "tr"
+          ],
+          "html": "<a rel=\"mw:WikiLink\" href=\"https://en.wikipedia.org/wiki/Turing's_proof\" title=\"Turing's proof\" data-bf-oracle-id=\"bf-oracle-0-1868\">Turing's proof</a>"
+        },
+        {
+          "id": "bf-oracle-0-1869",
+          "tag": "a",
+          "role": null,
+          "label": "Turing reduction",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "li",
+            "ul",
+            "div",
+            "td",
+            "tr"
+          ],
+          "html": "<a rel=\"mw:WikiLink\" href=\"https://en.wikipedia.org/wiki/Turing_reduction\" title=\"Turing reduction\" data-bf-oracle-id=\"bf-oracle-0-1869\">Turing reduction</a>"
+        },
+        {
+          "id": "bf-oracle-0-1870",
+          "tag": "a",
+          "role": null,
+          "label": "Turing test",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "li",
+            "ul",
+            "div",
+            "td",
+            "tr"
+          ],
+          "html": "<a rel=\"mw:WikiLink\" href=\"https://en.wikipedia.org/wiki/Turing_test\" title=\"Turing test\" data-bf-oracle-id=\"bf-oracle-0-1870\">Turing test</a>"
+        }
+      ],
+      "falsePositiveExamples": [
+        {
+          "tag": "input",
+          "role": "button",
+          "name": "Main menu"
+        },
+        {
+          "tag": "div",
+          "role": "generic"
+        },
+        {
+          "tag": "input",
+          "role": "button",
+          "name": "163 languages"
+        },
+        {
+          "tag": "input",
+          "role": "button",
+          "name": "Tools"
+        },
+        {
+          "tag": "input",
+          "role": "radio",
+          "name": "Small"
+        },
+        {
+          "tag": "input",
+          "role": "radio",
+          "name": "Standard"
+        },
+        {
+          "tag": "input",
+          "role": "radio",
+          "name": "Large"
+        },
+        {
+          "tag": "input",
+          "role": "radio",
+          "name": "Standard"
+        }
+      ],
+      "batch": 4
+    },
+    {
+      "group": "Simple",
+      "url": "https://en.wikipedia.org/wiki/List_of_countries_by_population_(United_Nations)",
+      "finalUrl": "https://en.wikipedia.org/wiki/List_of_countries_and_dependencies_by_population_(United_Nations)",
+      "title": "List of countries and dependencies by population (United Nations) - Wikipedia",
+      "oracle": 1088,
+      "detected": 1110,
+      "matched": 1088,
+      "recall": 1,
+      "precision": 0.9801801801801802,
+      "mappedOracle": 1088,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [],
+      "falsePositiveExamples": [
+        {
+          "tag": "input",
+          "role": "button",
+          "name": "Main menu"
+        },
+        {
+          "tag": "div",
+          "role": "generic"
+        },
+        {
+          "tag": "input",
+          "role": "button",
+          "name": "13 languages"
+        },
+        {
+          "tag": "input",
+          "role": "button",
+          "name": "Tools"
+        },
+        {
+          "tag": "input",
+          "role": "radio",
+          "name": "Small"
+        },
+        {
+          "tag": "input",
+          "role": "radio",
+          "name": "Standard"
+        },
+        {
+          "tag": "input",
+          "role": "radio",
+          "name": "Large"
+        },
+        {
+          "tag": "input",
+          "role": "radio",
+          "name": "Standard"
+        }
+      ],
+      "batch": 4
+    },
+    {
+      "group": "Simple",
+      "url": "https://www.paulgraham.com/greatwork.html",
+      "finalUrl": "https://www.paulgraham.com/greatwork.html",
+      "title": "How to Do Great Work",
+      "oracle": 30,
+      "detected": 30,
+      "matched": 30,
+      "recall": 1,
+      "precision": 1,
+      "mappedOracle": 30,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [],
+      "falsePositiveExamples": [],
+      "batch": 4
+    },
+    {
+      "group": "Form",
+      "url": "https://demoqa.com/automation-practice-form",
+      "finalUrl": "https://demoqa.com/automation-practice-form",
+      "title": "demosite",
+      "oracle": 18,
+      "detected": 18,
+      "matched": 18,
+      "recall": 1,
+      "precision": 1,
+      "mappedOracle": 18,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [],
+      "falsePositiveExamples": [],
+      "batch": 4
+    },
+    {
+      "group": "Simple",
+      "url": "https://en.wikipedia.org/wiki/Photosynthesis",
+      "finalUrl": "https://en.wikipedia.org/wiki/Photosynthesis",
+      "title": "Photosynthesis - Wikipedia",
+      "oracle": 2476,
+      "detected": 2071,
+      "matched": 2059,
+      "recall": 0.8315831987075929,
+      "precision": 0.994205697730565,
+      "mappedOracle": 2476,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [
+        {
+          "id": "bf-oracle-0-2016",
+          "tag": "a",
+          "role": null,
+          "label": "",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "span",
+            "div",
+            "div",
+            "div",
+            "div"
+          ],
+          "html": "<a href=\"https://en.wikipedia.org/wiki/File:Metabolic_Metro_Map.svg\" title=\"File:Metabolic Metro Map.svg\" data-bf-oracle-id=\"bf-oracle-0-2016\"><img resource=\"https://en.wikipedia.org/wiki/File:Metabolic_Metro_Map_(no_legends).svg\" src=\"//thumb.wikimedia.org/wikipedia/commons/thumb/4/41/Metabolic_Met"
+        },
+        {
+          "id": "bf-oracle-0-2017",
+          "tag": "a",
+          "role": null,
+          "label": "Carbonfixation",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "i",
+            "span",
+            "div",
+            "div",
+            "div"
+          ],
+          "html": "<a rel=\"mw:WikiLink\" href=\"https://en.wikipedia.org/wiki/Carbon_fixation\" title=\"Carbon fixation\" class=\"mw-redirect\" data-bf-oracle-id=\"bf-oracle-0-2017\"><span style=\"color:#bc00bc;\">Carbon<br>fixation</span></a>"
+        },
+        {
+          "id": "bf-oracle-0-2018",
+          "tag": "a",
+          "role": null,
+          "label": "Photo-respiration",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "i",
+            "span",
+            "div",
+            "div",
+            "div"
+          ],
+          "html": "<a rel=\"mw:WikiLink\" href=\"https://en.wikipedia.org/wiki/Photorespiration\" title=\"Photorespiration\" data-bf-oracle-id=\"bf-oracle-0-2018\"><span style=\"color:#5400a9;\">Photo-<br>respiration</span></a>"
+        },
+        {
+          "id": "bf-oracle-0-2019",
+          "tag": "a",
+          "role": null,
+          "label": "Pentosephosphatepathway",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "i",
+            "span",
+            "div",
+            "div",
+            "div"
+          ],
+          "html": "<a rel=\"mw:WikiLink\" href=\"https://en.wikipedia.org/wiki/Pentose_phosphate_pathway\" title=\"Pentose phosphate pathway\" data-bf-oracle-id=\"bf-oracle-0-2019\"><span style=\"color:#bc00bc;\">Pentose<br>phosphate<br>pathway</span></a>"
+        },
+        {
+          "id": "bf-oracle-0-2020",
+          "tag": "a",
+          "role": null,
+          "label": "Citricacid cycle",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "i",
+            "span",
+            "div",
+            "div",
+            "div"
+          ],
+          "html": "<a rel=\"mw:WikiLink\" href=\"https://en.wikipedia.org/wiki/Citric_acid_cycle\" title=\"Citric acid cycle\" data-bf-oracle-id=\"bf-oracle-0-2020\"><span style=\"color:#edb500;\">Citric<br>acid cycle</span></a>"
+        },
+        {
+          "id": "bf-oracle-0-2021",
+          "tag": "a",
+          "role": null,
+          "label": "Glyoxylatecycle",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "i",
+            "span",
+            "div",
+            "div",
+            "div"
+          ],
+          "html": "<a rel=\"mw:WikiLink\" href=\"https://en.wikipedia.org/wiki/Glyoxylate_cycle\" title=\"Glyoxylate cycle\" data-bf-oracle-id=\"bf-oracle-0-2021\"><span style=\"color:#edb500;\">Glyoxylate<br>cycle</span></a>"
+        },
+        {
+          "id": "bf-oracle-0-2022",
+          "tag": "a",
+          "role": null,
+          "label": "Ureacycle",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "i",
+            "span",
+            "div",
+            "div",
+            "div"
+          ],
+          "html": "<a rel=\"mw:WikiLink\" href=\"https://en.wikipedia.org/wiki/Urea_cycle\" title=\"Urea cycle\" data-bf-oracle-id=\"bf-oracle-0-2022\"><span style=\"color:#89dd00;\">Urea<br>cycle</span></a>"
+        },
+        {
+          "id": "bf-oracle-0-2023",
+          "tag": "a",
+          "role": null,
+          "label": "Fattyacidsynthesis",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "i",
+            "span",
+            "div",
+            "div",
+            "div"
+          ],
+          "html": "<a rel=\"mw:WikiLink\" href=\"https://en.wikipedia.org/wiki/Fatty_acid_synthesis\" title=\"Fatty acid synthesis\" data-bf-oracle-id=\"bf-oracle-0-2023\"><span style=\"color:#00d300;\">Fatty<br>acid<br>synthesis</span></a>"
+        }
+      ],
+      "falsePositiveExamples": [
+        {
+          "tag": "input",
+          "role": "button",
+          "name": "Main menu"
+        },
+        {
+          "tag": "div",
+          "role": "generic"
+        },
+        {
+          "tag": "input",
+          "role": "button",
+          "name": "160 languages"
+        },
+        {
+          "tag": "input",
+          "role": "button",
+          "name": "Tools"
+        },
+        {
+          "tag": "input",
+          "role": "radio",
+          "name": "Small"
+        },
+        {
+          "tag": "input",
+          "role": "radio",
+          "name": "Standard"
+        },
+        {
+          "tag": "input",
+          "role": "radio",
+          "name": "Large"
+        },
+        {
+          "tag": "input",
+          "role": "radio",
+          "name": "Standard"
+        }
+      ],
+      "batch": 4
+    },
+    {
+      "group": "Simple",
+      "url": "https://www.rfc-editor.org/rfc/rfc8259.html",
+      "finalUrl": "https://www.rfc-editor.org/rfc/rfc8259.html",
+      "title": "",
+      "oracle": 161,
+      "detected": 161,
+      "matched": 161,
+      "recall": 1,
+      "precision": 1,
+      "mappedOracle": 161,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [],
+      "falsePositiveExamples": [],
+      "batch": 4
+    },
+    {
+      "group": "SPA",
+      "url": "https://github.com/vercel/next.js/issues",
+      "finalUrl": "https://github.com/vercel/next.js/issues",
+      "title": "Issues · vercel/next.js · GitHub",
+      "oracle": 174,
+      "detected": 185,
+      "matched": 170,
+      "recall": 0.9770114942528736,
+      "precision": 0.918918918918919,
+      "mappedOracle": 174,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [
+        {
+          "id": "bf-oracle-0-15",
+          "tag": "a",
+          "role": null,
+          "label": "You must be signed in to change notification settings",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "li",
+            "ul",
+            "div",
+            "div",
+            "div"
+          ],
+          "html": "<a href=\"/login?return_to=%2Fvercel%2Fnext.js\" rel=\"nofollow\" id=\"repository-details-watch-button\" data-hydro-click=\"{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;notification subscription menu watch&quot;,&quot;repository_id&quot;:n"
+        },
+        {
+          "id": "bf-oracle-0-16",
+          "tag": "a",
+          "role": null,
+          "label": "Fork\n    33.1k",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "li",
+            "ul",
+            "div",
+            "div",
+            "div"
+          ],
+          "html": "<a icon=\"repo-forked\" id=\"fork-button\" href=\"/login?return_to=%2Fvercel%2Fnext.js\" rel=\"nofollow\" data-hydro-click=\"{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;repo details fork button&quot;,&quot;repository_id&quot;:70107786,&quot"
+        },
+        {
+          "id": "bf-oracle-0-17",
+          "tag": "a",
+          "role": null,
+          "label": "You must be signed in to star a repository",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "div",
+            "li",
+            "ul",
+            "div",
+            "div"
+          ],
+          "html": "<a href=\"/login?return_to=%2Fvercel%2Fnext.js\" rel=\"nofollow\" data-hydro-click=\"{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;star button&quot;,&quot;repository_id&quot;:70107786,&quot;auth_type&quot;:&quot;LOG_IN&quot;,&quot;origina"
+        },
+        {
+          "id": "bf-oracle-0-47",
+          "tag": "li",
+          "role": "listitem",
+          "label": "Socket rewrites fail after ECONNRESET: Status: Open. #99273 In vercel/next.js;· aleksi-abr  opened o",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "div",
+            "div",
+            "ul[role=list]",
+            "div",
+            "div"
+          ],
+          "html": "<li id=\"_r_5_-list-view-node-_r_r_\" class=\"ListItem-module__listItem__wBJcm\" tabindex=\"0\" aria-label=\"Socket rewrites fail after ECONNRESET: Status: Open. #99273&nbsp;In vercel/next.js;· aleksi-abr  opened on Sep 26, 2026. More information available below.\" role=\"listitem\" data-bf-oracle-id=\"bf-orac"
+        }
+      ],
+      "falsePositiveExamples": [
+        {
+          "tag": "button",
+          "role": "button",
+          "name": "1 linked PR"
+        },
+        {
+          "tag": "button",
+          "role": "button",
+          "name": "2 linked PRs"
+        },
+        {
+          "tag": "button",
+          "role": "button",
+          "name": "1 linked PR"
+        },
+        {
+          "tag": "button",
+          "role": "button",
+          "name": "1 linked PR"
+        },
+        {
+          "tag": "button",
+          "role": "button",
+          "name": "1 linked PR"
+        },
+        {
+          "tag": "button",
+          "role": "button",
+          "name": "1 linked PR"
+        },
+        {
+          "tag": "button",
+          "role": "button",
+          "name": "1 linked PR"
+        },
+        {
+          "tag": "button",
+          "role": "button",
+          "name": "1 linked PR"
+        }
+      ],
+      "batch": 4
+    },
+    {
+      "group": "SPA",
+      "url": "https://gitlab.com/gitlab-org/gitlab",
+      "finalUrl": "https://gitlab.com/gitlab-org/gitlab",
+      "title": "GitLab.org / GitLab · GitLab",
+      "oracle": 157,
+      "detected": 206,
+      "matched": 155,
+      "recall": 0.9872611464968153,
+      "precision": 0.7524271844660194,
+      "mappedOracle": 157,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [
+        {
+          "id": "bf-oracle-0-1",
+          "tag": "header",
+          "role": null,
+          "label": "Skip to main content\n    Homepage \n  \n  \n  \n  \n\n         \n        Menu\n                \n          Ge",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "body",
+            "html"
+          ],
+          "html": "<header tabindex=\"0\" autofocus=\"autofocus\" class=\"super-topbar js-super-topbar gl-grid gl-grid-cols-[1fr_1fr] gl-items-center gl-gap-x-5 gl-outline-none sm:gl-grid-cols-[1fr_auto_1fr] forced-colors:gl-outline-0\" data-bf-oracle-id=\"bf-oracle-0-1\"><a href=\"#content-body\" data-testid=\"super-topbar-skip"
+        },
+        {
+          "id": "bf-oracle-0-30",
+          "tag": "button",
+          "role": null,
+          "label": "Public - The project can be accessed without any authentication.",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h1",
+            "div",
+            "div",
+            "header",
+            "main"
+          ],
+          "html": "<button class=\"has-tooltip gl-border-0 gl-bg-transparent gl-p-0 gl-leading-0 gl-text-inherit visibility-icon gl-inline-flex\" data-container=\"body\" data-placement=\"top\" title=\"Public - The project can be accessed without any authentication.\" type=\"button\" aria-label=\"Public - The project can be acces"
+        }
+      ],
+      "falsePositiveExamples": [
+        {
+          "tag": "a",
+          "role": "link",
+          "name": "Add shared Claude Code skills framework"
+        },
+        {
+          "tag": "time",
+          "role": "time",
+          "name": "Thursday, May 28, 2026 at 3:29:39 PM GMT+7"
+        },
+        {
+          "tag": "a",
+          "role": "link",
+          "name": "Merge branch 'pedropombeiro/256866/frontend-integration-placement' into 'master'"
+        },
+        {
+          "tag": "time",
+          "role": "time",
+          "name": "Thursday, September 24, 2026 at 3:16:52 PM GMT+7"
+        },
+        {
+          "tag": "a",
+          "role": "link",
+          "name": "Update AI principles routing tables (tooling)"
+        },
+        {
+          "tag": "time",
+          "role": "time",
+          "name": "Wednesday, September 23, 2026 at 10:33:31 PM GMT+7"
+        },
+        {
+          "tag": "a",
+          "role": "link",
+          "name": "Stop sharing module state across the Vue 2 and Vue 3 lanes"
+        },
+        {
+          "tag": "time",
+          "role": "time",
+          "name": "Wednesday, September 2, 2026 at 7:43:59 PM GMT+7"
+        }
+      ],
+      "batch": 4
+    },
+    {
+      "group": "SPA",
+      "url": "https://excalidraw.com/",
+      "finalUrl": "https://excalidraw.com/",
+      "title": "Excalidraw Whiteboard",
+      "oracle": 27,
+      "detected": 26,
+      "matched": 26,
+      "recall": 0.9629629629629629,
+      "precision": 1,
+      "mappedOracle": 27,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [
+        {
+          "id": "bf-oracle-0-1",
+          "tag": "div",
+          "role": null,
+          "label": "Your drawings are saved in your browser's storage.Browser storage can be cleared unexpectedly.Save y",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "div",
+            "div",
+            "body",
+            "html"
+          ],
+          "html": "<div translate=\"no\" class=\"excalidraw excalidraw-container notranslate\" tabindex=\"0\" data-bf-oracle-id=\"bf-oracle-0-1\" style=\"--ui-pointerEvents: all; --right-sidebar-width: 302px;\"><div class=\"layer-ui__wrapper\"><div class=\"welcome-screen-center\"><div class=\"welcome-screen-center__logo excalifont w"
+        }
+      ],
+      "falsePositiveExamples": [],
+      "batch": 4
+    },
+    {
+      "group": "Dashboard",
+      "url": "https://laravel.adminlte.io/demo/dashboard-v3",
+      "finalUrl": "https://laravel.adminlte.io/demo/dashboard-v3",
+      "title": "AdminLTE 4",
+      "oracle": 48,
+      "detected": 51,
+      "matched": 48,
+      "recall": 1,
+      "precision": 0.9411764705882353,
+      "mappedOracle": 48,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [],
+      "falsePositiveExamples": [
+        {
+          "tag": "div",
+          "role": "menuitem",
+          "name": "Download SVG"
+        },
+        {
+          "tag": "div",
+          "role": "menuitem",
+          "name": "Download PNG"
+        },
+        {
+          "tag": "div",
+          "role": "menuitem",
+          "name": "Download CSV"
+        }
+      ],
+      "batch": 4
+    },
+    {
+      "group": "Dashboard",
+      "url": "https://laravel.adminlte.io/demo/widgets/small-box",
+      "finalUrl": "https://laravel.adminlte.io/demo/widgets/small-box",
+      "title": "AdminLTE 4",
+      "oracle": 40,
+      "detected": 40,
+      "matched": 40,
+      "recall": 1,
+      "precision": 1,
+      "mappedOracle": 40,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [],
+      "falsePositiveExamples": [],
+      "batch": 4
+    },
+    {
+      "group": "Form",
+      "url": "https://laravel.adminlte.io/demo/forms/wizard",
+      "finalUrl": "https://laravel.adminlte.io/demo/forms/wizard",
+      "title": "AdminLTE 4",
+      "oracle": 42,
+      "detected": 42,
+      "matched": 42,
+      "recall": 1,
+      "precision": 1,
+      "mappedOracle": 42,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [],
+      "falsePositiveExamples": [],
+      "batch": 4
+    },
+    {
+      "group": "Modal/dropdown",
+      "url": "https://getbootstrap.com/docs/5.3/components/tooltips/",
+      "finalUrl": "https://getbootstrap.com/docs/5.3/components/tooltips/",
+      "title": "Tooltips · Bootstrap v5.3",
+      "oracle": 222,
+      "detected": 220,
+      "matched": 220,
+      "recall": 0.990990990990991,
+      "precision": 1,
+      "mappedOracle": 222,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [
+        {
+          "id": "bf-oracle-0-4",
+          "tag": "button",
+          "role": null,
+          "label": "Search (Ctrl+K)",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "div",
+            "div",
+            "nav",
+            "header",
+            "body"
+          ],
+          "html": "<button type=\"button\" aria-label=\"Search (Ctrl+K)\" class=\"DocSearch DocSearch-Button\" data-bf-oracle-id=\"bf-oracle-0-4\"><span class=\"DocSearch-Button-Container\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" aria-hidden=\"true\" class=\"DocSearch-Search-Icon\"><path d=\"M14.386 14.386l4.0877 4.0877-4.08"
+        },
+        {
+          "id": "bf-oracle-0-174",
+          "tag": "span",
+          "role": null,
+          "label": "Disabled button",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "div",
+            "div",
+            "div",
+            "main",
+            "div"
+          ],
+          "html": "<span class=\"d-inline-block\" tabindex=\"0\" data-bs-toggle=\"tooltip\" data-bs-title=\"Disabled tooltip\" data-bf-oracle-id=\"bf-oracle-0-174\">\n  <button class=\"btn btn-primary\" type=\"button\" disabled=\"\">Disabled button</button>\n</span>"
+        }
+      ],
+      "falsePositiveExamples": [],
+      "batch": 4
+    },
+    {
+      "group": "Simple",
+      "url": "https://www.rfc-editor.org/rfc/rfc9110.html",
+      "finalUrl": "https://www.rfc-editor.org/rfc/rfc9110.html",
+      "title": "RFC 9110: HTTP Semantics",
+      "oracle": 3393,
+      "detected": 2773,
+      "matched": 2770,
+      "recall": 0.8163866784556439,
+      "precision": 0.998918139199423,
+      "mappedOracle": 3393,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [
+        {
+          "id": "bf-oracle-0-26",
+          "tag": "a",
+          "role": null,
+          "label": "Abstract",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "section",
+            "body",
+            "html"
+          ],
+          "html": "<a href=\"#abstract\" class=\"selfRef\" data-bf-oracle-id=\"bf-oracle-0-26\">Abstract</a>"
+        },
+        {
+          "id": "bf-oracle-0-27",
+          "tag": "a",
+          "role": null,
+          "label": "Status of This Memo",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "section",
+            "div",
+            "body",
+            "html"
+          ],
+          "html": "<a href=\"#name-status-of-this-memo\" class=\"section-name selfRef\" data-bf-oracle-id=\"bf-oracle-0-27\">Status of This Memo</a>"
+        },
+        {
+          "id": "bf-oracle-0-29",
+          "tag": "a",
+          "role": null,
+          "label": "Copyright Notice",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "section",
+            "div",
+            "body",
+            "html"
+          ],
+          "html": "<a href=\"#name-copyright-notice\" class=\"section-name selfRef\" data-bf-oracle-id=\"bf-oracle-0-29\">Copyright Notice</a>"
+        },
+        {
+          "id": "bf-oracle-0-32",
+          "tag": "a",
+          "role": null,
+          "label": "Table of Contents",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "section",
+            "div",
+            "body",
+            "html"
+          ],
+          "html": "<a href=\"#name-table-of-contents\" class=\"section-name selfRef\" data-bf-oracle-id=\"bf-oracle-0-32\">Table of Contents</a>"
+        },
+        {
+          "id": "bf-oracle-0-640",
+          "tag": "a",
+          "role": null,
+          "label": "1.",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "section",
+            "div",
+            "body",
+            "html"
+          ],
+          "html": "<a href=\"#section-1\" class=\"section-number selfRef\" data-bf-oracle-id=\"bf-oracle-0-640\">1. </a>"
+        },
+        {
+          "id": "bf-oracle-0-641",
+          "tag": "a",
+          "role": null,
+          "label": "Introduction",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "section",
+            "div",
+            "body",
+            "html"
+          ],
+          "html": "<a href=\"#name-introduction\" class=\"section-name selfRef\" data-bf-oracle-id=\"bf-oracle-0-641\">Introduction</a>"
+        },
+        {
+          "id": "bf-oracle-0-642",
+          "tag": "a",
+          "role": null,
+          "label": "1.1.",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h3",
+            "section",
+            "div",
+            "section",
+            "div"
+          ],
+          "html": "<a href=\"#section-1.1\" class=\"section-number selfRef\" data-bf-oracle-id=\"bf-oracle-0-642\">1.1. </a>"
+        },
+        {
+          "id": "bf-oracle-0-643",
+          "tag": "a",
+          "role": null,
+          "label": "Purpose",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h3",
+            "section",
+            "div",
+            "section",
+            "div"
+          ],
+          "html": "<a href=\"#name-purpose\" class=\"section-name selfRef\" data-bf-oracle-id=\"bf-oracle-0-643\">Purpose</a>"
+        }
+      ],
+      "falsePositiveExamples": [
+        {
+          "tag": "a",
+          "role": "link"
+        },
+        {
+          "tag": "a",
+          "role": "link"
+        },
+        {
+          "tag": "a",
+          "role": "link"
+        }
+      ],
+      "batch": 4
+    },
+    {
+      "group": "Simple",
+      "url": "https://lobste.rs/",
+      "finalUrl": "https://lobste.rs/",
+      "title": "Lobsters",
+      "oracle": 223,
+      "detected": 222,
+      "matched": 222,
+      "recall": 0.9955156950672646,
+      "precision": 1,
+      "mappedOracle": 223,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [
+        {
+          "id": "bf-oracle-0-1",
+          "tag": "a",
+          "role": null,
+          "label": "Lobsters",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h1",
+            "div",
+            "header",
+            "body",
+            "html"
+          ],
+          "html": "<a href=\"/\" title=\"Lobsters (Current traffic: 22%)\" data-bf-oracle-id=\"bf-oracle-0-1\">\n          <b class=\"sr-only\" aria-hidden=\"true\">Lobsters</b>\n        </a>"
+        }
+      ],
+      "falsePositiveExamples": [],
+      "batch": 4
+    },
+    {
+      "group": "Simple",
+      "url": "https://requests.readthedocs.io/en/latest/user/quickstart/",
+      "finalUrl": "https://requests.readthedocs.io/en/latest/user/quickstart/",
+      "title": "Quickstart — Requests 2.34.2 documentation",
+      "oracle": 53,
+      "detected": 50,
+      "matched": 50,
+      "recall": 0.9433962264150944,
+      "precision": 1,
+      "mappedOracle": 53,
+      "frameCount": 1,
+      "frameErrors": [],
+      "missingExamples": [
+        {
+          "id": "bf-oracle-0-33",
+          "tag": "a",
+          "role": null,
+          "label": "Table of Contents",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h3",
+            "div",
+            "div",
+            "div[role=navigation]",
+            "div"
+          ],
+          "html": "<a href=\"../../\" data-bf-oracle-id=\"bf-oracle-0-33\">Table of Contents</a>"
+        },
+        {
+          "id": "bf-oracle-1-1",
+          "tag": "a",
+          "role": null,
+          "label": "Star psf/requests on GitHub",
+          "frameNumber": 1,
+          "inShadow": false,
+          "ancestors": [
+            "span",
+            "body",
+            "html"
+          ],
+          "html": "<a class=\"gh-btn\" href=\"https://github.com/psf/requests\" rel=\"noopener noreferrer\" target=\"_blank\" aria-label=\"Star psf/requests on GitHub\" data-bf-oracle-id=\"bf-oracle-1-1\"><span class=\"gh-ico\" aria-hidden=\"true\"></span> <span class=\"gh-text\">Star</span> </a>"
+        },
+        {
+          "id": "bf-oracle-1-2",
+          "tag": "a",
+          "role": null,
+          "label": "54,345 stargazers on GitHub",
+          "frameNumber": 1,
+          "inShadow": false,
+          "ancestors": [
+            "span",
+            "body",
+            "html"
+          ],
+          "html": "<a class=\"gh-count\" href=\"https://github.com/psf/requests/stargazers\" rel=\"noopener noreferrer\" target=\"_blank\" aria-label=\"54,345 stargazers on GitHub\" data-bf-oracle-id=\"bf-oracle-1-2\" style=\"display: block;\">54,345</a>"
+        }
+      ],
+      "falsePositiveExamples": [],
+      "batch": 4
+    },
+    {
+      "group": "SPA",
+      "url": "https://gitlab.com/inkscape/inkscape",
+      "finalUrl": "https://gitlab.com/inkscape/inkscape",
+      "title": "Inkscape / inkscape · GitLab",
+      "oracle": 153,
+      "detected": 151,
+      "matched": 151,
+      "recall": 0.9869281045751634,
+      "precision": 1,
+      "mappedOracle": 153,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [
+        {
+          "id": "bf-oracle-0-1",
+          "tag": "header",
+          "role": null,
+          "label": "Skip to main content\n    Homepage \n  \n  \n  \n  \n\n         \n        Menu\n                \n          Ge",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "body",
+            "html"
+          ],
+          "html": "<header tabindex=\"0\" autofocus=\"autofocus\" class=\"super-topbar js-super-topbar gl-grid gl-grid-cols-[1fr_1fr] gl-items-center gl-gap-x-5 gl-outline-none sm:gl-grid-cols-[1fr_auto_1fr] forced-colors:gl-outline-0\" data-bf-oracle-id=\"bf-oracle-0-1\"><a href=\"#content-body\" data-testid=\"super-topbar-skip"
+        },
+        {
+          "id": "bf-oracle-0-29",
+          "tag": "button",
+          "role": null,
+          "label": "Public - The project can be accessed without any authentication.",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h1",
+            "div",
+            "div",
+            "header",
+            "main"
+          ],
+          "html": "<button class=\"has-tooltip gl-border-0 gl-bg-transparent gl-p-0 gl-leading-0 gl-text-inherit visibility-icon gl-inline-flex\" data-container=\"body\" data-placement=\"top\" title=\"Public - The project can be accessed without any authentication.\" type=\"button\" aria-label=\"Public - The project can be acces"
+        }
+      ],
+      "falsePositiveExamples": [],
+      "batch": 4
+    },
+    {
+      "group": "SPA",
+      "url": "https://stackblitz.com/edit/angular-ivy?file=src%2Fapp%2Fapp.component.ts",
+      "finalUrl": "https://stackblitz.com/edit/angular-ivy?file=src%2Fapp%2Fapp.component.ts",
+      "title": "Angular Ivy - StackBlitz",
+      "oracle": 62,
+      "detected": 106,
+      "matched": 59,
+      "recall": 0.9516129032258065,
+      "precision": 0.5566037735849056,
+      "mappedOracle": 62,
+      "frameCount": 3,
+      "frameErrors": [],
+      "missingExamples": [
+        {
+          "id": "bf-oracle-0-17",
+          "tag": "div",
+          "role": null,
+          "label": "srcNew FileNew FolderAngular GeneratorComponentServiceDirectiveModulePipeGuardInterfaceClassEnumRena",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "div",
+            "section",
+            "div",
+            "aside",
+            "div"
+          ],
+          "html": "<div tabindex=\"0\" data-cy=\"filetree\" class=\"FileTree FileTree-FileTree-vE1bW\" data-bf-oracle-id=\"bf-oracle-0-17\"><div><div class=\"react-contextmenu-wrapper\"><div class=\"FileItem-FileItem-ZGXsU\" tabindex=\"0\" data-cy=\"src\" style=\"--itemDepth: 1;\"><button class=\"Arrow Arrow-Arrow-V2zdf FileItem-Arrow-W"
+        },
+        {
+          "id": "bf-oracle-0-19",
+          "tag": "button",
+          "role": null,
+          "label": "",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "div",
+            "div",
+            "div",
+            "div",
+            "div"
+          ],
+          "html": "<button class=\"Arrow Arrow-Arrow-V2zdf FileItem-Arrow-WSOAn\" data-bf-oracle-id=\"bf-oracle-0-19\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"1em\" height=\"1em\" fill=\"currentColor\" viewBox=\"0 0 16 16\"><path d=\"m7.976 10.072 4.357-4.357.619.618L8.285 11h-.618L3 6.333l.619-.618z\"></path></svg></button"
+        },
+        {
+          "id": "bf-oracle-0-21",
+          "tag": "button",
+          "role": null,
+          "label": "",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "div",
+            "div",
+            "div",
+            "div",
+            "div"
+          ],
+          "html": "<button class=\"Arrow Arrow-Arrow-V2zdf FileItem-Arrow-WSOAn\" data-bf-oracle-id=\"bf-oracle-0-21\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"1em\" height=\"1em\" fill=\"currentColor\" viewBox=\"0 0 16 16\"><path d=\"m7.976 10.072 4.357-4.357.619.618L8.285 11h-.618L3 6.333l.619-.618z\"></path></svg></button"
+        }
+      ],
+      "falsePositiveExamples": [
+        {
+          "tag": "div",
+          "role": "menuitem",
+          "name": "New File"
+        },
+        {
+          "tag": "div",
+          "role": "menuitem",
+          "name": "New Folder"
+        },
+        {
+          "tag": "nav",
+          "role": "menuitem",
+          "name": "Angular Generator"
+        },
+        {
+          "tag": "div",
+          "role": "menuitem",
+          "name": "Rename"
+        },
+        {
+          "tag": "div",
+          "role": "menuitem",
+          "name": "Delete"
+        },
+        {
+          "tag": "div",
+          "role": "menuitem",
+          "name": "New File"
+        },
+        {
+          "tag": "div",
+          "role": "menuitem",
+          "name": "New Folder"
+        },
+        {
+          "tag": "nav",
+          "role": "menuitem",
+          "name": "Angular Generator"
+        }
+      ],
+      "batch": 4
+    },
+    {
+      "group": "Ecommerce",
+      "url": "https://demowebshop.tricentis.com/computers",
+      "finalUrl": "https://demowebshop.tricentis.com/computers",
+      "title": "Demo Web Shop. Computers",
+      "oracle": 57,
+      "detected": 54,
+      "matched": 54,
+      "recall": 0.9473684210526315,
+      "precision": 1,
+      "mappedOracle": 57,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [
+        {
+          "id": "bf-oracle-0-29",
+          "tag": "a",
+          "role": null,
+          "label": "Desktops",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "div",
+            "div",
+            "div",
+            "div"
+          ],
+          "html": "<a href=\"/desktops\" title=\"Show products in category Desktops\" data-bf-oracle-id=\"bf-oracle-0-29\">\n                                    Desktops</a>"
+        },
+        {
+          "id": "bf-oracle-0-31",
+          "tag": "a",
+          "role": null,
+          "label": "Notebooks",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "div",
+            "div",
+            "div",
+            "div"
+          ],
+          "html": "<a href=\"/notebooks\" title=\"Show products in category Notebooks\" data-bf-oracle-id=\"bf-oracle-0-31\">\n                                    Notebooks</a>"
+        },
+        {
+          "id": "bf-oracle-0-33",
+          "tag": "a",
+          "role": null,
+          "label": "Accessories",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "div",
+            "div",
+            "div",
+            "div"
+          ],
+          "html": "<a href=\"/accessories\" title=\"Show products in category Accessories\" data-bf-oracle-id=\"bf-oracle-0-33\">\n                                    Accessories</a>"
+        }
+      ],
+      "falsePositiveExamples": [],
+      "batch": 4
+    },
+    {
+      "group": "Modal/dropdown",
+      "url": "https://getbootstrap.com/docs/5.3/components/toasts/",
+      "finalUrl": "https://getbootstrap.com/docs/5.3/components/toasts/",
+      "title": "Toasts · Bootstrap v5.3",
+      "oracle": 224,
+      "detected": 233,
+      "matched": 223,
+      "recall": 0.9955357142857143,
+      "precision": 0.9570815450643777,
+      "mappedOracle": 224,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [
+        {
+          "id": "bf-oracle-0-4",
+          "tag": "button",
+          "role": null,
+          "label": "Search (Ctrl+K)",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "div",
+            "div",
+            "nav",
+            "header",
+            "body"
+          ],
+          "html": "<button type=\"button\" aria-label=\"Search (Ctrl+K)\" class=\"DocSearch DocSearch-Button\" data-bf-oracle-id=\"bf-oracle-0-4\"><span class=\"DocSearch-Button-Container\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" aria-hidden=\"true\" class=\"DocSearch-Search-Icon\"><path d=\"M14.386 14.386l4.0877 4.0877-4.08"
+        }
+      ],
+      "falsePositiveExamples": [
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Select a position..."
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Top left"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Top center"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Top right"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Middle left"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Middle center"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Middle right"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Bottom left"
+        }
+      ],
+      "batch": 4
+    },
+    {
+      "group": "Simple",
+      "url": "https://www.fsf.org/about/what-is-free-software",
+      "finalUrl": "https://www.fsf.org/about/what-is-free-software",
+      "title": "What is free software and why is it so important for society? — Free Software Foundation — Working together for free software",
+      "oracle": 127,
+      "detected": 151,
+      "matched": 125,
+      "recall": 0.984251968503937,
+      "precision": 0.8278145695364238,
+      "mappedOracle": 127,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [
+        {
+          "id": "bf-oracle-0-59",
+          "tag": "a",
+          "role": null,
+          "label": "Skip sitemap",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "p",
+            "div",
+            "div",
+            "div",
+            "nav"
+          ],
+          "html": "<a href=\"#ft\" data-bf-oracle-id=\"bf-oracle-0-59\">Skip sitemap</a>"
+        },
+        {
+          "id": "bf-oracle-0-60",
+          "tag": "a",
+          "role": null,
+          "label": "skip to licensing items",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "p",
+            "div",
+            "div",
+            "div",
+            "nav"
+          ],
+          "html": "<a href=\"#sitemap-2\" data-bf-oracle-id=\"bf-oracle-0-60\">skip to licensing items</a>"
+        }
+      ],
+      "falsePositiveExamples": [
+        {
+          "tag": "a",
+          "role": "link"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Arabic"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Belarussian"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Bulgarian"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Catalan"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Chinese"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Cornish"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Czech"
+        }
+      ],
+      "batch": 4
+    },
+    {
+      "group": "SPA",
+      "url": "https://github.com/facebook/react/issues",
+      "finalUrl": "https://github.com/react/react/issues",
+      "title": "Issues · react/react · GitHub",
+      "oracle": 133,
+      "detected": 140,
+      "matched": 126,
+      "recall": 0.9473684210526315,
+      "precision": 0.9,
+      "mappedOracle": 130,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [
+        {
+          "id": "bf-oracle-0-15",
+          "tag": "a",
+          "role": null,
+          "label": "You must be signed in to change notification settings",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "li",
+            "ul",
+            "div",
+            "div",
+            "div"
+          ],
+          "html": "<a href=\"/login?return_to=%2Freact%2Freact\" rel=\"nofollow\" id=\"repository-details-watch-button\" data-hydro-click=\"{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;notification subscription menu watch&quot;,&quot;repository_id&quot;:null"
+        },
+        {
+          "id": "bf-oracle-0-16",
+          "tag": "a",
+          "role": null,
+          "label": "Fork\n    51.4k",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "li",
+            "ul",
+            "div",
+            "div",
+            "div"
+          ],
+          "html": "<a icon=\"repo-forked\" id=\"fork-button\" href=\"/login?return_to=%2Freact%2Freact\" rel=\"nofollow\" data-hydro-click=\"{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;repo details fork button&quot;,&quot;repository_id&quot;:10270250,&quot;au"
+        },
+        {
+          "id": "bf-oracle-0-17",
+          "tag": "a",
+          "role": null,
+          "label": "You must be signed in to star a repository",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "div",
+            "li",
+            "ul",
+            "div",
+            "div"
+          ],
+          "html": "<a href=\"/login?return_to=%2Freact%2Freact\" rel=\"nofollow\" data-hydro-click=\"{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;star button&quot;,&quot;repository_id&quot;:10270250,&quot;auth_type&quot;:&quot;LOG_IN&quot;,&quot;originatin"
+        },
+        {
+          "id": "bf-oracle-0-37",
+          "tag": "a",
+          "role": null,
+          "label": "Open",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "div",
+            "div",
+            "div",
+            "div",
+            "div"
+          ],
+          "html": "<a class=\"SectionFilterLink-module__container__GDiZl SectionFilterLink-module__selected__viCT6 prc-Text-Text-9mHv3\" data-component=\"Text\" aria-current=\"true\" href=\"\" data-bf-oracle-id=\"bf-oracle-0-37\"><div class=\"SectionFilterLink-module__title__VRe9O\">Open</div><div class=\"LoadingSkeleton-module__s"
+        },
+        {
+          "id": "bf-oracle-0-38",
+          "tag": "a",
+          "role": null,
+          "label": "Closed",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "div",
+            "div",
+            "div",
+            "div",
+            "div"
+          ],
+          "html": "<a class=\"SectionFilterLink-module__container__GDiZl prc-Text-Text-9mHv3\" data-component=\"Text\" href=\"\" data-bf-oracle-id=\"bf-oracle-0-38\"><div class=\"SectionFilterLink-module__title__VRe9O\">Closed</div><div class=\"LoadingSkeleton-module__skeleton__euqGn LoadingSkeleton-module__pill__Dlvex SectionFi"
+        },
+        {
+          "id": "bf-oracle-0-45",
+          "tag": "button",
+          "role": null,
+          "label": "Sort by Newest, descending",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "div",
+            "div",
+            "div[role=toolbar]",
+            "div",
+            "div"
+          ],
+          "html": "<button data-component=\"ActionMenu.Button\" type=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\" tabindex=\"-1\" class=\"prc-Button-ButtonBase-9n-Xk sorting-dropdown-module__sortingMenuButton__j3BcS\" data-loading=\"false\" data-size=\"medium\" data-variant=\"invisible\" id=\"_r_l_\" data-bf-oracle-id=\"bf-or"
+        },
+        {
+          "id": "bf-oracle-0-46",
+          "tag": "li",
+          "role": "listitem",
+          "label": "More information available below.",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "div",
+            "div",
+            "ul[role=list]",
+            "div",
+            "div"
+          ],
+          "html": "<li id=\"_r_5_-list-view-node-_r_r_\" class=\"ListItem-module__listItem__wBJcm\" tabindex=\"0\" aria-label=\"More information available below.\" role=\"listitem\" data-bf-oracle-id=\"bf-oracle-0-46\"><div class=\"Title-module__container__ZzhV_\" data-listview-item-title-container=\"true\"><h3 class=\"Title-module__h"
+        }
+      ],
+      "falsePositiveExamples": [
+        {
+          "tag": "a",
+          "role": "link",
+          "name": "Open  (862)"
+        },
+        {
+          "tag": "a",
+          "role": "link",
+          "name": "Closed  (13,858)"
+        },
+        {
+          "tag": "button",
+          "role": "button",
+          "name": "More Actions"
+        },
+        {
+          "tag": "a",
+          "role": "link",
+          "name": "Page 1"
+        },
+        {
+          "tag": "a",
+          "role": "link",
+          "name": "Page 2"
+        },
+        {
+          "tag": "a",
+          "role": "link",
+          "name": "Page 3"
+        },
+        {
+          "tag": "a",
+          "role": "link",
+          "name": "Page 4"
+        },
+        {
+          "tag": "a",
+          "role": "link",
+          "name": "Page 5"
+        }
+      ],
+      "batch": 4
     }
   ],
   "batch3MeasuredAt": "2026-09-26T09:39:07.109Z",
@@ -4578,5 +6246,17 @@
     "meanPrecision": 0.9213673243231966,
     "pooledRecall": 0.9735116044399597,
     "pooledPrecision": 0.9414491339351061
+  },
+  "batch4MeasuredAt": "2026-09-26T09:47:41.427Z",
+  "batch4Summary": {
+    "attempted": 23,
+    "measured": 22,
+    "oracle": 11440,
+    "detected": 10033,
+    "matched": 9818,
+    "meanRecall": 0.9591163360036308,
+    "meanPrecision": 0.9464229729777681,
+    "pooledRecall": 0.8582167832167832,
+    "pooledPrecision": 0.9785707166351042
   }
 }

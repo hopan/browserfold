@@ -1,4 +1,4 @@
-// Manual real-page pilot. Run `npm run build && node corpus/measure_recall.mjs`.
+// Manual real-page corpus measurement. Run `npm run build && node corpus/measure_recall.mjs`.
 // The oracle is deliberately independent of src/semantic/interactive.ts.
 import { readFile, writeFile } from 'node:fs/promises';
 import { spawnSync } from 'node:child_process';
@@ -10,39 +10,10 @@ import { buildContentStructure } from '../dist/semantic/structure.js';
 import { serializeText } from '../dist/serialize/text.js';
 
 const source = JSON.parse(await readFile(new URL('./results.json', import.meta.url), 'utf8'));
-const selection = [
-  ['Form', 'https://demoqa.com/text-box'],
-  ['Form', 'https://demoqa.com/checkbox'],
-  ['Form', 'https://laravel.adminlte.io/demo/forms/validation'],
-  ['Form', 'https://adminlte.io/themes/v3/pages/forms/editors.html'],
-  ['Dashboard', 'https://laravel.adminlte.io/demo/dashboard-v2'],
-  ['Dashboard', 'https://adminlte.io/themes/v3/pages/tables/data.html'],
-  ['Dashboard', 'https://adminlte.io/themes/v3/pages/calendar.html'],
-  ['Ecommerce', 'https://demowebshop.tricentis.com/electronics'],
-  ['Ecommerce', 'https://demowebshop.tricentis.com/jewelry'],
-  ['Ecommerce', 'https://www.demoblaze.com/prod.html?idp_=2'],
-  ['Modal/dropdown', 'https://getbootstrap.com/docs/5.3/components/popovers/'],
-  ['Modal/dropdown', 'https://getbootstrap.com/docs/5.3/components/navs-tabs/'],
-  ['Modal/dropdown', 'https://mui.com/material-ui/react-menu/'],
-  ['Custom component', 'https://lit.dev/playground/'],
-  ['Custom component', 'https://testpages.eviltester.com/pages/web-components/shadow-widget/'],
-  ['Custom component', 'https://material-web.dev/components/dialog/'],
-  ['Iframe', 'https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/object'],
-  ['Simple', 'https://www.gnu.org/philosophy/free-sw.html'],
-  ['Simple', 'https://www.w3.org/TR/WCAG22/'],
-  ['Simple', 'https://www.sqlite.org/lang_select.html'],
-  ['Simple', 'https://docs.python.org/3/tutorial/controlflow.html'],
-  ['SPA', 'https://github.com/vuejs/core'],
-  ['SPA', 'https://app.diagrams.net/'],
-  ['SPA', 'https://angular.dev/tutorials/first-app'],
-  ['SPA', 'https://github.com/microsoft/TypeScript/issues'],
-];
-const eligible = new Set(source.results.filter((row) => !row.error && !row.excludedReason)
-  .map((row) => `${row.group}\n${row.url}`));
-const pages = selection.map(([group, url]) => {
-  if (!eligible.has(`${group}\n${url}`)) throw new Error(`Missing eligible corpus URL: ${url}`);
-  return { group, url };
-});
+const existingRecall = JSON.parse(await readFile(new URL('./recall_pilot.json', import.meta.url), 'utf8'));
+const previouslyAttempted = new Set(existingRecall.results.map((row) => row.url));
+const pages = source.results.filter((row) => !row.error && !row.excludedReason && !previouslyAttempted.has(row.url))
+  .map(({ group, url }) => ({ group, url }));
 
 // Evaluated in every reachable frame. ID is only a temporary probe, not a product attribute.
 function tagOracleElements(frameNumber) {
@@ -180,7 +151,7 @@ if (process.argv[2] === '--inspect-url') {
   if (!entry) throw new Error(`Missing existing row ${process.argv[3]}`);
   process.stdout.write(`${JSON.stringify(await measure({ group: entry.group, url: entry.url }))}\n`);
 } else if (process.argv[2] === '--worker') {
-  process.stdout.write(`${JSON.stringify(await measure(pages[Number(process.argv[3])]))}\n`);
+  process.stdout.write(`${JSON.stringify(await measure({ group: process.argv[3], url: process.argv[4] }))}\n`);
 } else {
   const output = new URL('./recall_pilot.json', import.meta.url);
   const previous = JSON.parse(await readFile(output, 'utf8'));
@@ -188,7 +159,7 @@ if (process.argv[2] === '--inspect-url') {
   const existingUrls = new Set(results.map((row) => row.url));
   if (existingUrls.size !== results.length) throw new Error('Duplicate URL in existing recall results');
   if (new Set(pages.map((row) => row.url)).size !== pages.length) throw new Error('Duplicate URL in selection');
-  const overlap = pages.filter((row) => existingUrls.has(row.url) && results.find((result) => result.url === row.url)?.batch !== 3);
+  const overlap = pages.filter((row) => existingUrls.has(row.url));
   if (overlap.length) throw new Error(`Selection overlaps earlier batch: ${overlap.map((row) => row.url).join(', ')}`);
   function summary(rows) {
     const valid = rows.filter((row) => !row.error && row.recall !== null && row.precision !== null);
@@ -254,19 +225,19 @@ if (process.argv[2] === '--inspect-url') {
       summary: summary(updated), pilotSummary: summary(rerun), results: updated }, null, 2)}\n`);
     process.exit(0);
   }
-  for (const [index, entry] of pages.entries()) {
+  for (const entry of pages) {
     if (existingUrls.has(entry.url)) continue;
-    const child = spawnSync(process.execPath, ['--max-old-space-size=768', new URL(import.meta.url).pathname, '--worker', String(index)], {
+    const child = spawnSync(process.execPath, ['--max-old-space-size=768', new URL(import.meta.url).pathname, '--worker', entry.group, entry.url], {
       timeout: 60_000, encoding: 'utf8', maxBuffer: 1024 * 1024,
     });
     let result;
     try { result = JSON.parse(child.stdout.trim()); }
     catch { result = { ...entry, error: child.error?.message ?? (child.signal
       ? `Worker killed by ${child.signal}` : `Worker exit ${child.status}: ${child.stderr.slice(-300).trim()}`) }; }
-    results.push({ ...result, batch: 3 });
+    results.push({ ...result, batch: 4 });
     existingUrls.add(entry.url);
     process.stdout.write(`${JSON.stringify(result)}\n`);
-    await writeFile(output, `${JSON.stringify({ ...previous, batch3MeasuredAt: new Date().toISOString(),
-      summary: summary(results), batch3Summary: summary(results.filter((row) => row.batch === 3)), results }, null, 2)}\n`);
+    await writeFile(output, `${JSON.stringify({ ...previous, batch4MeasuredAt: new Date().toISOString(),
+      summary: summary(results), batch4Summary: summary(results.filter((row) => row.batch === 4)), results }, null, 2)}\n`);
   }
 }
