@@ -573,3 +573,57 @@ Trích **JSON output thực tế** của ba control cần cuộn mới tới (gi
 Text output tương ứng: `[e046950215f] button "Page end"`, `[ed3b0478914] link "Horizontal end link"`, `[e0a1640e340] button "Vertical item 50"`. ID/backend ID có thể đổi giữa các phiên; test hồi quy tìm bằng `source.domId` và kiểm tra cả JSON lẫn text. Không phát hiện bug visibility hoặc bỏ sót do vị trí cuộn trong ba fixture này. `DOM.getDocument` đọc cây đã render; phép thử xác nhận các phần tử đã có sẵn trong DOM được giữ dù nằm ngoài vùng nhìn ban đầu. Nó **không** chứng minh coverage cho nội dung lazy-load/virtualized chỉ được tạo sau khi cuộn, hoặc các trạng thái UI thay đổi khi cuộn. Auto-scroll rồi capture nhiều lần có thể mở rộng coverage loại đó, nhưng tăng thời gian, gây side effect do scroll event và tạo bài toán ghép nhiều trạng thái; nếu cần, nên khảo sát riêng trước khi thay đổi pipeline snapshot một lần hiện tại. Không đổi ngưỡng SPEC.
 
 `npm test -- tests/cli/scroll.test.ts`: **3/3 pass**. `npm run typecheck` và `npm run build`: pass. `npm test` toàn bộ: **14/15 file, 21/22 test pass**; assertion duy nhất fail vẫn là token ratio acceptance **532/2142 = 24,84% > 10%**, đã được ghi ở dispatch trước. Recall 25/25, false interactive 0/25. Không có sửa code sản phẩm hay thay đổi ngưỡng.
+
+## Điều tra expand/collapse/dropdown — 2026-09-27
+
+Bốn fixture ở `tests/fixtures/expand-{aria,custom,details,menu}.html`; mỗi file mặc định đóng, thêm `?open` để tạo trạng thái mở trước khi capture. Chạy CLI thật trên bản build: `node dist/cli/index.js capture "file://$PWD/tests/fixtures/expand-aria.html" --format json` (đổi tên fixture, thêm `?open` và chạy lại với `--format text`). **Đủ 8 cặp JSON/text nguyên bản** được lưu ở [`corpus/expand/`](../corpus/expand/); test hồi quy gọi CLI cho cả hai định dạng và tám trạng thái. JSON debug giữ cả node ẩn, còn text chỉ in nội dung được chọn đang hiện. Các dòng JSON dưới đây trích đúng giá trị từ output sau sửa, chỉ bỏ field không liên quan; ID/CDP backend ID có thể đổi ở lần chạy khác.
+
+### 1. Accordion chuẩn ARIA — đã hoạt động đúng
+
+Fixture có `button[aria-expanded][aria-controls]` và panel `hidden` chứa link và button. Khi đóng, JSON của `aria-trigger`: `{"role":"button","name":"Account options","expanded":false,"visible":true,"interactive":true}`; `aria-panel`, `aria-link`, `aria-action` đều `"visible":false`. Text: `[e1edc179395] button "Account options" expanded=false`; không có hai control con. Khi mở, trigger đổi thành `{"role":"button","name":"Account options","expanded":true,"visible":true,"interactive":true}`, cả ba node panel/link/action đều `"visible":true`. Text thực tế:
+
+```text
+[e272dd2ddb9] button "Account options" expanded=true
+[e9319fc94a4] link "Account link"
+[e808c624e11] button "Account action"
+```
+
+### 2. Dropdown custom không khai báo ARIA — giới hạn của trang/AX
+
+Fixture chỉ có `onclick` đổi class `.open` trên panel từ `display:none` sang `display:block`; button không có `aria-expanded` hoặc `aria-haspopup`. Ở trạng thái đóng, JSON trigger thực tế là `{"role":"button","name":"More tools","visible":true,"interactive":true}`: **không có** field `expanded` hay `hasPopup`. `custom-panel`, `custom-link`, `custom-action` đều `"visible":false`; text chỉ có `[ee4e9114f1b] button "More tools"`. Khi mở bằng JS, JSON của trigger **vẫn không có** hai field đó, nhưng panel/link/action đổi thành `"visible":true`; text có:
+
+```text
+[e15fa53de81] button "More tools"
+[e895f1b2c24] link "Tool link"
+[e2c3198fe75] button "Tool action"
+```
+
+Tên “More tools” có thể gợi ý cho người đọc, nhưng snapshot lúc đóng không cho biết chắc button này mở panel, không nêu trạng thái và không cho thấy item ẩn trong text. Đây là giới hạn có chứng cứ của UI không công bố ngữ nghĩa mở rộng: AX tree không có property trạng thái/popup để BrowserFold lấy. JSON debug có node ẩn nhưng không liên kết chúng với trigger; BrowserFold không phân tích mã `onclick`/CSS để suy diễn hành vi. Không gán `expanded=false` giả cho một button trơn.
+
+### 3. Native `<details>/<summary>` — phát hiện và sửa bug
+
+Chromium trả AX role `group` cho `details`, `DisclosureTriangle` và property `expanded` cho `summary`. Trước sửa, JSON `native-summary` đã có `"expanded":false` nhưng `"interactive":false`; `native-content` và `native-action` bị đánh sai `"visible":true` khi đóng. Text lúc đóng chỉ in `button "Details action"`, không in summary. Khi mở, đoạn `<p>Hidden content</p>` cũng không vào text. Test RED tái hiện các lỗi này.
+
+Sau sửa, trạng thái đóng có JSON `native-summary`: `{"role":"DisclosureTriangle","name":"Click to expand","expanded":false,"visible":true,"interactive":true}`; `native-content` và `native-action` đều `"visible":false`. Text chỉ có `[e20814071cf] DisclosureTriangle "Click to expand" expanded=false`. Trạng thái mở có summary `"expanded":true`; paragraph và button đều `"visible":true`. Text thực tế:
+
+```text
+[e20814071cf] DisclosureTriangle "Click to expand" expanded=true
+text: "Hidden content"
+[ed9141054a1] button "Details action"
+```
+
+Sửa ở merger: dưới `<details>` đóng, chỉ nhánh `<summary>` đầu tiên còn visible; thêm `<summary>` vào native interactive và giữ paragraph đang hiện trong details cho text. JSON debug vẫn giữ node ẩn với `visible:false` để điều tra, còn text không lộ nội dung gập.
+
+### 4. Menu `aria-haspopup` — thiếu field đã sửa
+
+Fixture có `button aria-haspopup="true" aria-expanded="false" aria-controls="menu-panel"`; panel `role="menu"` ẩn chứa hai `role="menuitem"`. CDP AX tree thực tế trả `{"name":"hasPopup","value":{"type":"token","value":"menu"}}` trên trigger, nhưng bản cũ chỉ lấy `expanded`: text đóng cũ là `button "Actions" expanded=false`, JSON không có `hasPopup`. Test RED bắt đúng thiếu sót đó. Bản sửa lấy AX property `hasPopup` vào JSON và text; giá trị ARIA `true` được Chromium chuẩn hóa thành `menu`.
+
+Khi đóng, JSON trigger: `{"role":"button","name":"Actions","expanded":false,"hasPopup":"menu","visible":true,"interactive":true}`; `menu-panel`, `menu-view`, `menu-edit` đều `"visible":false`. Text: `[e0cf3f1cd87] button "Actions" expanded=false hasPopup=menu`. Khi mở, trigger đổi `"expanded":true` và giữ `"hasPopup":"menu"`; panel và hai item đều `"visible":true`. Text thực tế:
+
+```text
+[e11b1938197] button "Actions" expanded=true hasPopup=menu
+[e434e0666c7] menuitem "View item"
+[e3d29f352f1] menuitem "Edit item"
+```
+
+**Kiểm tra:** `npm test -- tests/cli/expand.test.ts` RED **2/4 fail** (native details, `hasPopup`), thêm assertion nội dung `<p>` thì RED **1/4 fail** tiếp; GREEN **4/4 pass**. `npm run typecheck` và `npm run build` pass. `npm test` toàn bộ: **15/16 file, 25/26 test pass**; fail duy nhất vẫn là ngưỡng token ratio acceptance **535/2142 = 24,98% > 10%** (trước mục này 532/2142 = 24,84%; menu popup thêm 3 token). Recall vẫn **25/25**, false interactive **0/25**. Không nới ngưỡng SPEC.

@@ -25,6 +25,7 @@ function controlLine(node: SemanticNode): string {
   if (node.checked !== undefined) parts.push(`checked=${node.checked}`);
   if (node.selected === true) parts.push('selected');
   if (node.expanded !== undefined) parts.push(`expanded=${node.expanded}`);
+  if (node.hasPopup !== undefined) parts.push(`hasPopup=${node.hasPopup}`);
   if (node.pressed !== undefined) parts.push(`pressed=${node.pressed}`);
   if (node.required === true) parts.push('required');
   if (node.readonly === true) parts.push('readonly');

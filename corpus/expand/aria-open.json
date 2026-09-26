@@ -1,0 +1,214 @@
+{
+  "page": {
+    "url": "file:///home/kindling/browserfold/tests/fixtures/expand-aria.html?open",
+    "title": "ARIA accordion fixture",
+    "capturedAt": 1790463537428
+  },
+  "nodes": [
+    {
+      "id": "e1883830651",
+      "tag": "html",
+      "visible": true,
+      "interactive": false,
+      "source": {
+        "backendNodeId": 3
+      },
+      "children": [
+        {
+          "id": "e569d2698aa",
+          "tag": "head",
+          "visible": false,
+          "interactive": false,
+          "parentId": "e1883830651",
+          "source": {
+            "backendNodeId": 4
+          },
+          "children": [
+            {
+              "id": "e366eca2d3b",
+              "tag": "meta",
+              "visible": false,
+              "interactive": false,
+              "parentId": "e569d2698aa",
+              "source": {
+                "backendNodeId": 5
+              },
+              "children": []
+            },
+            {
+              "id": "e853403f681",
+              "tag": "title",
+              "visible": false,
+              "interactive": false,
+              "parentId": "e569d2698aa",
+              "source": {
+                "backendNodeId": 6
+              },
+              "text": "ARIA accordion fixture",
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "e760af47b9b",
+          "tag": "body",
+          "visible": true,
+          "interactive": false,
+          "parentId": "e1883830651",
+          "source": {
+            "backendNodeId": 7
+          },
+          "children": [
+            {
+              "id": "e272dd2ddb9",
+              "tag": "button",
+              "visible": true,
+              "interactive": true,
+              "parentId": "e760af47b9b",
+              "source": {
+                "backendNodeId": 8,
+                "domId": "aria-trigger"
+              },
+              "text": "Account options",
+              "role": "button",
+              "name": "Account options",
+              "focusable": true,
+              "expanded": true,
+              "children": []
+            },
+            {
+              "id": "ea2ea1c9cd9",
+              "tag": "div",
+              "visible": true,
+              "interactive": false,
+              "parentId": "e760af47b9b",
+              "source": {
+                "backendNodeId": 9,
+                "domId": "aria-panel"
+              },
+              "role": "generic",
+              "name": "",
+              "children": [
+                {
+                  "id": "e9319fc94a4",
+                  "tag": "a",
+                  "visible": true,
+                  "interactive": true,
+                  "parentId": "ea2ea1c9cd9",
+                  "source": {
+                    "backendNodeId": 10,
+                    "domId": "aria-link"
+                  },
+                  "text": "Account link",
+                  "href": "#account",
+                  "role": "link",
+                  "name": "Account link",
+                  "focusable": true,
+                  "children": []
+                },
+                {
+                  "id": "e808c624e11",
+                  "tag": "button",
+                  "visible": true,
+                  "interactive": true,
+                  "parentId": "ea2ea1c9cd9",
+                  "source": {
+                    "backendNodeId": 11,
+                    "domId": "aria-action"
+                  },
+                  "text": "Account action",
+                  "role": "button",
+                  "name": "Account action",
+                  "focusable": true,
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "edc4fa08935",
+              "tag": "script",
+              "visible": false,
+              "interactive": false,
+              "parentId": "e760af47b9b",
+              "source": {
+                "backendNodeId": 12
+              },
+              "text": "if (new URLSearchParams(location.search).has('open')) {\n    document.getElementById('aria-trigger').setAttribute('aria-expanded', 'true');\n    document.getElementById('aria-panel').hidden = false;\n  }",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ec08f063d8a",
+      "visible": true,
+      "interactive": false,
+      "role": "RootWebArea",
+      "name": "ARIA accordion fixture",
+      "focusable": true,
+      "source": {
+        "backendNodeId": 2
+      },
+      "children": []
+    },
+    {
+      "id": "e863c09c158",
+      "visible": true,
+      "interactive": false,
+      "role": "StaticText",
+      "name": "Account options",
+      "source": {
+        "backendNodeId": 13
+      },
+      "children": []
+    },
+    {
+      "id": "e0eea82f38d",
+      "visible": true,
+      "interactive": false,
+      "role": "InlineTextBox",
+      "name": "Account options",
+      "children": []
+    },
+    {
+      "id": "e49002c8eb7",
+      "visible": true,
+      "interactive": false,
+      "role": "StaticText",
+      "name": "Account link",
+      "source": {
+        "backendNodeId": 14
+      },
+      "children": []
+    },
+    {
+      "id": "e96b2f56b2d",
+      "visible": true,
+      "interactive": false,
+      "role": "StaticText",
+      "name": "Account action",
+      "source": {
+        "backendNodeId": 15
+      },
+      "children": []
+    },
+    {
+      "id": "e047192d9bd",
+      "visible": true,
+      "interactive": false,
+      "role": "InlineTextBox",
+      "name": "Account link",
+      "children": []
+    },
+    {
+      "id": "e46f11ef0cd",
+      "visible": true,
+      "interactive": false,
+      "role": "InlineTextBox",
+      "name": "Account action",
+      "children": []
+    }
+  ],
+  "relations": []
+}

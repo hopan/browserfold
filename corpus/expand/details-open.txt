@@ -1,0 +1,8 @@
+PAGE
+url: file:///home/kindling/browserfold/tests/fixtures/expand-details.html?open
+title: Native details fixture
+
+UI
+[e20814071cf] DisclosureTriangle "Click to expand" expanded=true
+text: "Hidden content"
+[ed9141054a1] button "Details action"

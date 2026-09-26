@@ -1,0 +1,6 @@
+PAGE
+url: file:///home/kindling/browserfold/tests/fixtures/expand-menu.html
+title: ARIA menu fixture
+
+UI
+[e0cf3f1cd87] button "Actions" expanded=false hasPopup=menu

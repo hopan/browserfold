@@ -1,0 +1,6 @@
+PAGE
+url: file:///home/kindling/browserfold/tests/fixtures/expand-aria.html
+title: ARIA accordion fixture
+
+UI
+[e1edc179395] button "Account options" expanded=false

@@ -1,0 +1,170 @@
+{
+  "page": {
+    "url": "file:///home/kindling/browserfold/tests/fixtures/expand-details.html",
+    "title": "Native details fixture",
+    "capturedAt": 1790463545754
+  },
+  "nodes": [
+    {
+      "id": "e1883830651",
+      "tag": "html",
+      "visible": true,
+      "interactive": false,
+      "source": {
+        "backendNodeId": 3
+      },
+      "children": [
+        {
+          "id": "e569d2698aa",
+          "tag": "head",
+          "visible": false,
+          "interactive": false,
+          "parentId": "e1883830651",
+          "source": {
+            "backendNodeId": 4
+          },
+          "children": [
+            {
+              "id": "e366eca2d3b",
+              "tag": "meta",
+              "visible": false,
+              "interactive": false,
+              "parentId": "e569d2698aa",
+              "source": {
+                "backendNodeId": 5
+              },
+              "children": []
+            },
+            {
+              "id": "e84ced67cc9",
+              "tag": "title",
+              "visible": false,
+              "interactive": false,
+              "parentId": "e569d2698aa",
+              "source": {
+                "backendNodeId": 6
+              },
+              "text": "Native details fixture",
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "e760af47b9b",
+          "tag": "body",
+          "visible": true,
+          "interactive": false,
+          "parentId": "e1883830651",
+          "source": {
+            "backendNodeId": 7
+          },
+          "children": [
+            {
+              "id": "e28efde2625",
+              "tag": "details",
+              "visible": true,
+              "interactive": false,
+              "parentId": "e760af47b9b",
+              "source": {
+                "backendNodeId": 8,
+                "domId": "native-details"
+              },
+              "role": "group",
+              "name": "",
+              "children": [
+                {
+                  "id": "e20814071cf",
+                  "tag": "summary",
+                  "visible": true,
+                  "interactive": true,
+                  "parentId": "e28efde2625",
+                  "source": {
+                    "backendNodeId": 13,
+                    "domId": "native-summary"
+                  },
+                  "text": "Click to expand",
+                  "role": "DisclosureTriangle",
+                  "name": "Click to expand",
+                  "focusable": true,
+                  "expanded": false,
+                  "children": []
+                },
+                {
+                  "id": "e26d4954e7b",
+                  "tag": "p",
+                  "visible": false,
+                  "interactive": false,
+                  "parentId": "e28efde2625",
+                  "source": {
+                    "backendNodeId": 14,
+                    "domId": "native-content"
+                  },
+                  "text": "Hidden content",
+                  "children": []
+                },
+                {
+                  "id": "ed023e5bd41",
+                  "tag": "button",
+                  "visible": false,
+                  "interactive": true,
+                  "parentId": "e28efde2625",
+                  "source": {
+                    "backendNodeId": 15,
+                    "domId": "native-action"
+                  },
+                  "text": "Details action",
+                  "name": "Details action",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "ec4774f49cb",
+              "tag": "script",
+              "visible": false,
+              "interactive": false,
+              "parentId": "e760af47b9b",
+              "source": {
+                "backendNodeId": 16
+              },
+              "text": "if (new URLSearchParams(location.search).has('open')) document.getElementById('native-details').open = true;",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ea5d39ae48a",
+      "visible": true,
+      "interactive": false,
+      "role": "RootWebArea",
+      "name": "Native details fixture",
+      "focusable": true,
+      "source": {
+        "backendNodeId": 2
+      },
+      "children": []
+    },
+    {
+      "id": "e15b1870829",
+      "visible": true,
+      "interactive": false,
+      "role": "StaticText",
+      "name": "Click to expand",
+      "source": {
+        "backendNodeId": 18
+      },
+      "children": []
+    },
+    {
+      "id": "ede8fb7a688",
+      "visible": true,
+      "interactive": false,
+      "role": "InlineTextBox",
+      "name": "Click to expand",
+      "children": []
+    }
+  ],
+  "relations": []
+}

@@ -1,0 +1,6 @@
+PAGE
+url: file:///home/kindling/browserfold/tests/fixtures/expand-details.html
+title: Native details fixture
+
+UI
+[e20814071cf] DisclosureTriangle "Click to expand" expanded=false

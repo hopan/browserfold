@@ -14,6 +14,7 @@ export interface SemanticNode {
   checked?: boolean | 'mixed';
   selected?: boolean;
   expanded?: boolean;
+  hasPopup?: string;
   pressed?: boolean;
   required?: boolean;
   readonly?: boolean;

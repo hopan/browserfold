@@ -43,6 +43,8 @@ function enrich(node: SemanticNode, ax?: RawAxNode): void {
   if (typeof checked === 'boolean' || checked === 'mixed') node.checked = checked;
   node.selected = boolProperty(ax, 'selected');
   node.expanded = boolProperty(ax, 'expanded');
+  const hasPopup = property(ax, 'hasPopup');
+  if (typeof hasPopup === 'string' && hasPopup !== 'false') node.hasPopup = hasPopup;
   node.pressed = boolProperty(ax, 'pressed');
   node.required = boolProperty(ax, 'required');
   node.readonly = boolProperty(ax, 'readonly');
@@ -106,7 +108,12 @@ export function mergeSemanticNodes(captured: CapturedPage): SemanticNode[] {
       nextParentId = id;
       nextVisible = node.visible;
     }
-    for (const child of dom.children ?? []) visit(child, nextParentId, nextVisible, frameId);
+    const children = dom.children ?? [];
+    const closedDetails = dom.nodeType === 1 && dom.nodeName.toLowerCase() === 'details' && !attributes(dom).has('open');
+    const summary = closedDetails ? children.find((child) => child.nodeType === 1 && child.nodeName.toLowerCase() === 'summary') : undefined;
+    for (const child of children) {
+      visit(child, nextParentId, nextVisible && (!closedDetails || child === summary), frameId);
+    }
     for (const shadow of dom.shadowRoots ?? []) visit(shadow, nextParentId, nextVisible, frameId);
     if (dom.contentDocument) {
       const frameKey = attrsForFrame(dom);

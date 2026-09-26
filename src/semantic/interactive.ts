@@ -5,7 +5,7 @@ const interactiveRoles = new Set([
   'slider', 'spinbutton', 'switch', 'tab', 'menuitem', 'treeitem',
 ]);
 const interactiveTags = new Set(['a', 'area', 'button', 'input', 'select', 'textarea', 'option']);
-const nativeTags = new Set(['button', 'input', 'select', 'textarea', 'option']);
+const nativeTags = new Set(['button', 'input', 'select', 'textarea', 'option', 'summary']);
 const handlerNames = new Set(['onclick', 'onkeydown', 'onkeyup', 'onkeypress']);
 
 function tabbable(attributes: ReadonlyMap<string, string>): boolean {

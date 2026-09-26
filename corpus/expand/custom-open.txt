@@ -1,0 +1,8 @@
+PAGE
+url: file:///home/kindling/browserfold/tests/fixtures/expand-custom.html?open
+title: Custom dropdown fixture
+
+UI
+[e15fa53de81] button "More tools"
+[e895f1b2c24] link "Tool link"
+[e2c3198fe75] button "Tool action"

@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>ARIA menu fixture</title></head>
+<body>
+<button id="menu-trigger" aria-haspopup="true" aria-expanded="false" aria-controls="menu-panel">Actions</button>
+<div id="menu-panel" role="menu" hidden><a id="menu-view" role="menuitem" href="#view">View item</a><button id="menu-edit" role="menuitem">Edit item</button></div>
+<script>
+  if (new URLSearchParams(location.search).has('open')) {
+    document.getElementById('menu-trigger').setAttribute('aria-expanded', 'true');
+    document.getElementById('menu-panel').hidden = false;
+  }
+</script>
+</body></html>

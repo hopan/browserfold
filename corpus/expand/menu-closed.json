@@ -1,0 +1,173 @@
+{
+  "page": {
+    "url": "file:///home/kindling/browserfold/tests/fixtures/expand-menu.html",
+    "title": "ARIA menu fixture",
+    "capturedAt": 1790463550606
+  },
+  "nodes": [
+    {
+      "id": "e1883830651",
+      "tag": "html",
+      "visible": true,
+      "interactive": false,
+      "source": {
+        "backendNodeId": 3
+      },
+      "children": [
+        {
+          "id": "e569d2698aa",
+          "tag": "head",
+          "visible": false,
+          "interactive": false,
+          "parentId": "e1883830651",
+          "source": {
+            "backendNodeId": 4
+          },
+          "children": [
+            {
+              "id": "e366eca2d3b",
+              "tag": "meta",
+              "visible": false,
+              "interactive": false,
+              "parentId": "e569d2698aa",
+              "source": {
+                "backendNodeId": 5
+              },
+              "children": []
+            },
+            {
+              "id": "ef0c968d670",
+              "tag": "title",
+              "visible": false,
+              "interactive": false,
+              "parentId": "e569d2698aa",
+              "source": {
+                "backendNodeId": 6
+              },
+              "text": "ARIA menu fixture",
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "edee9ef4901",
+          "tag": "body",
+          "visible": true,
+          "interactive": false,
+          "parentId": "e1883830651",
+          "source": {
+            "backendNodeId": 7
+          },
+          "role": "generic",
+          "name": "",
+          "children": [
+            {
+              "id": "e0cf3f1cd87",
+              "tag": "button",
+              "visible": true,
+              "interactive": true,
+              "parentId": "edee9ef4901",
+              "source": {
+                "backendNodeId": 8,
+                "domId": "menu-trigger"
+              },
+              "text": "Actions",
+              "role": "button",
+              "name": "Actions",
+              "focusable": true,
+              "expanded": false,
+              "hasPopup": "menu",
+              "children": []
+            },
+            {
+              "id": "ea1b7226ee0",
+              "tag": "div",
+              "visible": false,
+              "interactive": false,
+              "parentId": "edee9ef4901",
+              "source": {
+                "backendNodeId": 9,
+                "domId": "menu-panel"
+              },
+              "children": [
+                {
+                  "id": "efbba9defd4",
+                  "tag": "a",
+                  "visible": false,
+                  "interactive": true,
+                  "parentId": "ea1b7226ee0",
+                  "source": {
+                    "backendNodeId": 10,
+                    "domId": "menu-view"
+                  },
+                  "text": "View item",
+                  "href": "#view",
+                  "name": "View item",
+                  "children": []
+                },
+                {
+                  "id": "e43f92ceea5",
+                  "tag": "button",
+                  "visible": false,
+                  "interactive": true,
+                  "parentId": "ea1b7226ee0",
+                  "source": {
+                    "backendNodeId": 11,
+                    "domId": "menu-edit"
+                  },
+                  "text": "Edit item",
+                  "name": "Edit item",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "ead07ebd702",
+              "tag": "script",
+              "visible": false,
+              "interactive": false,
+              "parentId": "edee9ef4901",
+              "source": {
+                "backendNodeId": 12
+              },
+              "text": "if (new URLSearchParams(location.search).has('open')) {\n    document.getElementById('menu-trigger').setAttribute('aria-expanded', 'true');\n    document.getElementById('menu-panel').hidden = false;\n  }",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e474dffc0da",
+      "visible": true,
+      "interactive": false,
+      "role": "RootWebArea",
+      "name": "ARIA menu fixture",
+      "focusable": true,
+      "source": {
+        "backendNodeId": 2
+      },
+      "children": []
+    },
+    {
+      "id": "ec8022e3438",
+      "visible": true,
+      "interactive": false,
+      "role": "StaticText",
+      "name": "Actions",
+      "source": {
+        "backendNodeId": 13
+      },
+      "children": []
+    },
+    {
+      "id": "e304e9f9b0e",
+      "visible": true,
+      "interactive": false,
+      "role": "InlineTextBox",
+      "name": "Actions",
+      "children": []
+    }
+  ],
+  "relations": []
+}

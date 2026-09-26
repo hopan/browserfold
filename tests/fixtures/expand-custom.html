@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Custom dropdown fixture</title>
+<style>#custom-panel { display: none } #custom-panel.open { display: block }</style></head>
+<body>
+<button id="custom-trigger" onclick="document.getElementById('custom-panel').classList.toggle('open')">More tools</button>
+<div id="custom-panel"><a id="custom-link" href="#tool">Tool link</a><button id="custom-action">Tool action</button></div>
+<script>
+  if (new URLSearchParams(location.search).has('open')) document.getElementById('custom-trigger').click();
+</script>
+</body></html>

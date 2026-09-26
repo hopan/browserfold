@@ -18,6 +18,14 @@ export function extractVisibleContent(nodes: SemanticNode[]): SemanticNode[] {
     }
     return false;
   }
+  function inDetails(node: SemanticNode): boolean {
+    let ancestor = node.parentId ? byId.get(node.parentId) : undefined;
+    while (ancestor) {
+      if (ancestor.tag === 'details') return true;
+      ancestor = ancestor.parentId ? byId.get(ancestor.parentId) : undefined;
+    }
+    return false;
+  }
   function inNavigation(node: SemanticNode): boolean {
     let ancestor = node.parentId ? byId.get(node.parentId) : undefined;
     while (ancestor) {
@@ -42,11 +50,12 @@ export function extractVisibleContent(nodes: SemanticNode[]): SemanticNode[] {
     const contextText = !node.interactive && node.text !== undefined && node.text.length <= 60
       && /[\p{L}\p{N}]/u.test(node.text)
       && (paginationText.test(node.text) || inNavigation(node));
+    const detailsText = tag === 'p' && node.text !== undefined && inDetails(node);
     if (kind) node.contentKind = kind;
-    else if (contextText) node.contentKind = 'text';
+    else if (contextText || detailsText) node.contentKind = 'text';
     const useful = node.interactive || kind !== undefined || structuralTags.has(tag)
       || (node.enabled === false && controlRoles.has(role))
-      || contextText
+      || contextText || detailsText
       || tag === 'label' || tag === 'iframe' || role === 'dialog' || role === 'navigation'
       || (node.source?.domId !== undefined && referencedDescriptions.has(node.source.domId))
       || (tag === 'p' && inCard(node))

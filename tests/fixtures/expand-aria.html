@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>ARIA accordion fixture</title></head>
+<body>
+<button id="aria-trigger" aria-expanded="false" aria-controls="aria-panel">Account options</button>
+<div id="aria-panel" hidden><a id="aria-link" href="#account">Account link</a><button id="aria-action">Account action</button></div>
+<script>
+  if (new URLSearchParams(location.search).has('open')) {
+    document.getElementById('aria-trigger').setAttribute('aria-expanded', 'true');
+    document.getElementById('aria-panel').hidden = false;
+  }
+</script>
+</body></html>

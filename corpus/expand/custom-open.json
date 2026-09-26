@@ -1,0 +1,225 @@
+{
+  "page": {
+    "url": "file:///home/kindling/browserfold/tests/fixtures/expand-custom.html?open",
+    "title": "Custom dropdown fixture",
+    "capturedAt": 1790463542869
+  },
+  "nodes": [
+    {
+      "id": "e1883830651",
+      "tag": "html",
+      "visible": true,
+      "interactive": false,
+      "source": {
+        "backendNodeId": 3
+      },
+      "children": [
+        {
+          "id": "e569d2698aa",
+          "tag": "head",
+          "visible": false,
+          "interactive": false,
+          "parentId": "e1883830651",
+          "source": {
+            "backendNodeId": 4
+          },
+          "children": [
+            {
+              "id": "e366eca2d3b",
+              "tag": "meta",
+              "visible": false,
+              "interactive": false,
+              "parentId": "e569d2698aa",
+              "source": {
+                "backendNodeId": 5
+              },
+              "children": []
+            },
+            {
+              "id": "e8abfdbf7bd",
+              "tag": "title",
+              "visible": false,
+              "interactive": false,
+              "parentId": "e569d2698aa",
+              "source": {
+                "backendNodeId": 6
+              },
+              "text": "Custom dropdown fixture",
+              "children": []
+            },
+            {
+              "id": "e658789966d",
+              "tag": "style",
+              "visible": false,
+              "interactive": false,
+              "parentId": "e569d2698aa",
+              "source": {
+                "backendNodeId": 7
+              },
+              "text": "#custom-panel { display: none } #custom-panel.open { display: block }",
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "e760af47b9b",
+          "tag": "body",
+          "visible": true,
+          "interactive": false,
+          "parentId": "e1883830651",
+          "source": {
+            "backendNodeId": 8
+          },
+          "children": [
+            {
+              "id": "e15fa53de81",
+              "tag": "button",
+              "visible": true,
+              "interactive": true,
+              "parentId": "e760af47b9b",
+              "source": {
+                "backendNodeId": 9,
+                "domId": "custom-trigger"
+              },
+              "text": "More tools",
+              "role": "button",
+              "name": "More tools",
+              "focusable": true,
+              "children": []
+            },
+            {
+              "id": "e5ac1901b0e",
+              "tag": "div",
+              "visible": true,
+              "interactive": false,
+              "parentId": "e760af47b9b",
+              "source": {
+                "backendNodeId": 10,
+                "domId": "custom-panel"
+              },
+              "role": "generic",
+              "name": "",
+              "children": [
+                {
+                  "id": "e895f1b2c24",
+                  "tag": "a",
+                  "visible": true,
+                  "interactive": true,
+                  "parentId": "e5ac1901b0e",
+                  "source": {
+                    "backendNodeId": 11,
+                    "domId": "custom-link"
+                  },
+                  "text": "Tool link",
+                  "href": "#tool",
+                  "role": "link",
+                  "name": "Tool link",
+                  "focusable": true,
+                  "children": []
+                },
+                {
+                  "id": "e2c3198fe75",
+                  "tag": "button",
+                  "visible": true,
+                  "interactive": true,
+                  "parentId": "e5ac1901b0e",
+                  "source": {
+                    "backendNodeId": 12,
+                    "domId": "custom-action"
+                  },
+                  "text": "Tool action",
+                  "role": "button",
+                  "name": "Tool action",
+                  "focusable": true,
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "ef1933e0f84",
+              "tag": "script",
+              "visible": false,
+              "interactive": false,
+              "parentId": "e760af47b9b",
+              "source": {
+                "backendNodeId": 13
+              },
+              "text": "if (new URLSearchParams(location.search).has('open')) document.getElementById('custom-trigger').click();",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ed96c800796",
+      "visible": true,
+      "interactive": false,
+      "role": "RootWebArea",
+      "name": "Custom dropdown fixture",
+      "focusable": true,
+      "source": {
+        "backendNodeId": 2
+      },
+      "children": []
+    },
+    {
+      "id": "e6943193f0a",
+      "visible": true,
+      "interactive": false,
+      "role": "StaticText",
+      "name": "More tools",
+      "source": {
+        "backendNodeId": 14
+      },
+      "children": []
+    },
+    {
+      "id": "eede06f3a78",
+      "visible": true,
+      "interactive": false,
+      "role": "InlineTextBox",
+      "name": "More tools",
+      "children": []
+    },
+    {
+      "id": "edd6dddefc1",
+      "visible": true,
+      "interactive": false,
+      "role": "StaticText",
+      "name": "Tool link",
+      "source": {
+        "backendNodeId": 15
+      },
+      "children": []
+    },
+    {
+      "id": "ec7a44c5284",
+      "visible": true,
+      "interactive": false,
+      "role": "StaticText",
+      "name": "Tool action",
+      "source": {
+        "backendNodeId": 16
+      },
+      "children": []
+    },
+    {
+      "id": "e6ffe2d277d",
+      "visible": true,
+      "interactive": false,
+      "role": "InlineTextBox",
+      "name": "Tool link",
+      "children": []
+    },
+    {
+      "id": "e098a24f305",
+      "visible": true,
+      "interactive": false,
+      "role": "InlineTextBox",
+      "name": "Tool action",
+      "children": []
+    }
+  ],
+  "relations": []
+}
