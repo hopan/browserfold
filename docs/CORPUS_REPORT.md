@@ -235,7 +235,7 @@ So với baseline hai fixture hiện hành **532/2.142 = 24,84%**, corpus thấp
 
 Lưu ý: số đếm SPA 3/20 và Custom component 3/10 trong phần bối cảnh dispatch 8 thấp hơn dữ liệu `results.json` batch 1 một URL mỗi nhóm. Batch 1 thực tế có 4 URL SPA (kể cả Svelte 403) và 4 URL custom component (kể cả Lit tutorial), nên bảng dùng số đếm trực tiếp từ dữ liệu. Batch 4 thêm 5 URL Iframe nhưng chỉ 3 mẫu phù hợp và đo được: W3Schools lỗi CDP, trang chỉ mục Test Pages không có iframe. Batch 5 thêm hai URL thay thế để Simple và SPA đều vượt một URL đã thử so với mục tiêu. Không giả định tỷ lệ cho URL lỗi hoặc tính hai mẫu không phù hợp vào tổng.
 
-## Actionable Recall/Precision — pilot và batch 2
+## Actionable Recall/Precision — pilot, batch 2 và batch 3
 
 Dispatch 13 chọn **18 URL đã có trong `corpus/results.json`**: 4 Simple, 4 SPA, 2 Dashboard, 2 Ecommerce, 2 Enterprise form, 2 Modal/dropdown, 1 Iframe và 1 Custom component. Script riêng [`corpus/measure_recall.mjs`](../corpus/measure_recall.mjs) tải lại trang vì oracle phải chạy trước capture; kết quả từng node mẫu và số đo ở [`corpus/recall_pilot.json`](../corpus/recall_pilot.json). Chỉ load/đọc DOM, không click, nhập liệu hoặc mở modal. Mỗi trang dùng `domcontentloaded` + 1,2 giây, navigation timeout 30 giây, tiến trình con timeout 60 giây và heap 768 MB. Trang HTTP lỗi/bot block hoặc frame mà oracle không đọc được bị loại khỏi trung bình, không gán điểm giả. Dispatch 17 đo lại toàn bộ **42 URL đã có kết quả** bằng commit `c3fa3e0`: **42/42 trang đo được**. URL DemoQA từng lỗi frame ở dispatch 15 không thuộc danh sách 42 URL này.
 
@@ -310,6 +310,49 @@ Batch 2 đo lại **24/24 URL có kết quả**: **5.987 oracle, 5.175 detected,
 - Hai URL The Internet (`/iframe`, `/tinymce`) hiện đều **3/4 = 75% recall**, tăng từ 25% sau khi renderer in ID link “Learn more.” và nút “Close” trong alert. Giao diện vẫn là TinyMCE bị khóa billing; miss còn lại là “Powered by Tiny” bị AX đánh disabled. Chi tiết điều tra trước sửa ở mục dưới.
 - Material Web Checkbox precision **60/81 = 74,07%**: 21 detected ngoài oracle gồm link và input trong giao diện custom component; mọi 62 oracle ID đều map được. Nghi ngờ khác biệt giữa điều kiện visible/actionable của oracle và semantic output ở web component; cần phân loại cụ thể sau.
 - Wikipedia HTML recall **910/1.948 = 46,71%**: các miss mẫu như “Bookmarks” nằm dưới `tr[hidden="until-found"]` của navbox gập, đúng dạng bất đồng visibility đã xác nhận ở dispatch 14. Chưa phân loại toàn bộ 1.038 miss của URL này.
+
+### Dispatch 18 — Actionable Recall/Precision batch 3
+
+Chọn **25 URL mới** từ các mẫu token ratio của `corpus/results.json`, ưu tiên Enterprise form (4 mẫu recall cũ), rồi Dashboard, Ecommerce, Modal/dropdown và Custom component (mỗi nhóm 5 mẫu cũ). Chỉ tải và đọc trang bằng cùng script/oracle và cùng bản sản phẩm của baseline dispatch 17; không click hoặc nhập liệu. Có **23/25 URL đo được**; GNU hết 30 giây chờ `domcontentloaded`, Angular gặp lỗi CDP `DOM.describeNode` khi capture. Hai hàng lỗi được giữ để minh bạch số URL thử và loại khỏi các phép tổng hợp.
+
+| Nhóm | URL | Oracle | Detected | Match | Recall | Precision | Ghi chú |
+|---|---|---:|---:|---:|---:|---:|---|
+| Enterprise form | https://demoqa.com/text-box | 15 | 15 | 15 | 100,00% | 100,00% | — |
+| Enterprise form | https://demoqa.com/checkbox | 11 | 11 | 11 | 100,00% | 100,00% | — |
+| Enterprise form | https://laravel.adminlte.io/demo/forms/validation | 52 | 55 | 52 | 100,00% | 94,55% | — |
+| Enterprise form | https://adminlte.io/themes/v3/pages/forms/editors.html | 61 | 61 | 61 | 100,00% | 100,00% | — |
+| Dashboard | https://laravel.adminlte.io/demo/dashboard-v2 | 98 | 98 | 98 | 100,00% | 100,00% | — |
+| Dashboard | https://adminlte.io/themes/v3/pages/tables/data.html | 80 | 72 | 72 | 90,00% | 100,00% | — |
+| Dashboard | https://adminlte.io/themes/v3/pages/calendar.html | 50 | 50 | 50 | 100,00% | 100,00% | — |
+| Ecommerce | https://demowebshop.tricentis.com/electronics | 54 | 52 | 52 | 96,30% | 100,00% | — |
+| Ecommerce | https://demowebshop.tricentis.com/jewelry | 66 | 72 | 61 | 92,42% | 84,72% | — |
+| Ecommerce | https://www.demoblaze.com/prod.html?idp_=2 | 8 | 8 | 8 | 100,00% | 100,00% | — |
+| Modal/dropdown | https://getbootstrap.com/docs/5.3/components/popovers/ | 224 | 221 | 221 | 98,66% | 100,00% | — |
+| Modal/dropdown | https://getbootstrap.com/docs/5.3/components/navs-tabs/ | 298 | 297 | 297 | 99,66% | 100,00% | — |
+| Modal/dropdown | https://mui.com/material-ui/react-menu/ | 355 | 296 | 296 | 83,38% | 100,00% | — |
+| Custom component | https://lit.dev/playground/ | 62 | 64 | 61 | 98,39% | 95,31% | — |
+| Custom component | https://testpages.eviltester.com/pages/web-components/shadow-widget/ | 98 | 98 | 98 | 100,00% | 100,00% | — |
+| Custom component | https://material-web.dev/components/dialog/ | 66 | 80 | 64 | 96,97% | 80,00% | — |
+| Iframe | https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/object | 579 | 686 | 568 | 98,10% | 82,80% | — |
+| Simple | https://www.gnu.org/philosophy/free-sw.html | — | — | — | — | — | Timeout tải trang |
+| Simple | https://www.w3.org/TR/WCAG22/ | 1.149 | 1.150 | 1.149 | 100,00% | 99,91% | — |
+| Simple | https://www.sqlite.org/lang_select.html | 155 | 155 | 155 | 100,00% | 100,00% | — |
+| SPA | https://github.com/vuejs/core | 195 | 197 | 188 | 96,41% | 95,43% | — |
+| SPA | https://app.diagrams.net/ | 1 | 4 | 1 | 100,00% | 25,00% | — |
+| SPA | https://angular.dev/tutorials/first-app | — | — | — | — | — | Lỗi CDP DOM.describeNode |
+| Simple | https://docs.python.org/3/tutorial/controlflow.html | 123 | 197 | 121 | 98,37% | 61,42% | — |
+| SPA | https://github.com/microsoft/TypeScript/issues | 164 | 160 | 160 | 97,56% | 100,00% | — |
+
+**Batch 3:** 23/25 URL đo được, **3.964 oracle, 4.099 detected, 3.859 match**. Trung bình theo trang: **Recall 97,66%; Precision 92,14%**. Gộp theo phần tử: **Recall 3.859/3.964 = 97,35%; Precision 3.859/4.099 = 94,14%**.
+
+**Tích luỹ mới nhất (một phiên bản code): 65/89 URL corpus đã đo**, 67 URL đã thử recall. Tổng **13.268 oracle, 12.447 detected, 11.684 match**. Trung bình theo 65 trang: **Recall 95,89%; Precision 93,56%**. Gộp theo phần tử: **Recall 11.684/13.268 = 88,06%; Precision 11.684/12.447 = 93,87%**. Trong 65 trang đo được: Simple 9, SPA 9, Dashboard 8, Ecommerce 8, Enterprise form 8, Modal/dropdown 8, Iframe 7, Custom component 8. 42 hàng baseline cũ giữ nguyên; không đo lại hay cộng đè.
+
+**Trang batch 3 dưới 80%:**
+
+- `app.diagrams.net/`: Precision **1/4 = 25,00%** nhưng chỉ có **1 oracle**; ba detected ngoài oracle là ô tìm kiếm, nút “+ More Shapes” và link `jgraph/drawio`. Nghi ngờ trạng thái tải ban đầu hoặc điều kiện hiển thị/actionability của UI canvas làm oracle và output khác nhau; **chưa xác nhận nguyên nhân**, để dispatch sau xem xét. Không suy rộng tỷ lệ này cho editor khi đã tải đầy đủ.
+- `docs.python.org/3/tutorial/controlflow.html`: Precision **121/197 = 61,42%**. Tám false positive mẫu đầu đều là `<option>` ngôn ngữ native; đây là dạng đã biết vì oracle không chọn `<option>` thiếu role tường minh. Chưa phân loại toàn bộ 76 detected ngoài oracle.
+
+Material Web Dialog có precision đúng **80,00%** (64/80), sát ngưỡng nhưng không thuộc danh sách dưới 80%; ví dụ detected ngoài oracle gồm link shadow DOM và anchor của mục lục. Các URL còn lại trong batch không dưới 80% recall hoặc precision.
 
 ### Điều tra The Internet và TinyMCE — Dispatch 16
 

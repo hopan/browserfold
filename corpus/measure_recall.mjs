@@ -11,19 +11,37 @@ import { serializeText } from '../dist/serialize/text.js';
 
 const source = JSON.parse(await readFile(new URL('./results.json', import.meta.url), 'utf8'));
 const selection = [
-  ['Iframe', 0], ['Iframe', 2], ['Iframe', 3], ['Iframe', 4], ['Iframe', 6],
-  ['Custom component', 0], ['Custom component', 2], ['Custom component', 3], ['Custom component', 6],
-  ['Dashboard', 1], ['Dashboard', 3], ['Dashboard', 5],
-  ['Ecommerce', 1], ['Ecommerce', 3], ['Ecommerce', 4],
-  ['Form', 1], ['Form', 3], ['Form', 4],
-  ['Modal/dropdown', 2], ['Modal/dropdown', 5], ['Modal/dropdown', 7],
-  ['Simple', 1], ['Simple', 8],
-  ['SPA', 6], ['SPA', 11],
+  ['Form', 'https://demoqa.com/text-box'],
+  ['Form', 'https://demoqa.com/checkbox'],
+  ['Form', 'https://laravel.adminlte.io/demo/forms/validation'],
+  ['Form', 'https://adminlte.io/themes/v3/pages/forms/editors.html'],
+  ['Dashboard', 'https://laravel.adminlte.io/demo/dashboard-v2'],
+  ['Dashboard', 'https://adminlte.io/themes/v3/pages/tables/data.html'],
+  ['Dashboard', 'https://adminlte.io/themes/v3/pages/calendar.html'],
+  ['Ecommerce', 'https://demowebshop.tricentis.com/electronics'],
+  ['Ecommerce', 'https://demowebshop.tricentis.com/jewelry'],
+  ['Ecommerce', 'https://www.demoblaze.com/prod.html?idp_=2'],
+  ['Modal/dropdown', 'https://getbootstrap.com/docs/5.3/components/popovers/'],
+  ['Modal/dropdown', 'https://getbootstrap.com/docs/5.3/components/navs-tabs/'],
+  ['Modal/dropdown', 'https://mui.com/material-ui/react-menu/'],
+  ['Custom component', 'https://lit.dev/playground/'],
+  ['Custom component', 'https://testpages.eviltester.com/pages/web-components/shadow-widget/'],
+  ['Custom component', 'https://material-web.dev/components/dialog/'],
+  ['Iframe', 'https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/object'],
+  ['Simple', 'https://www.gnu.org/philosophy/free-sw.html'],
+  ['Simple', 'https://www.w3.org/TR/WCAG22/'],
+  ['Simple', 'https://www.sqlite.org/lang_select.html'],
+  ['Simple', 'https://docs.python.org/3/tutorial/controlflow.html'],
+  ['SPA', 'https://github.com/vuejs/core'],
+  ['SPA', 'https://app.diagrams.net/'],
+  ['SPA', 'https://angular.dev/tutorials/first-app'],
+  ['SPA', 'https://github.com/microsoft/TypeScript/issues'],
 ];
-const pages = selection.map(([group, index]) => {
-  const choices = source.results.filter((row) => row.group === group && !row.error && !row.excludedReason);
-  if (!choices[index]) throw new Error(`Missing corpus URL for ${group} index ${index}`);
-  return { group, url: choices[index].url };
+const eligible = new Set(source.results.filter((row) => !row.error && !row.excludedReason)
+  .map((row) => `${row.group}\n${row.url}`));
+const pages = selection.map(([group, url]) => {
+  if (!eligible.has(`${group}\n${url}`)) throw new Error(`Missing eligible corpus URL: ${url}`);
+  return { group, url };
 });
 
 // Evaluated in every reachable frame. ID is only a temporary probe, not a product attribute.
@@ -170,7 +188,7 @@ if (process.argv[2] === '--inspect-url') {
   const existingUrls = new Set(results.map((row) => row.url));
   if (existingUrls.size !== results.length) throw new Error('Duplicate URL in existing recall results');
   if (new Set(pages.map((row) => row.url)).size !== pages.length) throw new Error('Duplicate URL in selection');
-  const overlap = pages.filter((row) => existingUrls.has(row.url) && results.find((result) => result.url === row.url)?.batch !== 2);
+  const overlap = pages.filter((row) => existingUrls.has(row.url) && results.find((result) => result.url === row.url)?.batch !== 3);
   if (overlap.length) throw new Error(`Selection overlaps earlier batch: ${overlap.map((row) => row.url).join(', ')}`);
   function summary(rows) {
     const valid = rows.filter((row) => !row.error && row.recall !== null && row.precision !== null);
@@ -245,9 +263,10 @@ if (process.argv[2] === '--inspect-url') {
     try { result = JSON.parse(child.stdout.trim()); }
     catch { result = { ...entry, error: child.error?.message ?? (child.signal
       ? `Worker killed by ${child.signal}` : `Worker exit ${child.status}: ${child.stderr.slice(-300).trim()}`) }; }
-    results.push({ ...result, batch: 2 });
+    results.push({ ...result, batch: 3 });
     existingUrls.add(entry.url);
     process.stdout.write(`${JSON.stringify(result)}\n`);
-    await writeFile(output, `${JSON.stringify({ measuredAt: previous.measuredAt, batch2MeasuredAt: new Date().toISOString(), summary: summary(results), batch2Summary: summary(results.filter((row) => row.batch === 2)), results }, null, 2)}\n`);
+    await writeFile(output, `${JSON.stringify({ ...previous, batch3MeasuredAt: new Date().toISOString(),
+      summary: summary(results), batch3Summary: summary(results.filter((row) => row.batch === 3)), results }, null, 2)}\n`);
   }
 }

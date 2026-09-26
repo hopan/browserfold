@@ -3,15 +3,15 @@
   "baseline": "post-dispatch-17",
   "baselineProductCommit": "c3fa3e0",
   "summary": {
-    "attempted": 42,
-    "measured": 42,
-    "oracle": 9304,
-    "detected": 8348,
-    "matched": 7825,
-    "meanRecall": 0.9492171992237411,
-    "meanPrecision": 0.9434279413186788,
-    "pooledRecall": 0.8410361134995701,
-    "pooledPrecision": 0.9373502635361763
+    "attempted": 67,
+    "measured": 65,
+    "oracle": 13268,
+    "detected": 12447,
+    "matched": 11684,
+    "meanRecall": 0.9589139051048646,
+    "meanPrecision": 0.9356218768433542,
+    "pooledRecall": 0.8806150135664758,
+    "pooledPrecision": 0.9387000883747088
   },
   "pilotSummary": {
     "attempted": 18,
@@ -3084,6 +3084,1499 @@
       ],
       "falsePositiveExamples": [],
       "batch": 2
+    },
+    {
+      "group": "Form",
+      "url": "https://demoqa.com/text-box",
+      "finalUrl": "https://demoqa.com/text-box",
+      "title": "demosite",
+      "oracle": 15,
+      "detected": 15,
+      "matched": 15,
+      "recall": 1,
+      "precision": 1,
+      "mappedOracle": 15,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [],
+      "falsePositiveExamples": [],
+      "batch": 3
+    },
+    {
+      "group": "Form",
+      "url": "https://demoqa.com/checkbox",
+      "finalUrl": "https://demoqa.com/checkbox",
+      "title": "demosite",
+      "oracle": 11,
+      "detected": 11,
+      "matched": 11,
+      "recall": 1,
+      "precision": 1,
+      "mappedOracle": 11,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [],
+      "falsePositiveExamples": [],
+      "batch": 3
+    },
+    {
+      "group": "Form",
+      "url": "https://laravel.adminlte.io/demo/forms/validation",
+      "finalUrl": "https://laravel.adminlte.io/demo/forms/validation",
+      "title": "AdminLTE 4",
+      "oracle": 52,
+      "detected": 55,
+      "matched": 52,
+      "recall": 1,
+      "precision": 0.9454545454545454,
+      "mappedOracle": 52,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [],
+      "falsePositiveExamples": [
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "California"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Washington"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Tennessee"
+        }
+      ],
+      "batch": 3
+    },
+    {
+      "group": "Form",
+      "url": "https://adminlte.io/themes/v3/pages/forms/editors.html",
+      "finalUrl": "https://adminlte.io/themes/v3/pages/forms/editors.html",
+      "title": "AdminLTE 3 | Editors",
+      "oracle": 61,
+      "detected": 61,
+      "matched": 61,
+      "recall": 1,
+      "precision": 1,
+      "mappedOracle": 61,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [],
+      "falsePositiveExamples": [],
+      "batch": 3
+    },
+    {
+      "group": "Dashboard",
+      "url": "https://laravel.adminlte.io/demo/dashboard-v2",
+      "finalUrl": "https://laravel.adminlte.io/demo/dashboard-v2",
+      "title": "AdminLTE 4",
+      "oracle": 98,
+      "detected": 98,
+      "matched": 98,
+      "recall": 1,
+      "precision": 1,
+      "mappedOracle": 98,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [],
+      "falsePositiveExamples": [],
+      "batch": 3
+    },
+    {
+      "group": "Dashboard",
+      "url": "https://adminlte.io/themes/v3/pages/tables/data.html",
+      "finalUrl": "https://adminlte.io/themes/v3/pages/tables/data.html",
+      "title": "AdminLTE 3 | DataTables",
+      "oracle": 80,
+      "detected": 72,
+      "matched": 72,
+      "recall": 0.9,
+      "precision": 1,
+      "mappedOracle": 80,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [
+        {
+          "id": "bf-oracle-0-44",
+          "tag": "td",
+          "role": null,
+          "label": "Gecko",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "tr",
+            "tbody",
+            "table",
+            "div",
+            "div"
+          ],
+          "html": "<td class=\"dtr-control sorting_1\" tabindex=\"0\" data-bf-oracle-id=\"bf-oracle-0-44\">Gecko</td>"
+        },
+        {
+          "id": "bf-oracle-0-45",
+          "tag": "td",
+          "role": null,
+          "label": "Gecko",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "tr",
+            "tbody",
+            "table",
+            "div",
+            "div"
+          ],
+          "html": "<td class=\"dtr-control sorting_1\" tabindex=\"0\" data-bf-oracle-id=\"bf-oracle-0-45\">Gecko</td>"
+        },
+        {
+          "id": "bf-oracle-0-46",
+          "tag": "td",
+          "role": null,
+          "label": "Gecko",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "tr",
+            "tbody",
+            "table",
+            "div",
+            "div"
+          ],
+          "html": "<td class=\"dtr-control sorting_1\" tabindex=\"0\" data-bf-oracle-id=\"bf-oracle-0-46\">Gecko</td>"
+        },
+        {
+          "id": "bf-oracle-0-47",
+          "tag": "td",
+          "role": null,
+          "label": "Gecko",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "tr",
+            "tbody",
+            "table",
+            "div",
+            "div"
+          ],
+          "html": "<td class=\"dtr-control sorting_1\" tabindex=\"0\" data-bf-oracle-id=\"bf-oracle-0-47\">Gecko</td>"
+        },
+        {
+          "id": "bf-oracle-0-68",
+          "tag": "td",
+          "role": null,
+          "label": "Gecko",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "tr",
+            "tbody",
+            "table",
+            "div",
+            "div"
+          ],
+          "html": "<td class=\"dtr-control sorting_1\" tabindex=\"0\" data-bf-oracle-id=\"bf-oracle-0-68\">Gecko</td>"
+        },
+        {
+          "id": "bf-oracle-0-69",
+          "tag": "td",
+          "role": null,
+          "label": "Gecko",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "tr",
+            "tbody",
+            "table",
+            "div",
+            "div"
+          ],
+          "html": "<td class=\"dtr-control sorting_1\" tabindex=\"0\" data-bf-oracle-id=\"bf-oracle-0-69\">Gecko</td>"
+        },
+        {
+          "id": "bf-oracle-0-70",
+          "tag": "td",
+          "role": null,
+          "label": "Gecko",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "tr",
+            "tbody",
+            "table",
+            "div",
+            "div"
+          ],
+          "html": "<td class=\"dtr-control sorting_1\" tabindex=\"0\" data-bf-oracle-id=\"bf-oracle-0-70\">Gecko</td>"
+        },
+        {
+          "id": "bf-oracle-0-71",
+          "tag": "td",
+          "role": null,
+          "label": "Gecko",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "tr",
+            "tbody",
+            "table",
+            "div",
+            "div"
+          ],
+          "html": "<td class=\"dtr-control sorting_1\" tabindex=\"0\" data-bf-oracle-id=\"bf-oracle-0-71\">Gecko</td>"
+        }
+      ],
+      "falsePositiveExamples": [],
+      "batch": 3
+    },
+    {
+      "group": "Dashboard",
+      "url": "https://adminlte.io/themes/v3/pages/calendar.html",
+      "finalUrl": "https://adminlte.io/themes/v3/pages/calendar.html",
+      "title": "AdminLTE 3 | Calendar",
+      "oracle": 50,
+      "detected": 50,
+      "matched": 50,
+      "recall": 1,
+      "precision": 1,
+      "mappedOracle": 50,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [],
+      "falsePositiveExamples": [],
+      "batch": 3
+    },
+    {
+      "group": "Ecommerce",
+      "url": "https://demowebshop.tricentis.com/electronics",
+      "finalUrl": "https://demowebshop.tricentis.com/electronics",
+      "title": "Demo Web Shop. Electronics",
+      "oracle": 54,
+      "detected": 52,
+      "matched": 52,
+      "recall": 0.9629629629629629,
+      "precision": 1,
+      "mappedOracle": 54,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [
+        {
+          "id": "bf-oracle-0-28",
+          "tag": "a",
+          "role": null,
+          "label": "Camera, photo",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "div",
+            "div",
+            "div",
+            "div"
+          ],
+          "html": "<a href=\"/camera-photo\" title=\"Show products in category Camera, photo\" data-bf-oracle-id=\"bf-oracle-0-28\">\n                                    Camera, photo</a>"
+        },
+        {
+          "id": "bf-oracle-0-30",
+          "tag": "a",
+          "role": null,
+          "label": "Cell phones",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "div",
+            "div",
+            "div",
+            "div"
+          ],
+          "html": "<a href=\"/cell-phones\" title=\"Show products in category Cell phones\" data-bf-oracle-id=\"bf-oracle-0-30\">\n                                    Cell phones</a>"
+        }
+      ],
+      "falsePositiveExamples": [],
+      "batch": 3
+    },
+    {
+      "group": "Ecommerce",
+      "url": "https://demowebshop.tricentis.com/jewelry",
+      "finalUrl": "https://demowebshop.tricentis.com/jewelry",
+      "title": "Demo Web Shop. Jewelry",
+      "oracle": 66,
+      "detected": 72,
+      "matched": 61,
+      "recall": 0.9242424242424242,
+      "precision": 0.8472222222222222,
+      "mappedOracle": 66,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [
+        {
+          "id": "bf-oracle-0-33",
+          "tag": "a",
+          "role": null,
+          "label": "Create Your Own Jewelry",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "div",
+            "div",
+            "div",
+            "div"
+          ],
+          "html": "<a href=\"/create-it-yourself-jewelry\" data-bf-oracle-id=\"bf-oracle-0-33\">Create Your Own Jewelry</a>"
+        },
+        {
+          "id": "bf-oracle-0-36",
+          "tag": "a",
+          "role": null,
+          "label": "Black & White Diamond Heart",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "div",
+            "div",
+            "div",
+            "div"
+          ],
+          "html": "<a href=\"/black-white-diamond-heart\" data-bf-oracle-id=\"bf-oracle-0-36\">Black &amp; White Diamond Heart</a>"
+        },
+        {
+          "id": "bf-oracle-0-39",
+          "tag": "a",
+          "role": null,
+          "label": "Diamond Pave Earrings",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "div",
+            "div",
+            "div",
+            "div"
+          ],
+          "html": "<a href=\"/diamond-pave-earrings\" data-bf-oracle-id=\"bf-oracle-0-39\">Diamond Pave Earrings</a>"
+        },
+        {
+          "id": "bf-oracle-0-41",
+          "tag": "a",
+          "role": null,
+          "label": "Diamond Tennis Bracelet",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "div",
+            "div",
+            "div",
+            "div"
+          ],
+          "html": "<a href=\"/diamond-tennis-bracelet\" data-bf-oracle-id=\"bf-oracle-0-41\">Diamond Tennis Bracelet</a>"
+        },
+        {
+          "id": "bf-oracle-0-43",
+          "tag": "a",
+          "role": null,
+          "label": "Vintage Style Three Stone Diamond Engagement Ring",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "div",
+            "div",
+            "div",
+            "div"
+          ],
+          "html": "<a href=\"/vintage-style-three-stone-diamond-engagement-ring\" data-bf-oracle-id=\"bf-oracle-0-43\">Vintage Style Three Stone Diamond Engagement Ring</a>"
+        }
+      ],
+      "falsePositiveExamples": [
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Grid"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "List"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Position"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Name: A to Z"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Name: Z to A"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Price: Low to High"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Price: High to Low"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Created on"
+        }
+      ],
+      "batch": 3
+    },
+    {
+      "group": "Ecommerce",
+      "url": "https://www.demoblaze.com/prod.html?idp_=2",
+      "finalUrl": "https://www.demoblaze.com/prod.html?idp_=2",
+      "title": "STORE",
+      "oracle": 8,
+      "detected": 8,
+      "matched": 8,
+      "recall": 1,
+      "precision": 1,
+      "mappedOracle": 8,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [],
+      "falsePositiveExamples": [],
+      "batch": 3
+    },
+    {
+      "group": "Modal/dropdown",
+      "url": "https://getbootstrap.com/docs/5.3/components/popovers/",
+      "finalUrl": "https://getbootstrap.com/docs/5.3/components/popovers/",
+      "title": "Popovers · Bootstrap v5.3",
+      "oracle": 224,
+      "detected": 221,
+      "matched": 221,
+      "recall": 0.9866071428571429,
+      "precision": 1,
+      "mappedOracle": 224,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [
+        {
+          "id": "bf-oracle-0-4",
+          "tag": "button",
+          "role": null,
+          "label": "Search (Ctrl+K)",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "div",
+            "div",
+            "nav",
+            "header",
+            "body"
+          ],
+          "html": "<button type=\"button\" aria-label=\"Search (Ctrl+K)\" class=\"DocSearch DocSearch-Button\" data-bf-oracle-id=\"bf-oracle-0-4\"><span class=\"DocSearch-Button-Container\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" aria-hidden=\"true\" class=\"DocSearch-Search-Icon\"><path d=\"M14.386 14.386l4.0877 4.0877-4.08"
+        },
+        {
+          "id": "bf-oracle-0-167",
+          "tag": "a",
+          "role": "button",
+          "label": "Dismissible popover",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "div",
+            "div",
+            "div",
+            "main",
+            "div"
+          ],
+          "html": "<a tabindex=\"0\" class=\"btn btn-lg btn-danger\" role=\"button\" data-bs-toggle=\"popover\" data-bs-trigger=\"focus\" data-bs-title=\"Dismissible popover\" data-bs-content=\"And here’s some amazing content. It’s very engaging. Right?\" data-bf-oracle-id=\"bf-oracle-0-167\">Dismissible popover</a>"
+        },
+        {
+          "id": "bf-oracle-0-171",
+          "tag": "span",
+          "role": null,
+          "label": "Disabled button",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "div",
+            "div",
+            "div",
+            "main",
+            "div"
+          ],
+          "html": "<span class=\"d-inline-block\" tabindex=\"0\" data-bs-toggle=\"popover\" data-bs-trigger=\"hover focus\" data-bs-content=\"Disabled popover\" data-bf-oracle-id=\"bf-oracle-0-171\">\n  <button class=\"btn btn-primary\" type=\"button\" disabled=\"\">Disabled button</button>\n</span>"
+        }
+      ],
+      "falsePositiveExamples": [],
+      "batch": 3
+    },
+    {
+      "group": "Modal/dropdown",
+      "url": "https://getbootstrap.com/docs/5.3/components/navs-tabs/",
+      "finalUrl": "https://getbootstrap.com/docs/5.3/components/navs-tabs/",
+      "title": "Navs and tabs · Bootstrap v5.3",
+      "oracle": 298,
+      "detected": 297,
+      "matched": 297,
+      "recall": 0.9966442953020134,
+      "precision": 1,
+      "mappedOracle": 298,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [
+        {
+          "id": "bf-oracle-0-4",
+          "tag": "button",
+          "role": null,
+          "label": "Search (Ctrl+K)",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "div",
+            "div",
+            "nav",
+            "header",
+            "body"
+          ],
+          "html": "<button type=\"button\" aria-label=\"Search (Ctrl+K)\" class=\"DocSearch DocSearch-Button\" data-bf-oracle-id=\"bf-oracle-0-4\"><span class=\"DocSearch-Button-Container\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" aria-hidden=\"true\" class=\"DocSearch-Search-Icon\"><path d=\"M14.386 14.386l4.0877 4.0877-4.08"
+        }
+      ],
+      "falsePositiveExamples": [],
+      "batch": 3
+    },
+    {
+      "group": "Modal/dropdown",
+      "url": "https://mui.com/material-ui/react-menu/",
+      "finalUrl": "https://mui.com/material-ui/react-menu/",
+      "title": "React Menu component - Material UI",
+      "oracle": 355,
+      "detected": 296,
+      "matched": 296,
+      "recall": 0.8338028169014085,
+      "precision": 1,
+      "mappedOracle": 355,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [
+        {
+          "id": "bf-oracle-0-97",
+          "tag": "a",
+          "role": null,
+          "label": "Introduction",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "div",
+            "div",
+            "div",
+            "main"
+          ],
+          "html": "<a href=\"#introduction\" class=\"title-link-to-anchor\" data-bf-oracle-id=\"bf-oracle-0-97\">Introduction<span class=\"anchor-icon\"><svg><use xlink:href=\"#anchor-link-icon\"></use></svg></span></a>"
+        },
+        {
+          "id": "bf-oracle-0-98",
+          "tag": "button",
+          "role": null,
+          "label": "",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "div",
+            "div",
+            "div",
+            "main"
+          ],
+          "html": "<button title=\"Post a comment\" class=\"comment-link\" data-feedback-hash=\"introduction\" data-bf-oracle-id=\"bf-oracle-0-98\"><svg><use xlink:href=\"#comment-link-icon\"></use></svg></button>"
+        },
+        {
+          "id": "bf-oracle-0-100",
+          "tag": "a",
+          "role": null,
+          "label": "Basic menu",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "div",
+            "div",
+            "div",
+            "main"
+          ],
+          "html": "<a href=\"#basic-menu\" class=\"title-link-to-anchor\" data-bf-oracle-id=\"bf-oracle-0-100\">Basic menu<span class=\"anchor-icon\"><svg><use xlink:href=\"#anchor-link-icon\"></use></svg></span></a>"
+        },
+        {
+          "id": "bf-oracle-0-101",
+          "tag": "button",
+          "role": null,
+          "label": "",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "div",
+            "div",
+            "div",
+            "main"
+          ],
+          "html": "<button title=\"Post a comment\" class=\"comment-link\" data-feedback-hash=\"basic-menu\" data-bf-oracle-id=\"bf-oracle-0-101\"><svg><use xlink:href=\"#comment-link-icon\"></use></svg></button>"
+        },
+        {
+          "id": "bf-oracle-0-113",
+          "tag": "a",
+          "role": null,
+          "label": "Icon menu",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "div",
+            "div",
+            "div",
+            "main"
+          ],
+          "html": "<a href=\"#icon-menu\" class=\"title-link-to-anchor\" data-bf-oracle-id=\"bf-oracle-0-113\">Icon menu<span class=\"anchor-icon\"><svg><use xlink:href=\"#anchor-link-icon\"></use></svg></span></a>"
+        },
+        {
+          "id": "bf-oracle-0-114",
+          "tag": "button",
+          "role": null,
+          "label": "",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "div",
+            "div",
+            "div",
+            "main"
+          ],
+          "html": "<button title=\"Post a comment\" class=\"comment-link\" data-feedback-hash=\"icon-menu\" data-bf-oracle-id=\"bf-oracle-0-114\"><svg><use xlink:href=\"#comment-link-icon\"></use></svg></button>"
+        },
+        {
+          "id": "bf-oracle-0-116",
+          "tag": "li",
+          "role": "menuitem",
+          "label": "Cut⌘X",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "ul[role=menu]",
+            "div",
+            "div",
+            "div",
+            "div"
+          ],
+          "html": "<li class=\"MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters css-1tnbp6m\" tabindex=\"0\" role=\"menuitem\" data-bf-oracle-id=\"bf-oracle-0-116\"><div class=\"MuiListItemIcon-root css-r79hry\"><svg class=\"MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-et91ug\" focusable=\"false\" aria-hidden=\"true\" viewBox="
+        },
+        {
+          "id": "bf-oracle-0-117",
+          "tag": "li",
+          "role": "menuitem",
+          "label": "Copy⌘C",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "ul[role=menu]",
+            "div",
+            "div",
+            "div",
+            "div"
+          ],
+          "html": "<li class=\"MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters css-1tnbp6m\" tabindex=\"-1\" role=\"menuitem\" data-bf-oracle-id=\"bf-oracle-0-117\"><div class=\"MuiListItemIcon-root css-r79hry\"><svg class=\"MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-et91ug\" focusable=\"false\" aria-hidden=\"true\" viewBox"
+        }
+      ],
+      "falsePositiveExamples": [],
+      "batch": 3
+    },
+    {
+      "group": "Custom component",
+      "url": "https://lit.dev/playground/",
+      "finalUrl": "https://lit.dev/playground/",
+      "title": "Playground – Lit",
+      "oracle": 62,
+      "detected": 64,
+      "matched": 61,
+      "recall": 0.9838709677419355,
+      "precision": 0.953125,
+      "mappedOracle": 62,
+      "frameCount": 2,
+      "frameErrors": [],
+      "missingExamples": [
+        {
+          "id": "bf-oracle-0-60",
+          "tag": "div",
+          "role": null,
+          "label": "99123456789101112131415›⌄⌄import {html, css, LitElement} from 'lit';import {customElement, property}",
+          "frameNumber": 0,
+          "inShadow": true,
+          "ancestors": [
+            "playground-code-editor",
+            "playground-file-editor",
+            "div",
+            "div",
+            "div"
+          ],
+          "html": "<div id=\"focusContainer\" tabindex=\"0\" data-bf-oracle-id=\"bf-oracle-0-60\"><slot name=\"extensions\"></slot><!--?lit$704298045$--> <!--?lit$704298045$--><div class=\"cm-editor ͼ1 ͼ2 ͼ4 ͼ5\"><div class=\"cm-announced\" aria-live=\"polite\"></div><div tabindex=\"-1\" class=\"cm-scroller\"><div class=\"cm-gutters cm-"
+        }
+      ],
+      "falsePositiveExamples": [
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "v3"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "v2"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "v1"
+        }
+      ],
+      "batch": 3
+    },
+    {
+      "group": "Custom component",
+      "url": "https://testpages.eviltester.com/pages/web-components/shadow-widget/",
+      "finalUrl": "https://testpages.eviltester.com/pages/web-components/shadow-widget/",
+      "title": "Shadow Dom - Interactive Web components Test Page | Test Pages",
+      "oracle": 98,
+      "detected": 98,
+      "matched": 98,
+      "recall": 1,
+      "precision": 1,
+      "mappedOracle": 98,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [],
+      "falsePositiveExamples": [],
+      "batch": 3
+    },
+    {
+      "group": "Custom component",
+      "url": "https://material-web.dev/components/dialog/",
+      "finalUrl": "https://material-web.dev/components/dialog/",
+      "title": "Material Web - Dialogs",
+      "oracle": 66,
+      "detected": 80,
+      "matched": 64,
+      "recall": 0.9696969696969697,
+      "precision": 0.8,
+      "mappedOracle": 66,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [
+        {
+          "id": "bf-oracle-0-19",
+          "tag": "main",
+          "role": null,
+          "label": "DialogsDialogs provide important prompts in a user flow.Design articleAPI DocumentationSource codeIn",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "nav-drawer",
+            "lit-island",
+            "body",
+            "html"
+          ],
+          "html": "<main id=\"main-content\" slot=\"app-content\" tabindex=\"0\" data-bf-oracle-id=\"bf-oracle-0-19\"><lit-island on:idle=\"\" import=\"/js/hydration-entrypoints/components/dialog.js\"></lit-island><catalog-component-header image-align=\"start\"><catalog-component-header-title slot=\"title\"><h1>Dialogs</h1><p><a href"
+        },
+        {
+          "id": "bf-oracle-0-54",
+          "tag": "a",
+          "role": "listitem",
+          "label": "",
+          "frameNumber": 0,
+          "inShadow": true,
+          "ancestors": [
+            "md-list-item[role=menuitem]",
+            "md-list[role=menubar]",
+            "nav-drawer",
+            "lit-island",
+            "body"
+          ],
+          "html": "<a id=\"item\" tabindex=\"0\" role=\"listitem\" class=\"list-item   \" href=\"/components/dialog/\" data-bf-oracle-id=\"bf-oracle-0-54\"><!--lit-part rx9tpDvuboA=-->\n      <!--lit-node 0--><md-item>\n        <div slot=\"container\">\n          <!--lit-part B0/p55vP+B4=--> <!--lit-node 0--><md-ripple part=\"ripple\" f"
+        }
+      ],
+      "falsePositiveExamples": [
+        {
+          "tag": "a",
+          "role": "link",
+          "name": "Skip to main content"
+        },
+        {
+          "tag": "a",
+          "role": "link",
+          "name": "Link to “Interactive Demo”"
+        },
+        {
+          "tag": "button",
+          "role": "button"
+        },
+        {
+          "tag": "a",
+          "role": "link",
+          "name": "Link to “Usage”"
+        },
+        {
+          "tag": "a",
+          "role": "link",
+          "name": "Link to “Opening and closing”"
+        },
+        {
+          "tag": "a",
+          "role": "link",
+          "name": "Link to “Return value”"
+        },
+        {
+          "tag": "a",
+          "role": "link",
+          "name": "Link to “Accessibility”"
+        },
+        {
+          "tag": "a",
+          "role": "link",
+          "name": "Link to “Alerts”"
+        }
+      ],
+      "batch": 3
+    },
+    {
+      "group": "Iframe",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/object",
+      "finalUrl": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/object",
+      "title": "<object> HTML external object element - HTML | MDN",
+      "oracle": 579,
+      "detected": 686,
+      "matched": 568,
+      "recall": 0.9810017271157168,
+      "precision": 0.8279883381924198,
+      "mappedOracle": 579,
+      "frameCount": 4,
+      "frameErrors": [],
+      "missingExamples": [
+        {
+          "id": "bf-oracle-0-16",
+          "tag": "a",
+          "role": null,
+          "label": "",
+          "frameNumber": 0,
+          "inShadow": true,
+          "ancestors": [
+            "mdn-button",
+            "mdn-user-menu",
+            "div",
+            "nav",
+            "header"
+          ],
+          "html": "<a class=\"button\" part=\"button\" href=\"https://developer.mozilla.org/users/fxa/login/authenticate/?next=%2Fen-US%2Fdocs%2FWeb%2FHTML%2FReference%2FElements%2Fobject\" aria-labelledby=\"label-v598o37fru\" data-variant=\"plain\" data-bf-oracle-id=\"bf-oracle-0-16\">\n          <!--?lit$970284232$--><!----><spa"
+        },
+        {
+          "id": "bf-oracle-0-38",
+          "tag": "a",
+          "role": null,
+          "label": "Try it",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "section",
+            "div",
+            "main",
+            "div"
+          ],
+          "html": "<a class=\"heading-anchor\" href=\"#try_it\" data-bf-oracle-id=\"bf-oracle-0-38\">Try it</a>"
+        },
+        {
+          "id": "bf-oracle-0-42",
+          "tag": "div",
+          "role": "textbox",
+          "label": "<object  type=\"video/mp4\"  data=\"/shared-assets/videos/flower.mp4\"  width=\"250\"  height=\"200\"></obje",
+          "frameNumber": 0,
+          "inShadow": true,
+          "ancestors": [
+            "div",
+            "div",
+            "div",
+            "mdn-play-editor",
+            "mdn-ix-tab-panel[role=tabpanel]"
+          ],
+          "html": "<div spellcheck=\"false\" autocorrect=\"off\" autocapitalize=\"off\" writingsuggestions=\"false\" translate=\"no\" contenteditable=\"true\" style=\"tab-size: 4;\" class=\"cm-content cm-lineWrapping\" role=\"textbox\" aria-multiline=\"true\" data-language=\"html\" data-bf-oracle-id=\"bf-oracle-0-42\"><div class=\"cm-line cm-"
+        },
+        {
+          "id": "bf-oracle-0-43",
+          "tag": "a",
+          "role": null,
+          "label": "Attributes",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "section",
+            "div",
+            "main",
+            "div"
+          ],
+          "html": "<a class=\"heading-anchor\" href=\"#attributes\" data-bf-oracle-id=\"bf-oracle-0-43\">Attributes</a>"
+        },
+        {
+          "id": "bf-oracle-0-69",
+          "tag": "a",
+          "role": null,
+          "label": "Usage notes",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "section",
+            "div",
+            "main",
+            "div"
+          ],
+          "html": "<a class=\"heading-anchor\" href=\"#usage_notes\" data-bf-oracle-id=\"bf-oracle-0-69\">Usage notes</a>"
+        },
+        {
+          "id": "bf-oracle-0-72",
+          "tag": "a",
+          "role": null,
+          "label": "Examples",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "section",
+            "div",
+            "main",
+            "div"
+          ],
+          "html": "<a class=\"heading-anchor\" href=\"#examples\" data-bf-oracle-id=\"bf-oracle-0-72\">Examples</a>"
+        },
+        {
+          "id": "bf-oracle-0-73",
+          "tag": "a",
+          "role": null,
+          "label": "Embed a video",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h3",
+            "section",
+            "div",
+            "main",
+            "div"
+          ],
+          "html": "<a class=\"heading-anchor\" href=\"#embed_a_video\" data-bf-oracle-id=\"bf-oracle-0-73\">Embed a video</a>"
+        },
+        {
+          "id": "bf-oracle-0-78",
+          "tag": "a",
+          "role": null,
+          "label": "Technical summary",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "section",
+            "div",
+            "main",
+            "div"
+          ],
+          "html": "<a class=\"heading-anchor\" href=\"#technical_summary\" data-bf-oracle-id=\"bf-oracle-0-78\">Technical summary</a>"
+        }
+      ],
+      "falsePositiveExamples": [
+        {
+          "tag": "a",
+          "role": "link",
+          "name": "Otari Meet Otari, the open source LLM Control Plane that helps developers control LLM infrastructure"
+        },
+        {
+          "tag": "a",
+          "name": "HTML: Markup language"
+        },
+        {
+          "tag": "a",
+          "name": "Elements"
+        },
+        {
+          "tag": "a",
+          "name": "Global attributes"
+        },
+        {
+          "tag": "a",
+          "name": "Attributes"
+        },
+        {
+          "tag": "a",
+          "name": "See all…"
+        },
+        {
+          "tag": "a",
+          "name": "Responsive images"
+        },
+        {
+          "tag": "a",
+          "name": "HTML cheatsheet"
+        }
+      ],
+      "batch": 3
+    },
+    {
+      "group": "Simple",
+      "url": "https://www.gnu.org/philosophy/free-sw.html",
+      "error": "page.goto: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://www.gnu.org/philosophy/free-sw.html\", waiting until \"domcontentloaded\"\u001b[22m\n",
+      "batch": 3
+    },
+    {
+      "group": "Simple",
+      "url": "https://www.w3.org/TR/WCAG22/",
+      "finalUrl": "https://www.w3.org/TR/WCAG22/",
+      "title": "Web Content Accessibility Guidelines (WCAG) 2.2",
+      "oracle": 1149,
+      "detected": 1150,
+      "matched": 1149,
+      "recall": 1,
+      "precision": 0.9991304347826087,
+      "mappedOracle": 1149,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [],
+      "falsePositiveExamples": [
+        {
+          "tag": "a",
+          "role": "link",
+          "name": "Jump to Table of Contents"
+        }
+      ],
+      "batch": 3
+    },
+    {
+      "group": "Simple",
+      "url": "https://www.sqlite.org/lang_select.html",
+      "finalUrl": "https://www.sqlite.org/lang_select.html",
+      "title": "SELECT",
+      "oracle": 155,
+      "detected": 155,
+      "matched": 155,
+      "recall": 1,
+      "precision": 1,
+      "mappedOracle": 155,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [],
+      "falsePositiveExamples": [],
+      "batch": 3
+    },
+    {
+      "group": "SPA",
+      "url": "https://github.com/vuejs/core",
+      "finalUrl": "https://github.com/vuejs/core",
+      "title": "GitHub - vuejs/core: 🖖 Vue.js is a progressive, incrementally-adoptable JavaScript framework for building UI on the web. · GitHub",
+      "oracle": 195,
+      "detected": 197,
+      "matched": 188,
+      "recall": 0.9641025641025641,
+      "precision": 0.9543147208121827,
+      "mappedOracle": 195,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [
+        {
+          "id": "bf-oracle-0-15",
+          "tag": "button",
+          "role": null,
+          "label": "Sponsor vuejs/core",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "show-dialog-on-load",
+            "li",
+            "ul",
+            "div",
+            "div"
+          ],
+          "html": "<button id=\"dialog-show-funding-links-modal-vuejs-core\" aria-label=\"Sponsor vuejs/core\" data-show-dialog-id=\"funding-links-modal-vuejs-core\" type=\"button\" data-view-component=\"true\" class=\"Button--secondary Button--small Button\" data-bf-oracle-id=\"bf-oracle-0-15\">  <span class=\"Button-content\">\n    "
+        },
+        {
+          "id": "bf-oracle-0-16",
+          "tag": "a",
+          "role": null,
+          "label": "You must be signed in to change notification settings",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "li",
+            "ul",
+            "div",
+            "div",
+            "div"
+          ],
+          "html": "<a href=\"/login?return_to=%2Fvuejs%2Fcore\" rel=\"nofollow\" id=\"repository-details-watch-button\" data-hydro-click=\"{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;notification subscription menu watch&quot;,&quot;repository_id&quot;:null,"
+        },
+        {
+          "id": "bf-oracle-0-17",
+          "tag": "a",
+          "role": null,
+          "label": "Fork\n    9.2k",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "li",
+            "ul",
+            "div",
+            "div",
+            "div"
+          ],
+          "html": "<a icon=\"repo-forked\" id=\"fork-button\" href=\"/login?return_to=%2Fvuejs%2Fcore\" rel=\"nofollow\" data-hydro-click=\"{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;repo details fork button&quot;,&quot;repository_id&quot;:137078487,&quot;au"
+        },
+        {
+          "id": "bf-oracle-0-18",
+          "tag": "a",
+          "role": null,
+          "label": "You must be signed in to star a repository",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "div",
+            "li",
+            "ul",
+            "div",
+            "div"
+          ],
+          "html": "<a href=\"/login?return_to=%2Fvuejs%2Fcore\" rel=\"nofollow\" data-hydro-click=\"{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;star button&quot;,&quot;repository_id&quot;:137078487,&quot;auth_type&quot;:&quot;LOG_IN&quot;,&quot;originatin"
+        },
+        {
+          "id": "bf-oracle-0-27",
+          "tag": "div",
+          "role": null,
+          "label": "main64 Branches301 TagsGo to fileCodeOpen more actions menuLatest commitedison1105fix(suspense): ski",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "div",
+            "div",
+            "div",
+            "div",
+            "div"
+          ],
+          "html": "<div class=\"SharedPageLayout-module__content__IwGAp\" data-selector=\"repos-split-pane-content\" id=\"repos-split-pane-content\" tabindex=\"0\" data-bf-oracle-id=\"bf-oracle-0-27\"><div class=\"prc-PageLayout-PageLayoutRoot--KH-d container-xl\" data-component=\"SplitPageLayout\" style=\"--spacing: var(--spacing-n"
+        },
+        {
+          "id": "bf-oracle-0-158",
+          "tag": "a",
+          "role": null,
+          "label": "Releases",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "span",
+            "h2",
+            "div",
+            "div",
+            "div"
+          ],
+          "html": "<a class=\"SidebarSection-module__headingLink__H7omT prc-Link-Link-9ZwDx\" data-component=\"Link\" data-muted=\"true\" href=\"/vuejs/core/releases\" data-discover=\"true\" data-bf-oracle-id=\"bf-oracle-0-158\"><span>Releases</span></a>"
+        },
+        {
+          "id": "bf-oracle-0-166",
+          "tag": "a",
+          "role": null,
+          "label": "Contributors",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "span",
+            "h2",
+            "div",
+            "div",
+            "div"
+          ],
+          "html": "<a class=\"SidebarSection-module__headingLink__H7omT prc-Link-Link-9ZwDx\" data-component=\"Link\" data-muted=\"true\" href=\"/vuejs/core/graphs/contributors\" data-discover=\"true\" data-bf-oracle-id=\"bf-oracle-0-166\"><span>Contributors</span></a>"
+        }
+      ],
+      "falsePositiveExamples": [
+        {
+          "tag": "a",
+          "role": "link",
+          "name": "Permalink: vuejs/core "
+        },
+        {
+          "tag": "a",
+          "role": "link",
+          "name": "Permalink: Getting Started"
+        },
+        {
+          "tag": "a",
+          "role": "link",
+          "name": "Permalink: Sponsors"
+        },
+        {
+          "tag": "a",
+          "role": "link",
+          "name": "Permalink: Special Sponsor"
+        },
+        {
+          "tag": "a",
+          "role": "link",
+          "name": "Permalink: Questions"
+        },
+        {
+          "tag": "a",
+          "role": "link",
+          "name": "Permalink: Issues"
+        },
+        {
+          "tag": "a",
+          "role": "link",
+          "name": "Permalink: Stay In Touch"
+        },
+        {
+          "tag": "a",
+          "role": "link",
+          "name": "Permalink: Contribution"
+        }
+      ],
+      "batch": 3
+    },
+    {
+      "group": "SPA",
+      "url": "https://app.diagrams.net/",
+      "finalUrl": "https://app.diagrams.net/",
+      "title": "draw.io",
+      "oracle": 1,
+      "detected": 4,
+      "matched": 1,
+      "recall": 1,
+      "precision": 0.25,
+      "mappedOracle": 1,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [],
+      "falsePositiveExamples": [
+        {
+          "tag": "input",
+          "role": "textbox",
+          "name": "Type / to search"
+        },
+        {
+          "tag": "button",
+          "role": "button",
+          "name": "+ More Shapes"
+        },
+        {
+          "tag": "a",
+          "role": "link",
+          "name": "jgraph/drawio"
+        }
+      ],
+      "batch": 3
+    },
+    {
+      "group": "SPA",
+      "url": "https://angular.dev/tutorials/first-app",
+      "error": "cdpSession.send: Protocol error (DOM.describeNode): Could not find node with given id",
+      "batch": 3
+    },
+    {
+      "group": "Simple",
+      "url": "https://docs.python.org/3/tutorial/controlflow.html",
+      "finalUrl": "https://docs.python.org/3/tutorial/controlflow.html",
+      "title": "4. More Control Flow Tools — Python 3.14.7 documentation",
+      "oracle": 123,
+      "detected": 197,
+      "matched": 121,
+      "recall": 0.983739837398374,
+      "precision": 0.6142131979695431,
+      "mappedOracle": 123,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [
+        {
+          "id": "bf-oracle-0-20",
+          "tag": "a",
+          "role": null,
+          "label": "range()",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "section",
+            "section",
+            "div[role=main]",
+            "div"
+          ],
+          "html": "<a class=\"reference internal\" href=\"../builtins/stdtypes.html#range\" title=\"range\" data-bf-oracle-id=\"bf-oracle-0-20\"><code class=\"xref py py-func docutils literal notranslate\"><span class=\"pre\">range()</span></code></a>"
+        },
+        {
+          "id": "bf-oracle-0-76",
+          "tag": "a",
+          "role": null,
+          "label": "Table of Contents",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h3",
+            "div",
+            "div",
+            "div[role=navigation]",
+            "div"
+          ],
+          "html": "<a href=\"../contents.html\" data-bf-oracle-id=\"bf-oracle-0-76\">Table of Contents</a>"
+        }
+      ],
+      "falsePositiveExamples": [
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "German | Deutsch"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Greek | Ελληνικά"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "English"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Spanish | español"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Persian | فارسی"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "French | français"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Italian | italiano"
+        },
+        {
+          "tag": "option",
+          "role": "option",
+          "name": "Japanese | 日本語"
+        }
+      ],
+      "batch": 3
+    },
+    {
+      "group": "SPA",
+      "url": "https://github.com/microsoft/TypeScript/issues",
+      "finalUrl": "https://github.com/microsoft/TypeScript/issues",
+      "title": "Issues · microsoft/TypeScript · GitHub",
+      "oracle": 164,
+      "detected": 160,
+      "matched": 160,
+      "recall": 0.975609756097561,
+      "precision": 1,
+      "mappedOracle": 164,
+      "frameCount": 0,
+      "frameErrors": [],
+      "missingExamples": [
+        {
+          "id": "bf-oracle-0-15",
+          "tag": "a",
+          "role": null,
+          "label": "You must be signed in to change notification settings",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "li",
+            "ul",
+            "div",
+            "div",
+            "div"
+          ],
+          "html": "<a href=\"/login?return_to=%2Fmicrosoft%2FTypeScript\" rel=\"nofollow\" id=\"repository-details-watch-button\" data-hydro-click=\"{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;notification subscription menu watch&quot;,&quot;repository_id&q"
+        },
+        {
+          "id": "bf-oracle-0-16",
+          "tag": "a",
+          "role": null,
+          "label": "Fork\n    15k",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "li",
+            "ul",
+            "div",
+            "div",
+            "div"
+          ],
+          "html": "<a icon=\"repo-forked\" id=\"fork-button\" href=\"/login?return_to=%2Fmicrosoft%2FTypeScript\" rel=\"nofollow\" data-hydro-click=\"{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;repo details fork button&quot;,&quot;repository_id&quot;:20929025"
+        },
+        {
+          "id": "bf-oracle-0-17",
+          "tag": "a",
+          "role": null,
+          "label": "You must be signed in to star a repository",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "div",
+            "li",
+            "ul",
+            "div",
+            "div"
+          ],
+          "html": "<a href=\"/login?return_to=%2Fmicrosoft%2FTypeScript\" rel=\"nofollow\" data-hydro-click=\"{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;star button&quot;,&quot;repository_id&quot;:20929025,&quot;auth_type&quot;:&quot;LOG_IN&quot;,&quot;o"
+        },
+        {
+          "id": "bf-oracle-0-51",
+          "tag": "li",
+          "role": "listitem",
+          "label": "[LSP] Memory of configured projects is never released, even after didClose of all files — ~70 MB ret",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "div",
+            "div",
+            "ul[role=list]",
+            "div",
+            "div"
+          ],
+          "html": "<li id=\"_r_5_-list-view-node-_r_r_\" class=\"ListItem-module__listItem__wBJcm\" tabindex=\"0\" aria-label=\"[LSP] Memory of configured projects is never released, even after didClose of all files — ~70 MB retained per project (7.0.2 and 7.1.0-dev.20260926.1): Status: Open. #64463&nbsp;In microsoft/TypeScr"
+        }
+      ],
+      "falsePositiveExamples": [],
+      "batch": 3
     }
-  ]
+  ],
+  "batch3MeasuredAt": "2026-09-26T09:39:07.109Z",
+  "batch3Summary": {
+    "attempted": 25,
+    "measured": 23,
+    "oracle": 3964,
+    "detected": 4099,
+    "matched": 3859,
+    "meanRecall": 0.976620933235612,
+    "meanPrecision": 0.9213673243231966,
+    "pooledRecall": 0.9735116044399597,
+    "pooledPrecision": 0.9414491339351061
+  }
 }
