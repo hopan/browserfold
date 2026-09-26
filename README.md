@@ -36,6 +36,8 @@ The full output also begins with a `PAGE` section containing the URL and title. 
 
 In the recorded real page corpus, 103 distinct URLs were attempted and 89 usable samples contributed to the token ratio. Snapshot text used **3.41%** of raw DOM tokens in aggregate; the mean ratio per page was **5.38%**. These are ratios from a regex based token estimate, not a model tokenizer, and they do not establish semantic coverage. The fixed two page acceptance fixture remains at **24.84%**, above the specification's 10% MVP target, so overall MVP acceptance is still open. See the [corpus report](docs/CORPUS_REPORT.md) for methods, exclusions, and limits, and the [specification](docs/SPEC.md) and [progress log](docs/PROGRESS.md) for scope and test history.
 
+Actionable recall and precision were measurable on **87/89 URLs** under the prior recall accounting (**86/89 representative token-ratio samples**; the additional Lit tutorial is not representative). Across the 87 measured URLs, the per-page mean was **95.90% recall** and **93.84% precision**; pooling elements gave **21,502/24,708 = 87.02% recall** and **21,502/22,480 = 95.65% precision**. The corpus does **not meet both SPEC thresholds together under either calculation** (recall at least 95% and false interactive below 5%, equivalent to precision above 95%). Measurement uncovered and fixed two real bugs in shadow root traversal and alert rendering; see the [corpus report](docs/CORPUS_REPORT.md) for per-page misses, causes, and full details.
+
 The reusable corpus data and measurement script are in [`corpus/`](corpus/). They load public web pages and are intentionally outside CI.
 
 ## License
