@@ -119,7 +119,6 @@ Hoàn tất. Test: `tests/serialize/text.test.ts`; code: `src/serialize/text.ts`
 
 ## Dispatch sau
 
-12. JSON debug output.
 13. Automated tests cho toàn MVP và các tiêu chí chấp nhận (token ratio, recall, precision, determinism).
 
 ## Dispatch 4 — item 10–12
@@ -137,6 +136,13 @@ Hoàn tất. Test: `tests/cli/index.test.ts`; code: `src/cli/index.ts`, `package
 
 - Red: `npm test -- tests/cli/index.test.ts` — fail (exit 1), thiếu module `src/cli/index.js`.
 - Green: cùng lệnh — pass, 1 file / 1 test với Chromium thật; `capture URL` xuất text ra stdout, `-o` ghi file. CLI có đường CDP với `--page`, parser lỗi đầu vào rõ ràng và bin `browserfold`.
+
+### Item 12 — JSON debug output
+
+Hoàn tất. Test: `tests/serialize/json.test.ts`; code: `src/serialize/json.ts`, `src/cli/index.ts`.
+
+- Red: `npm test -- tests/serialize/json.test.ts` — fail (1 test), CLI báo `JSON output is not yet available`.
+- Green: cùng lệnh — pass, 1 file / 1 test với Chromium thật; `--format json` xuất page metadata, toàn bộ cây semantic node (kể cả node ẩn/không được giữ trong text compact), frame context, source và các quan hệ control/content.
 
 ## Sai khác với SPEC.md — dispatch 4
 

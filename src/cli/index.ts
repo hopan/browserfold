@@ -7,7 +7,9 @@ import { capturePage } from '../extract/accessibility.js';
 import { mergeSemanticNodes } from '../semantic/merger.js';
 import { generateSemanticIds } from '../semantic/identity.js';
 import { buildContentStructure } from '../semantic/structure.js';
+import { linkControlContent } from '../semantic/relationships.js';
 import { serializeText } from '../serialize/text.js';
+import { serializeJson } from '../serialize/json.js';
 
 export interface CliOutput { write(text: string): void }
 
@@ -54,13 +56,14 @@ function required(args: string[], option: string): string {
 
 export async function runCli(args: string[], output: CliOutput = process.stdout): Promise<number> {
   const options = parseArgs([...args]);
-  if (options.format === 'json') throw new Error('JSON output is not yet available');
   const session = options.cdp ? await attachCdp(options.cdp, options.page) : await launchUrl(options.url!);
   try {
     const page = await capturePage(session.page);
     const nodes = generateSemanticIds(mergeSemanticNodes(page));
     const roots = buildContentStructure(nodes);
-    const snapshot = serializeText(page, roots);
+    const snapshot = options.format === 'json'
+      ? serializeJson(page, nodes, linkControlContent(nodes))
+      : serializeText(page, roots);
     if (options.output) await writeFile(options.output, snapshot, 'utf8');
     else output.write(snapshot);
     return 0;
