@@ -97,6 +97,22 @@ const pages = [
   { batch: 4, group: 'Custom component', url: 'https://material-web.dev/components/dialog/' },
   { batch: 4, group: 'Iframe', url: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/object' },
   { batch: 4, group: 'Iframe', url: 'https://the-internet.herokuapp.com/tinymce' },
+  { batch: 5, group: 'Simple', url: 'https://en.wikipedia.org/wiki/Graph_theory' },
+  { batch: 5, group: 'Simple', url: 'https://docs.python.org/3/tutorial/controlflow.html' },
+  { batch: 5, group: 'Simple', url: 'https://www.gnu.org/licenses/gpl-3.0.html' },
+  { batch: 5, group: 'Simple', url: 'https://www.rfc-editor.org/rfc/rfc9110.html' },
+  { batch: 5, group: 'Simple', url: 'https://lobste.rs/' },
+  { batch: 5, group: 'Simple', url: 'https://requests.readthedocs.io/en/latest/user/quickstart/' },
+  { batch: 5, group: 'SPA', url: 'https://gitlab.com/inkscape/inkscape' },
+  { batch: 5, group: 'SPA', url: 'https://angular.dev/tutorials/first-app' },
+  { batch: 5, group: 'SPA', url: 'https://huggingface.co/spaces/gradio/hello_world' },
+  { batch: 5, group: 'SPA', url: 'https://stackblitz.com/edit/angular-ivy?file=src%2Fapp%2Fapp.component.ts' },
+  { batch: 5, group: 'Dashboard', url: 'https://adminlte.io/themes/v3/pages/calendar.html' },
+  { batch: 5, group: 'Ecommerce', url: 'https://demowebshop.tricentis.com/computers' },
+  { batch: 5, group: 'Form', url: 'https://adminlte.io/themes/v3/pages/forms/editors.html' },
+  { batch: 5, group: 'Modal/dropdown', url: 'https://getbootstrap.com/docs/5.3/components/toasts/' },
+  { batch: 5, group: 'Simple', url: 'https://www.fsf.org/about/what-is-free-software' },
+  { batch: 5, group: 'SPA', url: 'https://github.com/facebook/react/issues' },
 ];
 
 if (new Set(pages.map((page) => page.url)).size !== pages.length) {
@@ -184,6 +200,9 @@ if (process.argv[2] === '--worker') {
       }),
       ...(results.some((row) => row.batch === 4) && {
         batch4MeasuredAt: existing?.batch4MeasuredAt ?? new Date().toISOString(),
+      }),
+      ...(results.some((row) => row.batch === 5) && {
+        batch5MeasuredAt: existing?.batch5MeasuredAt ?? new Date().toISOString(),
       }),
       method: 'Chromium page.content() before capturePage; same page; 1200ms stabilization; Unicode regex from tests/acceptance.test.ts',
       results,
