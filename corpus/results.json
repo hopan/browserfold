@@ -1,0 +1,246 @@
+{
+  "measuredAt": "2026-09-26T06:58:43.523Z",
+  "method": "Chromium page.content() before capturePage; same page; 1200ms stabilization; Unicode regex from tests/acceptance.test.ts",
+  "results": [
+    {
+      "group": "Simple",
+      "url": "https://example.com/",
+      "finalUrl": "https://example.com/",
+      "title": "Example Domain",
+      "rawTokens": 215,
+      "snapshotTokens": 35,
+      "ratio": 0.16279069767441862,
+      "htmlBytes": 559,
+      "frameCount": 0,
+      "snapshotChars": 136
+    },
+    {
+      "group": "Simple",
+      "url": "https://en.wikipedia.org/wiki/HTML",
+      "finalUrl": "https://en.wikipedia.org/wiki/HTML",
+      "title": "HTML - Wikipedia",
+      "rawTokens": 409236,
+      "snapshotTokens": 11330,
+      "ratio": 0.027685736347730895,
+      "htmlBytes": 1069987,
+      "frameCount": 0,
+      "snapshotChars": 48020
+    },
+    {
+      "group": "Simple",
+      "url": "https://www.paulgraham.com/startupideas.html",
+      "finalUrl": "https://www.paulgraham.com/startupideas.html",
+      "title": "How to Get Startup Ideas",
+      "rawTokens": 13704,
+      "snapshotTokens": 399,
+      "ratio": 0.029115586690017514,
+      "htmlBytes": 51911,
+      "frameCount": 0,
+      "snapshotChars": 1634
+    },
+    {
+      "group": "Simple",
+      "url": "https://motherfuckingwebsite.com/",
+      "finalUrl": "https://motherfuckingwebsite.com/",
+      "title": "Motherfucking Website",
+      "rawTokens": 1325,
+      "snapshotTokens": 222,
+      "ratio": 0.16754716981132076,
+      "htmlBytes": 5105,
+      "frameCount": 0,
+      "snapshotChars": 985
+    },
+    {
+      "group": "SPA",
+      "url": "https://github.com/microsoft/playwright",
+      "finalUrl": "https://github.com/microsoft/playwright",
+      "title": "GitHub - microsoft/playwright: Playwright is a framework for Web Testing and Automation. It allows testing Chromium, Firefox and WebKit with a single API. · GitHub",
+      "rawTokens": 177853,
+      "snapshotTokens": 4781,
+      "ratio": 0.026881750659252305,
+      "htmlBytes": 501772,
+      "frameCount": 0,
+      "snapshotChars": 19858
+    },
+    {
+      "group": "SPA",
+      "url": "https://vuejs.org/examples/#hello-world",
+      "finalUrl": "https://vuejs.org/examples/#hello-world",
+      "title": "Examples | Vue.js",
+      "rawTokens": 46359,
+      "snapshotTokens": 476,
+      "ratio": 0.010267693436010267,
+      "htmlBytes": 105691,
+      "frameCount": 2,
+      "snapshotChars": 1997
+    },
+    {
+      "group": "SPA",
+      "url": "https://react.dev/learn",
+      "finalUrl": "https://react.dev/learn",
+      "error": "HTTP 403"
+    },
+    {
+      "group": "Dashboard",
+      "url": "https://adminlte.io/themes/v3/index.html",
+      "finalUrl": "https://adminlte.io/themes/v3/index.html",
+      "title": "AdminLTE 3 | Dashboard",
+      "rawTokens": 62559,
+      "snapshotTokens": 1060,
+      "ratio": 0.016944004859412713,
+      "htmlBytes": 143271,
+      "frameCount": 0,
+      "snapshotChars": 4381
+    },
+    {
+      "group": "Dashboard",
+      "url": "https://preview.tabler.io/",
+      "finalUrl": "https://preview.tabler.io/",
+      "title": "Dashboard - Tabler - Premium and Open Source dashboard template with responsive and high quality UI.",
+      "rawTokens": 335836,
+      "snapshotTokens": 1453,
+      "ratio": 0.004326516514012792,
+      "htmlBytes": 978335,
+      "frameCount": 0,
+      "snapshotChars": 6404
+    },
+    {
+      "group": "Ecommerce",
+      "url": "https://demowebshop.tricentis.com/build-your-own-computer",
+      "finalUrl": "https://demowebshop.tricentis.com/build-your-own-computer",
+      "title": "Demo Web Shop. Build your own computer",
+      "rawTokens": 10757,
+      "snapshotTokens": 1255,
+      "ratio": 0.11666821604536581,
+      "htmlBytes": 44543,
+      "frameCount": 0,
+      "snapshotChars": 5267
+    },
+    {
+      "group": "Ecommerce",
+      "url": "https://magento.softwaretestingboard.com/gear/bags.html",
+      "finalUrl": "https://magento.softwaretestingboard.com/gear/bags.html",
+      "error": "HTTP 526"
+    },
+    {
+      "group": "Form",
+      "url": "https://getbootstrap.com/docs/5.3/examples/checkout/",
+      "finalUrl": "https://getbootstrap.com/docs/5.3/examples/checkout/",
+      "title": "Checkout example · Bootstrap v5.3",
+      "rawTokens": 5362,
+      "snapshotTokens": 394,
+      "ratio": 0.07348004475941813,
+      "htmlBytes": 13543,
+      "frameCount": 0,
+      "snapshotChars": 1755
+    },
+    {
+      "group": "Form",
+      "url": "https://demoqa.com/automation-practice-form",
+      "finalUrl": "https://demoqa.com/automation-practice-form",
+      "title": "demosite",
+      "rawTokens": 17571,
+      "snapshotTokens": 228,
+      "ratio": 0.012975926242103466,
+      "htmlBytes": 41663,
+      "frameCount": 0,
+      "snapshotChars": 944
+    },
+    {
+      "group": "Modal/dropdown",
+      "url": "https://getbootstrap.com/docs/5.3/components/modal/",
+      "finalUrl": "https://getbootstrap.com/docs/5.3/components/modal/",
+      "title": "Modal · Bootstrap v5.3",
+      "rawTokens": 80866,
+      "snapshotTokens": 3658,
+      "ratio": 0.04523532757895778,
+      "htmlBytes": 216508,
+      "frameCount": 0,
+      "snapshotChars": 16614
+    },
+    {
+      "group": "Modal/dropdown",
+      "url": "https://getbootstrap.com/docs/5.3/components/dropdowns/",
+      "finalUrl": "https://getbootstrap.com/docs/5.3/components/dropdowns/",
+      "title": "Dropdowns · Bootstrap v5.3",
+      "rawTokens": 150391,
+      "snapshotTokens": 4335,
+      "ratio": 0.028824863189951526,
+      "htmlBytes": 404744,
+      "frameCount": 0,
+      "snapshotChars": 19831
+    },
+    {
+      "group": "Iframe",
+      "url": "https://the-internet.herokuapp.com/iframe",
+      "finalUrl": "https://the-internet.herokuapp.com/iframe",
+      "title": "The Internet",
+      "rawTokens": 5977,
+      "snapshotTokens": 205,
+      "ratio": 0.034298142881044005,
+      "htmlBytes": 14146,
+      "frameCount": 1,
+      "snapshotChars": 976
+    },
+    {
+      "group": "Iframe",
+      "url": "https://the-internet.herokuapp.com/nested_frames",
+      "finalUrl": "https://the-internet.herokuapp.com/nested_frames",
+      "error": "cdpSession.send: Protocol error (DOM.describeNode): Could not find node with given id"
+    },
+    {
+      "group": "Custom component",
+      "url": "https://shoelace.style/components/input",
+      "finalUrl": "https://shoelace.style/components/input",
+      "error": "HTTP 403"
+    },
+    {
+      "group": "Custom component",
+      "url": "https://shoelace.style/components/dialog",
+      "finalUrl": "https://shoelace.style/components/dialog",
+      "error": "HTTP 403"
+    },
+    {
+      "group": "SPA",
+      "url": "https://svelte.dev/repl/hello-world",
+      "finalUrl": "https://svelte.dev/repl/hello-world",
+      "error": "HTTP 403"
+    },
+    {
+      "group": "Ecommerce",
+      "url": "https://www.demoblaze.com/prod.html?idp_=1",
+      "finalUrl": "https://www.demoblaze.com/prod.html?idp_=1",
+      "title": "STORE",
+      "rawTokens": 13243,
+      "snapshotTokens": 188,
+      "ratio": 0.01419617911349392,
+      "htmlBytes": 47008,
+      "frameCount": 0,
+      "snapshotChars": 773
+    },
+    {
+      "group": "Custom component",
+      "url": "https://lit.dev/tutorials/content/intro-to-lit/00/",
+      "finalUrl": "https://lit.dev/tutorials/content/intro-to-lit/00/",
+      "title": "",
+      "rawTokens": 929,
+      "snapshotTokens": 34,
+      "ratio": 0.03659849300322928,
+      "htmlBytes": 2844,
+      "frameCount": 0,
+      "snapshotChars": 109
+    },
+    {
+      "group": "Custom component",
+      "url": "https://lit.dev/playground/",
+      "finalUrl": "https://lit.dev/playground/",
+      "title": "Playground – Lit",
+      "rawTokens": 22478,
+      "snapshotTokens": 720,
+      "ratio": 0.032031319512412136,
+      "htmlBytes": 63236,
+      "frameCount": 2,
+      "snapshotChars": 3461
+    }
+  ]
+}

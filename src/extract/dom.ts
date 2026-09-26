@@ -36,20 +36,27 @@ export async function captureDom(session: CDPSession): Promise<RawDomTree> {
     if (node.contentDocument) collect(node.contentDocument);
   }
   collect(tree.root);
-  await Promise.all(elements.map(async (node) => {
-    const [style, box] = await Promise.all([
-      session.send('CSS.getComputedStyleForNode', { nodeId: node.nodeId }).catch(() => undefined),
-      session.send('DOM.getBoxModel', { nodeId: node.nodeId }).catch(() => undefined),
-    ]);
-    const entries = (style as { computedStyle?: Array<{ name: string; value: string }> } | undefined)?.computedStyle;
-    const model = (box as { model?: { width: number; height: number } } | undefined)?.model;
-    node.layout = {
-      display: entries?.find((entry) => entry.name === 'display')?.value,
-      visibility: entries?.find((entry) => entry.name === 'visibility')?.value,
-      cursor: entries?.find((entry) => entry.name === 'cursor')?.value,
-      width: model?.width,
-      height: model?.height,
-    };
-  }));
+  // Full pages can contain thousands of nodes. Keep CDP style responses bounded
+  // instead of retaining one pending promise (and response) per element.
+  let nextElement = 0;
+  async function inspectElements(): Promise<void> {
+    while (nextElement < elements.length) {
+      const node = elements[nextElement++];
+      const [style, box] = await Promise.all([
+        session.send('CSS.getComputedStyleForNode', { nodeId: node.nodeId }).catch(() => undefined),
+        session.send('DOM.getBoxModel', { nodeId: node.nodeId }).catch(() => undefined),
+      ]);
+      const entries = (style as { computedStyle?: Array<{ name: string; value: string }> } | undefined)?.computedStyle;
+      const model = (box as { model?: { width: number; height: number } } | undefined)?.model;
+      node.layout = {
+        display: entries?.find((entry) => entry.name === 'display')?.value,
+        visibility: entries?.find((entry) => entry.name === 'visibility')?.value,
+        cursor: entries?.find((entry) => entry.name === 'cursor')?.value,
+        width: model?.width,
+        height: model?.height,
+      };
+    }
+  }
+  await Promise.all(Array.from({ length: Math.min(24, elements.length) }, () => inspectElements()));
   return tree;
 }

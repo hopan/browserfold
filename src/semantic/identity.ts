@@ -20,8 +20,9 @@ export function generateSemanticIds(nodes: SemanticNode[]): SemanticNode[] {
     const occurrence = occurrences.get(siblingKey) ?? 0;
     occurrences.set(siblingKey, occurrence + 1);
     const stableKey = JSON.stringify([parentKey, signature, occurrence]);
-    keys.set(oldId, stableKey);
     const digest = createHash('sha256').update(stableKey).digest('hex');
+    // Keep ancestry keys bounded on deep real-world DOM trees.
+    keys.set(oldId, digest);
     let length = 10;
     let id = `e${digest.slice(0, length)}`;
     while (used.has(id) && length < digest.length) id = `e${digest.slice(0, ++length)}`;
