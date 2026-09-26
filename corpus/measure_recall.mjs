@@ -156,6 +156,11 @@ if (process.argv[2] === '--inspect-url') {
   const entry = pilot[Number(process.argv[3])];
   if (!entry) throw new Error(`Missing pilot row ${process.argv[3]}`);
   process.stdout.write(`${JSON.stringify(await measure({ group: entry.group, url: entry.url }))}\n`);
+} else if (process.argv[2] === '--worker-existing') {
+  const previous = JSON.parse(await readFile(new URL('./recall_pilot.json', import.meta.url), 'utf8'));
+  const entry = previous.results.filter((row) => !row.error)[Number(process.argv[3])];
+  if (!entry) throw new Error(`Missing existing row ${process.argv[3]}`);
+  process.stdout.write(`${JSON.stringify(await measure({ group: entry.group, url: entry.url }))}\n`);
 } else if (process.argv[2] === '--worker') {
   process.stdout.write(`${JSON.stringify(await measure(pages[Number(process.argv[3])]))}\n`);
 } else {
@@ -178,6 +183,32 @@ if (process.argv[2] === '--inspect-url') {
       meanPrecision: valid.length ? sum('precision') / valid.length : null,
       pooledRecall: oracle ? matched / oracle : null,
       pooledPrecision: detected ? matched / detected : null };
+  }
+  if (process.argv[2] === '--rerun-all') {
+    const entries = results.filter((row) => !row.error);
+    if (entries.length !== 42 || new Set(entries.map((row) => row.url)).size !== 42) {
+      throw new Error(`Expected 42 distinct measured URLs, found ${entries.length}`);
+    }
+    const rerun = [];
+    for (const [index, entry] of entries.entries()) {
+      const child = spawnSync(process.execPath, ['--max-old-space-size=768', new URL(import.meta.url).pathname, '--worker-existing', String(index)], {
+        timeout: 60_000, encoding: 'utf8', maxBuffer: 1024 * 1024,
+      });
+      let result;
+      try { result = JSON.parse(child.stdout.trim()); }
+      catch { result = { group: entry.group, url: entry.url, error: child.error?.message ?? (child.signal
+        ? `Worker killed by ${child.signal}` : `Worker exit ${child.status}: ${child.stderr.slice(-300).trim()}`) }; }
+      rerun.push({ ...result, batch: entry.batch });
+      process.stdout.write(`${index + 1}/${entries.length} ${JSON.stringify({ url: entry.url,
+        oracle: result.oracle, detected: result.detected, matched: result.matched, error: result.error })}\n`);
+    }
+    await writeFile(output, `${JSON.stringify({
+      measuredAt: new Date().toISOString(), baseline: 'post-dispatch-17',
+      baselineProductCommit: spawnSync('git', ['rev-parse', '--short', 'HEAD'], { encoding: 'utf8' }).stdout.trim(),
+      summary: summary(rerun), pilotSummary: summary(rerun.filter((row) => row.batch !== 2)),
+      batch2Summary: summary(rerun.filter((row) => row.batch === 2)), results: rerun,
+    }, null, 2)}\n`);
+    process.exit(0);
   }
   if (process.argv[2] === '--rerun-pilot') {
     const pilot = results.filter((row) => row.batch !== 2);

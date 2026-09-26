@@ -1,16 +1,39 @@
 {
-  "measuredAt": "2026-09-26T09:08:44.975Z",
-  "batch2MeasuredAt": "2026-09-26T08:55:47.862Z",
+  "measuredAt": "2026-09-26T09:28:14.411Z",
+  "baseline": "post-dispatch-17",
+  "baselineProductCommit": "c3fa3e0",
   "summary": {
-    "attempted": 43,
+    "attempted": 42,
     "measured": 42,
     "oracle": 9304,
-    "detected": 8344,
-    "matched": 7821,
-    "meanRecall": 0.9254076754142172,
+    "detected": 8348,
+    "matched": 7825,
+    "meanRecall": 0.9492171992237411,
     "meanPrecision": 0.9434279413186788,
-    "pooledRecall": 0.8406061908856406,
-    "pooledPrecision": 0.9373202301054651
+    "pooledRecall": 0.8410361134995701,
+    "pooledPrecision": 0.9373502635361763
+  },
+  "pilotSummary": {
+    "attempted": 18,
+    "measured": 18,
+    "oracle": 3317,
+    "detected": 3173,
+    "matched": 2995,
+    "meanRecall": 0.9740564885940207,
+    "meanPrecision": 0.9364855605236334,
+    "pooledRecall": 0.9029243292131444,
+    "pooledPrecision": 0.9439016703435235
+  },
+  "batch2Summary": {
+    "attempted": 24,
+    "measured": 24,
+    "oracle": 5987,
+    "detected": 5175,
+    "matched": 4830,
+    "meanRecall": 0.9305877321960319,
+    "meanPrecision": 0.9486347269149631,
+    "pooledRecall": 0.8067479539001169,
+    "pooledPrecision": 0.9333333333333333
   },
   "results": [
     {
@@ -82,49 +105,129 @@
           "id": "bf-oracle-0-1019",
           "tag": "a",
           "role": null,
-          "label": "History"
+          "label": "History",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "li",
+            "ul",
+            "div",
+            "td",
+            "tr"
+          ],
+          "html": "<a rel=\"mw:WikiLink\" href=\"https://en.wikipedia.org/wiki/History_of_mathematics\" title=\"History of mathematics\" data-bf-oracle-id=\"bf-oracle-0-1019\">History</a>"
         },
         {
           "id": "bf-oracle-0-1020",
           "tag": "a",
           "role": null,
-          "label": "Timeline"
+          "label": "Timeline",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "li",
+            "ul",
+            "li",
+            "ul",
+            "div"
+          ],
+          "html": "<a rel=\"mw:WikiLink\" href=\"https://en.wikipedia.org/wiki/Timeline_of_mathematics\" title=\"Timeline of mathematics\" data-bf-oracle-id=\"bf-oracle-0-1020\">Timeline</a>"
         },
         {
           "id": "bf-oracle-0-1021",
           "tag": "a",
           "role": null,
-          "label": "Future"
+          "label": "Future",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "li",
+            "ul",
+            "li",
+            "ul",
+            "div"
+          ],
+          "html": "<a rel=\"mw:WikiLink\" href=\"https://en.wikipedia.org/wiki/Future_of_mathematics\" title=\"Future of mathematics\" data-bf-oracle-id=\"bf-oracle-0-1021\">Future</a>"
         },
         {
           "id": "bf-oracle-0-1022",
           "tag": "a",
           "role": null,
-          "label": "Lists"
+          "label": "Lists",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "li",
+            "ul",
+            "div",
+            "td",
+            "tr"
+          ],
+          "html": "<a rel=\"mw:WikiLink\" href=\"https://en.wikipedia.org/wiki/Lists_of_mathematics_topics\" title=\"Lists of mathematics topics\" data-bf-oracle-id=\"bf-oracle-0-1022\">Lists</a>"
         },
         {
           "id": "bf-oracle-0-1023",
           "tag": "a",
           "role": null,
-          "label": "Glossary"
+          "label": "Glossary",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "li",
+            "ul",
+            "div",
+            "td",
+            "tr"
+          ],
+          "html": "<a rel=\"mw:WikiLink\" href=\"https://en.wikipedia.org/wiki/Glossary_of_mathematical_symbols\" title=\"Glossary of mathematical symbols\" data-bf-oracle-id=\"bf-oracle-0-1023\">Glossary</a>"
         },
         {
           "id": "bf-oracle-0-1024",
           "tag": "a",
           "role": null,
-          "label": "Foundations"
+          "label": "Foundations",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "th",
+            "tr",
+            "tbody",
+            "table",
+            "div[role=navigation]"
+          ],
+          "html": "<a rel=\"mw:WikiLink\" href=\"https://en.wikipedia.org/wiki/Foundations_of_mathematics\" title=\"Foundations of mathematics\" data-bf-oracle-id=\"bf-oracle-0-1024\">Foundations</a>"
         },
         {
           "id": "bf-oracle-0-1025",
           "tag": "a",
           "role": null,
-          "label": "Category theory"
+          "label": "Category theory",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "li",
+            "ul",
+            "div",
+            "td",
+            "tr"
+          ],
+          "html": "<a rel=\"mw:WikiLink\" href=\"https://en.wikipedia.org/wiki/Category_theory\" title=\"Category theory\" data-bf-oracle-id=\"bf-oracle-0-1025\">Category theory</a>"
         },
         {
           "id": "bf-oracle-0-1026",
           "tag": "a",
           "role": null,
-          "label": "Information theory"
+          "label": "Information theory",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "li",
+            "ul",
+            "div",
+            "td",
+            "tr"
+          ],
+          "html": "<a rel=\"mw:WikiLink\" href=\"https://en.wikipedia.org/wiki/Information_theory\" title=\"Information theory\" data-bf-oracle-id=\"bf-oracle-0-1026\">Information theory</a>"
         }
       ],
       "falsePositiveExamples": [
@@ -1117,9 +1220,9 @@
       "finalUrl": "https://the-internet.herokuapp.com/iframe",
       "title": "The Internet",
       "oracle": 4,
-      "detected": 1,
-      "matched": 1,
-      "recall": 0.25,
+      "detected": 3,
+      "matched": 3,
+      "recall": 0.75,
       "precision": 1,
       "mappedOracle": 4,
       "frameCount": 1,
@@ -1129,19 +1232,17 @@
           "id": "bf-oracle-0-1",
           "tag": "a",
           "role": null,
-          "label": "Powered by Tiny"
-        },
-        {
-          "id": "bf-oracle-0-3",
-          "tag": "a",
-          "role": null,
-          "label": "Learn more."
-        },
-        {
-          "id": "bf-oracle-0-4",
-          "tag": "button",
-          "role": null,
-          "label": ""
+          "label": "Powered by Tiny",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "span",
+            "div",
+            "div",
+            "div[role=application]",
+            "div"
+          ],
+          "html": "<a href=\"https://www.tiny.cloud/?utm_campaign=editor_referral&amp;utm_medium=poweredby&amp;utm_source=tinymce&amp;utm_content=v5\" rel=\"noopener\" target=\"_blank\" tabindex=\"-1\" aria-label=\"Powered by Tiny\" data-bf-oracle-id=\"bf-oracle-0-1\">Powered by Tiny</a>"
         }
       ],
       "falsePositiveExamples": [],
@@ -1165,19 +1266,49 @@
           "id": "bf-oracle-2-1",
           "tag": "button",
           "role": null,
-          "label": ""
+          "label": "",
+          "frameNumber": 2,
+          "inShadow": false,
+          "ancestors": [
+            "div",
+            "div",
+            "div",
+            "div",
+            "div"
+          ],
+          "html": "<button id=\"episode-play\" class=\"-30xomy kksclF\" data-bf-oracle-id=\"bf-oracle-2-1\"><i size=\"45\" stroke-width=\"1\" class=\"-v4ceeq czrduk pco-icon pco-icon--PlayLine \"><svg xmlns=\"http://www.w3.org/2000/svg\" height=\"100%\" width=\"100%\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\""
         },
         {
           "id": "bf-oracle-2-2",
           "tag": "button",
           "role": null,
-          "label": ""
+          "label": "",
+          "frameNumber": 2,
+          "inShadow": false,
+          "ancestors": [
+            "div",
+            "div",
+            "div",
+            "main",
+            "body"
+          ],
+          "html": "<button class=\"-100csbn jSsFde\" data-bf-oracle-id=\"bf-oracle-2-2\"><i stroke-width=\"1\" size=\"24\" class=\"-v4ceeq czRrbM pco-icon pco-icon--Menu \"><svg xmlns=\"http://www.w3.org/2000/svg\" height=\"100%\" width=\"100%\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1\" stroke-linecap=\"ro"
         },
         {
           "id": "bf-oracle-2-3",
           "tag": "a",
           "role": null,
-          "label": ""
+          "label": "",
+          "frameNumber": 2,
+          "inShadow": false,
+          "ancestors": [
+            "div",
+            "div",
+            "div",
+            "main",
+            "body"
+          ],
+          "html": "<a href=\"https://go.pod.co/podcast\" target=\"_blank\" rel=\"noopener nofollow\" class=\"-gplhnt eUBvth\" data-bf-oracle-id=\"bf-oracle-2-3\"><i size=\"20\" class=\"-4ur7s0 hEXIoL pco-icon pco-icon--PodcastDotCo \"><svg xmlns=\"http://www.w3.org/2000/svg\" height=\"100%\" width=\"100%\" viewBox=\"0 0 24 24\" fill=\"curre"
         }
       ],
       "falsePositiveExamples": [
@@ -1254,49 +1385,129 @@
           "id": "bf-oracle-0-16",
           "tag": "a",
           "role": null,
-          "label": ""
+          "label": "",
+          "frameNumber": 0,
+          "inShadow": true,
+          "ancestors": [
+            "mdn-button",
+            "mdn-user-menu",
+            "div",
+            "nav",
+            "header"
+          ],
+          "html": "<a class=\"button\" part=\"button\" href=\"https://developer.mozilla.org/users/fxa/login/authenticate/?next=%2Fen-US%2Fdocs%2FWeb%2FHTML%2FReference%2FElements%2Fiframe\" aria-labelledby=\"label-57bne4qvf1d\" data-variant=\"plain\" data-bf-oracle-id=\"bf-oracle-0-16\">\n          <!--?lit$996471370$--><!----><sp"
         },
         {
           "id": "bf-oracle-0-40",
           "tag": "a",
           "role": null,
-          "label": "Try it"
+          "label": "Try it",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "section",
+            "div",
+            "main",
+            "div"
+          ],
+          "html": "<a class=\"heading-anchor\" href=\"#try_it\" data-bf-oracle-id=\"bf-oracle-0-40\">Try it</a>"
         },
         {
           "id": "bf-oracle-0-44",
           "tag": "div",
           "role": "textbox",
-          "label": "<iframe  id=\"inlineFrameExample\"  title=\"Inline Frame Example\"  width=\"300\"  height=\"200\"  src=\"http"
+          "label": "<iframe  id=\"inlineFrameExample\"  title=\"Inline Frame Example\"  width=\"300\"  height=\"200\"  src=\"http",
+          "frameNumber": 0,
+          "inShadow": true,
+          "ancestors": [
+            "div",
+            "div",
+            "div",
+            "mdn-play-editor",
+            "mdn-ix-tab-panel[role=tabpanel]"
+          ],
+          "html": "<div spellcheck=\"false\" autocorrect=\"off\" autocapitalize=\"off\" writingsuggestions=\"false\" translate=\"no\" contenteditable=\"true\" style=\"tab-size: 4;\" class=\"cm-content cm-lineWrapping\" role=\"textbox\" aria-multiline=\"true\" data-language=\"html\" data-bf-oracle-id=\"bf-oracle-0-44\"><div class=\"cm-line cm-"
         },
         {
           "id": "bf-oracle-0-49",
           "tag": "a",
           "role": null,
-          "label": "Attributes"
+          "label": "Attributes",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "section",
+            "div",
+            "main",
+            "div"
+          ],
+          "html": "<a class=\"heading-anchor\" href=\"#attributes\" data-bf-oracle-id=\"bf-oracle-0-49\">Attributes</a>"
         },
         {
           "id": "bf-oracle-0-143",
           "tag": "a",
           "role": null,
-          "label": "Deprecated attributes"
+          "label": "Deprecated attributes",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h3",
+            "section",
+            "div",
+            "main",
+            "div"
+          ],
+          "html": "<a class=\"heading-anchor\" href=\"#deprecated_attributes\" data-bf-oracle-id=\"bf-oracle-0-143\">Deprecated attributes</a>"
         },
         {
           "id": "bf-oracle-0-154",
           "tag": "a",
           "role": null,
-          "label": "Usage notes"
+          "label": "Usage notes",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "section",
+            "div",
+            "main",
+            "div"
+          ],
+          "html": "<a class=\"heading-anchor\" href=\"#usage_notes\" data-bf-oracle-id=\"bf-oracle-0-154\">Usage notes</a>"
         },
         {
           "id": "bf-oracle-0-155",
           "tag": "a",
           "role": null,
-          "label": "Scripting"
+          "label": "Scripting",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h3",
+            "section",
+            "div",
+            "main",
+            "div"
+          ],
+          "html": "<a class=\"heading-anchor\" href=\"#scripting\" data-bf-oracle-id=\"bf-oracle-0-155\">Scripting</a>"
         },
         {
           "id": "bf-oracle-0-170",
           "tag": "a",
           "role": null,
-          "label": "Embedding PDFs"
+          "label": "Embedding PDFs",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h3",
+            "section",
+            "div",
+            "main",
+            "div"
+          ],
+          "html": "<a class=\"heading-anchor\" href=\"#embedding_pdfs\" data-bf-oracle-id=\"bf-oracle-0-170\">Embedding PDFs</a>"
         }
       ],
       "falsePositiveExamples": [
@@ -1342,9 +1553,9 @@
       "finalUrl": "https://the-internet.herokuapp.com/tinymce",
       "title": "The Internet",
       "oracle": 4,
-      "detected": 1,
-      "matched": 1,
-      "recall": 0.25,
+      "detected": 3,
+      "matched": 3,
+      "recall": 0.75,
       "precision": 1,
       "mappedOracle": 4,
       "frameCount": 1,
@@ -1354,19 +1565,17 @@
           "id": "bf-oracle-0-1",
           "tag": "a",
           "role": null,
-          "label": "Powered by Tiny"
-        },
-        {
-          "id": "bf-oracle-0-3",
-          "tag": "a",
-          "role": null,
-          "label": "Learn more."
-        },
-        {
-          "id": "bf-oracle-0-4",
-          "tag": "button",
-          "role": null,
-          "label": ""
+          "label": "Powered by Tiny",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "span",
+            "div",
+            "div",
+            "div[role=application]",
+            "div"
+          ],
+          "html": "<a href=\"https://www.tiny.cloud/?utm_campaign=editor_referral&amp;utm_medium=poweredby&amp;utm_source=tinymce&amp;utm_content=v5\" rel=\"noopener\" target=\"_blank\" tabindex=\"-1\" aria-label=\"Powered by Tiny\" data-bf-oracle-id=\"bf-oracle-0-1\">Powered by Tiny</a>"
         }
       ],
       "falsePositiveExamples": [],
@@ -1441,13 +1650,32 @@
           "id": "bf-oracle-0-17",
           "tag": "main",
           "role": null,
-          "label": "CheckboxCheckboxes allow users to select one or more items from a set. Checkboxes can turn an option"
+          "label": "CheckboxCheckboxes allow users to select one or more items from a set. Checkboxes can turn an option",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "nav-drawer",
+            "lit-island",
+            "body",
+            "html"
+          ],
+          "html": "<main id=\"main-content\" slot=\"app-content\" tabindex=\"0\" data-bf-oracle-id=\"bf-oracle-0-17\"><lit-island on:idle=\"\" import=\"/js/hydration-entrypoints/components/checkbox.js\" ready=\"\"></lit-island><catalog-component-header><catalog-component-header-title slot=\"title\"><h1>Checkbox</h1><p><a href=\"https:"
         },
         {
           "id": "bf-oracle-0-48",
           "tag": "a",
           "role": "listitem",
-          "label": ""
+          "label": "",
+          "frameNumber": 0,
+          "inShadow": true,
+          "ancestors": [
+            "md-list-item[role=menuitem]",
+            "md-list[role=menubar]",
+            "nav-drawer",
+            "lit-island",
+            "body"
+          ],
+          "html": "<a id=\"item\" tabindex=\"0\" role=\"listitem\" class=\"list-item   \" href=\"/components/checkbox/\" data-bf-oracle-id=\"bf-oracle-0-48\"><!--lit-part rx9tpDvuboA=-->\n      <!--lit-node 0--><md-item>\n        <div slot=\"container\">\n          <!--lit-part B0/p55vP+B4=--> <!--lit-node 0--><md-ripple part=\"ripple\""
         }
       ],
       "falsePositiveExamples": [
@@ -1508,7 +1736,17 @@
           "id": "bf-oracle-0-43",
           "tag": "a",
           "role": null,
-          "label": "Sponsor Tabler!"
+          "label": "Sponsor Tabler!",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "div",
+            "div",
+            "div",
+            "main",
+            "div"
+          ],
+          "html": "<a href=\"https://github.com/sponsors/codecalm\" class=\"card border-primary\" target=\"_blank\" rel=\"noopener\" aria-label=\"Sponsor Tabler!\" style=\"background: color-mix(in srgb, var(--tblr-primary) 4%, var(--tblr-bg-surface))\" data-bf-oracle-id=\"bf-oracle-0-43\">\n                  <svg xmlns=\"http://www.w"
         }
       ],
       "falsePositiveExamples": [],
@@ -1583,13 +1821,33 @@
           "id": "bf-oracle-0-30",
           "tag": "a",
           "role": null,
-          "label": "3rd Album"
+          "label": "3rd Album",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "div",
+            "div",
+            "div",
+            "div"
+          ],
+          "html": "<a href=\"/album-3\" data-bf-oracle-id=\"bf-oracle-0-30\">3rd Album</a>"
         },
         {
           "id": "bf-oracle-0-33",
           "tag": "a",
           "role": null,
-          "label": "Music 2"
+          "label": "Music 2",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "div",
+            "div",
+            "div",
+            "div"
+          ],
+          "html": "<a href=\"/music-album-1\" data-bf-oracle-id=\"bf-oracle-0-33\">Music 2</a>"
         }
       ],
       "falsePositiveExamples": [
@@ -1654,49 +1912,129 @@
           "id": "bf-oracle-0-30",
           "tag": "a",
           "role": null,
-          "label": "50's Rockabilly Polka Dot Top JR Plus Size"
+          "label": "50's Rockabilly Polka Dot Top JR Plus Size",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "div",
+            "div",
+            "div",
+            "div"
+          ],
+          "html": "<a href=\"/50s-rockabilly-polka-dot-top-jr-plus-size\" data-bf-oracle-id=\"bf-oracle-0-30\">50's Rockabilly Polka Dot Top JR Plus Size</a>"
         },
         {
           "id": "bf-oracle-0-33",
           "tag": "a",
           "role": null,
-          "label": "Blue and green Sneaker"
+          "label": "Blue and green Sneaker",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "div",
+            "div",
+            "div",
+            "div"
+          ],
+          "html": "<a href=\"/blue-and-green-sneaker\" data-bf-oracle-id=\"bf-oracle-0-33\">Blue and green Sneaker</a>"
         },
         {
           "id": "bf-oracle-0-36",
           "tag": "a",
           "role": null,
-          "label": "Blue Jeans"
+          "label": "Blue Jeans",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "div",
+            "div",
+            "div",
+            "div"
+          ],
+          "html": "<a href=\"/blue-jeans\" data-bf-oracle-id=\"bf-oracle-0-36\">Blue Jeans</a>"
         },
         {
           "id": "bf-oracle-0-39",
           "tag": "a",
           "role": null,
-          "label": "Casual Golf Belt"
+          "label": "Casual Golf Belt",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "div",
+            "div",
+            "div",
+            "div"
+          ],
+          "html": "<a href=\"/casual-belt\" data-bf-oracle-id=\"bf-oracle-0-39\">Casual Golf Belt</a>"
         },
         {
           "id": "bf-oracle-0-42",
           "tag": "a",
           "role": null,
-          "label": "Custom T-Shirt"
+          "label": "Custom T-Shirt",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "div",
+            "div",
+            "div",
+            "div"
+          ],
+          "html": "<a href=\"/custom-t-shirt\" data-bf-oracle-id=\"bf-oracle-0-42\">Custom T-Shirt</a>"
         },
         {
           "id": "bf-oracle-0-44",
           "tag": "a",
           "role": null,
-          "label": "Denim Short with Rhinestones"
+          "label": "Denim Short with Rhinestones",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "div",
+            "div",
+            "div",
+            "div"
+          ],
+          "html": "<a href=\"/v-blue-juniors-cuffed-denim-short-with-rhinestones\" data-bf-oracle-id=\"bf-oracle-0-44\">Denim Short with Rhinestones</a>"
         },
         {
           "id": "bf-oracle-0-46",
           "tag": "a",
           "role": null,
-          "label": "Genuine Leather Handbag with Cell Phone Holder & Many Pockets"
+          "label": "Genuine Leather Handbag with Cell Phone Holder & Many Pockets",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "div",
+            "div",
+            "div",
+            "div"
+          ],
+          "html": "<a href=\"/genuine-leather-handbag-with-cell-phone-holder-many-pockets\" data-bf-oracle-id=\"bf-oracle-0-46\">Genuine Leather Handbag with Cell Phone Holder &amp; Many Pockets</a>"
         },
         {
           "id": "bf-oracle-0-49",
           "tag": "a",
           "role": null,
-          "label": "Green and blue Sneaker"
+          "label": "Green and blue Sneaker",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "div",
+            "div",
+            "div",
+            "div"
+          ],
+          "html": "<a href=\"/green-and-blue-sneaker\" data-bf-oracle-id=\"bf-oracle-0-49\">Green and blue Sneaker</a>"
         }
       ],
       "falsePositiveExamples": [
@@ -1745,12 +2083,6 @@
     },
     {
       "group": "Form",
-      "url": "https://demoqa.com/automation-practice-form",
-      "error": "Oracle could not inspect 1 frame(s): about:blank: Error: frame.evaluate: Frame was detached",
-      "batch": 2
-    },
-    {
-      "group": "Form",
       "url": "https://adminlte.io/themes/v3/pages/forms/advanced.html",
       "finalUrl": "https://adminlte.io/themes/v3/pages/forms/advanced.html",
       "title": "AdminLTE 3 | Advanced form elements",
@@ -1767,25 +2099,65 @@
           "id": "bf-oracle-0-44",
           "tag": "span",
           "role": "textbox",
-          "label": "Alabama"
+          "label": "Alabama",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "span[role=combobox]",
+            "span",
+            "span",
+            "div",
+            "div"
+          ],
+          "html": "<span class=\"select2-selection__rendered\" id=\"select2-dja6-container\" role=\"textbox\" aria-readonly=\"true\" title=\"Alabama\" data-bf-oracle-id=\"bf-oracle-0-44\">Alabama</span>"
         },
         {
           "id": "bf-oracle-0-45",
           "tag": "span",
           "role": "combobox",
-          "label": ""
+          "label": "",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "span",
+            "span",
+            "div",
+            "div",
+            "div"
+          ],
+          "html": "<span class=\"select2-selection select2-selection--multiple\" role=\"combobox\" aria-haspopup=\"true\" aria-expanded=\"false\" tabindex=\"-1\" aria-disabled=\"false\" data-bf-oracle-id=\"bf-oracle-0-45\"><ul class=\"select2-selection__rendered\"><li class=\"select2-search select2-search--inline\"><input class=\"select"
         },
         {
           "id": "bf-oracle-0-51",
           "tag": "span",
           "role": "combobox",
-          "label": ""
+          "label": "",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "span",
+            "span",
+            "div",
+            "div",
+            "div"
+          ],
+          "html": "<span class=\"select2-selection select2-selection--multiple\" role=\"combobox\" aria-haspopup=\"true\" aria-expanded=\"false\" tabindex=\"-1\" aria-disabled=\"false\" data-bf-oracle-id=\"bf-oracle-0-51\"><ul class=\"select2-selection__rendered\"><li class=\"select2-search select2-search--inline\"><input class=\"select"
         },
         {
           "id": "bf-oracle-0-58",
           "tag": "span",
           "role": "textbox",
-          "label": "Alabama"
+          "label": "Alabama",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "span[role=combobox]",
+            "span",
+            "span",
+            "div",
+            "div"
+          ],
+          "html": "<span class=\"select2-selection__rendered\" id=\"select2-9gon-container\" role=\"textbox\" aria-readonly=\"true\" title=\"Alabama\" data-bf-oracle-id=\"bf-oracle-0-58\">Alabama</span>"
         }
       ],
       "falsePositiveExamples": [
@@ -1907,7 +2279,17 @@
           "id": "bf-oracle-0-4",
           "tag": "button",
           "role": null,
-          "label": "Search (Ctrl+K)"
+          "label": "Search (Ctrl+K)",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "div",
+            "div",
+            "nav",
+            "header",
+            "body"
+          ],
+          "html": "<button type=\"button\" aria-label=\"Search (Ctrl+K)\" class=\"DocSearch DocSearch-Button\" data-bf-oracle-id=\"bf-oracle-0-4\"><span class=\"DocSearch-Button-Container\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" aria-hidden=\"true\" class=\"DocSearch-Search-Icon\"><path d=\"M14.386 14.386l4.0877 4.0877-4.08"
         }
       ],
       "falsePositiveExamples": [],
@@ -1931,25 +2313,65 @@
           "id": "bf-oracle-0-4",
           "tag": "button",
           "role": null,
-          "label": "Search (Ctrl+K)"
+          "label": "Search (Ctrl+K)",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "div",
+            "div",
+            "nav",
+            "header",
+            "body"
+          ],
+          "html": "<button type=\"button\" aria-label=\"Search (Ctrl+K)\" class=\"DocSearch DocSearch-Button\" data-bf-oracle-id=\"bf-oracle-0-4\"><span class=\"DocSearch-Button-Container\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" aria-hidden=\"true\" class=\"DocSearch-Search-Icon\"><path d=\"M14.386 14.386l4.0877 4.0877-4.08"
         },
         {
           "id": "bf-oracle-0-140",
           "tag": "button",
           "role": null,
-          "label": "Accordion Item #1"
+          "label": "Accordion Item #1",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "div",
+            "div",
+            "div",
+            "div"
+          ],
+          "html": "<button class=\"accordion-button\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#collapseOne\" aria-expanded=\"true\" aria-controls=\"collapseOne\" data-bf-oracle-id=\"bf-oracle-0-140\">\n        Accordion Item #1\n      </button>"
         },
         {
           "id": "bf-oracle-0-141",
           "tag": "button",
           "role": null,
-          "label": "Accordion Item #2"
+          "label": "Accordion Item #2",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "div",
+            "div",
+            "div",
+            "div"
+          ],
+          "html": "<button class=\"accordion-button collapsed\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#collapseTwo\" aria-expanded=\"false\" aria-controls=\"collapseTwo\" data-bf-oracle-id=\"bf-oracle-0-141\">\n        Accordion Item #2\n      </button>"
         },
         {
           "id": "bf-oracle-0-142",
           "tag": "button",
           "role": null,
-          "label": "Accordion Item #3"
+          "label": "Accordion Item #3",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "div",
+            "div",
+            "div",
+            "div"
+          ],
+          "html": "<button class=\"accordion-button collapsed\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#collapseThree\" aria-expanded=\"false\" aria-controls=\"collapseThree\" data-bf-oracle-id=\"bf-oracle-0-142\">\n        Accordion Item #3\n      </button>"
         }
       ],
       "falsePositiveExamples": [],
@@ -1973,49 +2395,129 @@
           "id": "bf-oracle-0-98",
           "tag": "a",
           "role": null,
-          "label": "Introduction"
+          "label": "Introduction",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "div",
+            "div",
+            "div",
+            "main"
+          ],
+          "html": "<a href=\"#introduction\" class=\"title-link-to-anchor\" data-bf-oracle-id=\"bf-oracle-0-98\">Introduction<span class=\"anchor-icon\"><svg><use xlink:href=\"#anchor-link-icon\"></use></svg></span></a>"
         },
         {
           "id": "bf-oracle-0-99",
           "tag": "button",
           "role": null,
-          "label": ""
+          "label": "",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "div",
+            "div",
+            "div",
+            "main"
+          ],
+          "html": "<button title=\"Post a comment\" class=\"comment-link\" data-feedback-hash=\"introduction\" data-bf-oracle-id=\"bf-oracle-0-99\"><svg><use xlink:href=\"#comment-link-icon\"></use></svg></button>"
         },
         {
           "id": "bf-oracle-0-112",
           "tag": "a",
           "role": null,
-          "label": "Basics"
+          "label": "Basics",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "div",
+            "div",
+            "div",
+            "main"
+          ],
+          "html": "<a href=\"#basics\" class=\"title-link-to-anchor\" data-bf-oracle-id=\"bf-oracle-0-112\">Basics<span class=\"anchor-icon\"><svg><use xlink:href=\"#anchor-link-icon\"></use></svg></span></a>"
         },
         {
           "id": "bf-oracle-0-113",
           "tag": "button",
           "role": null,
-          "label": ""
+          "label": "",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "div",
+            "div",
+            "div",
+            "main"
+          ],
+          "html": "<button title=\"Post a comment\" class=\"comment-link\" data-feedback-hash=\"basics\" data-bf-oracle-id=\"bf-oracle-0-113\"><svg><use xlink:href=\"#comment-link-icon\"></use></svg></button>"
         },
         {
           "id": "bf-oracle-0-115",
           "tag": "a",
           "role": null,
-          "label": "Alerts"
+          "label": "Alerts",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "div",
+            "div",
+            "div",
+            "main"
+          ],
+          "html": "<a href=\"#alerts\" class=\"title-link-to-anchor\" data-bf-oracle-id=\"bf-oracle-0-115\">Alerts<span class=\"anchor-icon\"><svg><use xlink:href=\"#anchor-link-icon\"></use></svg></span></a>"
         },
         {
           "id": "bf-oracle-0-116",
           "tag": "button",
           "role": null,
-          "label": ""
+          "label": "",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "div",
+            "div",
+            "div",
+            "main"
+          ],
+          "html": "<button title=\"Post a comment\" class=\"comment-link\" data-feedback-hash=\"alerts\" data-bf-oracle-id=\"bf-oracle-0-116\"><svg><use xlink:href=\"#comment-link-icon\"></use></svg></button>"
         },
         {
           "id": "bf-oracle-0-127",
           "tag": "a",
           "role": null,
-          "label": "Transitions"
+          "label": "Transitions",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "div",
+            "div",
+            "div",
+            "main"
+          ],
+          "html": "<a href=\"#transitions\" class=\"title-link-to-anchor\" data-bf-oracle-id=\"bf-oracle-0-127\">Transitions<span class=\"anchor-icon\"><svg><use xlink:href=\"#anchor-link-icon\"></use></svg></span></a>"
         },
         {
           "id": "bf-oracle-0-128",
           "tag": "button",
           "role": null,
-          "label": ""
+          "label": "",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "div",
+            "div",
+            "div",
+            "main"
+          ],
+          "html": "<button title=\"Post a comment\" class=\"comment-link\" data-feedback-hash=\"transitions\" data-bf-oracle-id=\"bf-oracle-0-128\"><svg><use xlink:href=\"#comment-link-icon\"></use></svg></button>"
         }
       ],
       "falsePositiveExamples": [],
@@ -2039,49 +2541,129 @@
           "id": "bf-oracle-0-834",
           "tag": "a",
           "role": null,
-          "label": "sister projects"
+          "label": "sister projects",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "div",
+            "div[role=navigation]",
+            "section",
+            "div",
+            "div"
+          ],
+          "html": "<a rel=\"mw:WikiLink\" href=\"https://en.wikipedia.org/wiki/Wikipedia:Wikimedia_sister_projects\" title=\"Wikipedia:Wikimedia sister projects\" data-bf-oracle-id=\"bf-oracle-0-834\"><span id=\"sister-projects\">sister projects</span></a>"
         },
         {
           "id": "bf-oracle-0-860",
           "tag": "button",
           "role": null,
-          "label": "hide"
+          "label": "hide",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "th",
+            "tr",
+            "tbody",
+            "table",
+            "td"
+          ],
+          "html": "<button type=\"button\" class=\"mw-collapsible-toggle mw-collapsible-toggle-default\" aria-expanded=\"true\" tabindex=\"0\" data-bf-oracle-id=\"bf-oracle-0-860\"><span class=\"mw-collapsible-text\">hide</span></button>"
         },
         {
           "id": "bf-oracle-0-861",
           "tag": "a",
           "role": null,
-          "label": "Bookmarks"
+          "label": "Bookmarks",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "li",
+            "ul",
+            "div",
+            "td",
+            "tr"
+          ],
+          "html": "<a rel=\"mw:WikiLink\" href=\"https://en.wikipedia.org/wiki/Bookmark_(digital)\" title=\"Bookmark (digital)\" class=\"mw-redirect\" data-bf-oracle-id=\"bf-oracle-0-861\">Bookmarks</a>"
         },
         {
           "id": "bf-oracle-0-862",
           "tag": "a",
           "role": null,
-          "label": "Extensions"
+          "label": "Extensions",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "li",
+            "ul",
+            "div",
+            "td",
+            "tr"
+          ],
+          "html": "<a rel=\"mw:WikiLink\" href=\"https://en.wikipedia.org/wiki/Browser_extension\" title=\"Browser extension\" data-bf-oracle-id=\"bf-oracle-0-862\">Extensions</a>"
         },
         {
           "id": "bf-oracle-0-863",
           "tag": "a",
           "role": null,
-          "label": "Privacy mode"
+          "label": "Privacy mode",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "li",
+            "ul",
+            "div",
+            "td",
+            "tr"
+          ],
+          "html": "<a rel=\"mw:WikiLink\" href=\"https://en.wikipedia.org/wiki/Private_browsing\" title=\"Private browsing\" data-bf-oracle-id=\"bf-oracle-0-863\">Privacy mode</a>"
         },
         {
           "id": "bf-oracle-0-864",
           "tag": "a",
           "role": null,
-          "label": "Web standards"
+          "label": "Web standards",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "th",
+            "tr",
+            "tbody",
+            "table",
+            "td"
+          ],
+          "html": "<a rel=\"mw:WikiLink\" href=\"https://en.wikipedia.org/wiki/Web_standards\" title=\"Web standards\" data-bf-oracle-id=\"bf-oracle-0-864\">Web standards</a>"
         },
         {
           "id": "bf-oracle-0-865",
           "tag": "a",
           "role": null,
-          "label": "HTML"
+          "label": "HTML",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "li",
+            "ul",
+            "div",
+            "td",
+            "tr"
+          ],
+          "html": "<a rel=\"mw:WikiLink\" href=\"https://en.wikipedia.org/wiki/HTML\" class=\"mw-selflink selflink\" data-bf-oracle-id=\"bf-oracle-0-865\">HTML</a>"
         },
         {
           "id": "bf-oracle-0-866",
           "tag": "a",
           "role": null,
-          "label": "v5"
+          "label": "v5",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "li",
+            "ul",
+            "li",
+            "ul",
+            "div"
+          ],
+          "html": "<a rel=\"mw:WikiLink\" href=\"https://en.wikipedia.org/wiki/HTML5\" title=\"HTML5\" data-bf-oracle-id=\"bf-oracle-0-866\">v5</a>"
         }
       ],
       "falsePositiveExamples": [
@@ -2145,49 +2727,129 @@
           "id": "bf-oracle-0-16",
           "tag": "a",
           "role": null,
-          "label": ""
+          "label": "",
+          "frameNumber": 0,
+          "inShadow": true,
+          "ancestors": [
+            "mdn-button",
+            "mdn-user-menu",
+            "div",
+            "nav",
+            "header"
+          ],
+          "html": "<a class=\"button\" part=\"button\" href=\"https://developer.mozilla.org/users/fxa/login/authenticate/?next=%2Fen-US%2Fdocs%2FWeb%2FHTML%2FReference%2FElements%2Ftable\" aria-labelledby=\"label-ntxfp37vm6s\" data-variant=\"plain\" data-bf-oracle-id=\"bf-oracle-0-16\">\n          <!--?lit$608724779$--><!----><spa"
         },
         {
           "id": "bf-oracle-0-39",
           "tag": "a",
           "role": null,
-          "label": "Try it"
+          "label": "Try it",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "section",
+            "div",
+            "main",
+            "div"
+          ],
+          "html": "<a class=\"heading-anchor\" href=\"#try_it\" data-bf-oracle-id=\"bf-oracle-0-39\">Try it</a>"
         },
         {
           "id": "bf-oracle-0-43",
           "tag": "div",
           "role": "textbox",
-          "label": "<table>  <caption>    Front-end web developer course 2021  </caption>  <thead>    <tr>      <th scop"
+          "label": "<table>  <caption>    Front-end web developer course 2021  </caption>  <thead>    <tr>      <th scop",
+          "frameNumber": 0,
+          "inShadow": true,
+          "ancestors": [
+            "div",
+            "div",
+            "div",
+            "mdn-play-editor",
+            "mdn-ix-tab-panel[role=tabpanel]"
+          ],
+          "html": "<div spellcheck=\"false\" autocorrect=\"off\" autocapitalize=\"off\" writingsuggestions=\"false\" translate=\"no\" contenteditable=\"true\" style=\"tab-size: 4;\" class=\"cm-content cm-lineWrapping\" role=\"textbox\" aria-multiline=\"true\" data-language=\"html\" data-bf-oracle-id=\"bf-oracle-0-43\"><div class=\"cm-line cm-"
         },
         {
           "id": "bf-oracle-0-45",
           "tag": "a",
           "role": null,
-          "label": "Attributes"
+          "label": "Attributes",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "section",
+            "div",
+            "main",
+            "div"
+          ],
+          "html": "<a class=\"heading-anchor\" href=\"#attributes\" data-bf-oracle-id=\"bf-oracle-0-45\">Attributes</a>"
         },
         {
           "id": "bf-oracle-0-47",
           "tag": "a",
           "role": null,
-          "label": "Deprecated attributes"
+          "label": "Deprecated attributes",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h3",
+            "section",
+            "div",
+            "main",
+            "div"
+          ],
+          "html": "<a class=\"heading-anchor\" href=\"#deprecated_attributes\" data-bf-oracle-id=\"bf-oracle-0-47\">Deprecated attributes</a>"
         },
         {
           "id": "bf-oracle-0-82",
           "tag": "a",
           "role": null,
-          "label": "Visual layout of table contents"
+          "label": "Visual layout of table contents",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "section",
+            "div",
+            "main",
+            "div"
+          ],
+          "html": "<a class=\"heading-anchor\" href=\"#visual_layout_of_table_contents\" data-bf-oracle-id=\"bf-oracle-0-82\">Visual layout of table contents</a>"
         },
         {
           "id": "bf-oracle-0-93",
           "tag": "a",
           "role": null,
-          "label": "Table layers and transparency"
+          "label": "Table layers and transparency",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h3",
+            "section",
+            "div",
+            "main",
+            "div"
+          ],
+          "html": "<a class=\"heading-anchor\" href=\"#table_layers_and_transparency\" data-bf-oracle-id=\"bf-oracle-0-93\">Table layers and transparency</a>"
         },
         {
           "id": "bf-oracle-0-94",
           "tag": "a",
           "role": null,
-          "label": "Accessibility"
+          "label": "Accessibility",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "section",
+            "div",
+            "main",
+            "div"
+          ],
+          "html": "<a class=\"heading-anchor\" href=\"#accessibility\" data-bf-oracle-id=\"bf-oracle-0-94\">Accessibility</a>"
         }
       ],
       "falsePositiveExamples": [
@@ -2245,25 +2907,65 @@
           "id": "bf-oracle-0-15",
           "tag": "button",
           "role": null,
-          "label": "chevron_right"
+          "label": "chevron_right",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "a",
+            "div",
+            "div",
+            "div",
+            "div"
+          ],
+          "html": "<button _ngcontent-ng-c3818721953=\"\" type=\"button\" class=\"docs-primary-btn\" data-bf-oracle-id=\"bf-oracle-0-15\"><docs-icon _ngcontent-ng-c3818721953=\"\" aria-hidden=\"true\" translate=\"no\" class=\"material-symbols-outlined\" _nghost-ng-c1001676203=\"\" style=\"\">chevron_right</docs-icon></button>"
         },
         {
           "id": "bf-oracle-0-17",
           "tag": "a",
           "role": null,
-          "label": "Link to How to use this tutorial"
+          "label": "Link to How to use this tutorial",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "main",
+            "div",
+            "div",
+            "adev-tutorial"
+          ],
+          "html": "<a href=\"/tutorials/learn-angular#how-to-use-this-tutorial\" class=\"docs-anchor\" tabindex=\"-1\" aria-label=\"Link to How to use this tutorial\" data-bf-oracle-id=\"bf-oracle-0-17\">How to use this tutorial<docs-copy-link-button mattooltipposition=\"above\" class=\"mat-mdc-tooltip-trigger\" _nghost-ng-c3972380"
         },
         {
           "id": "bf-oracle-0-19",
           "tag": "a",
           "role": null,
-          "label": "Link to Using AI for Development"
+          "label": "Link to Using AI for Development",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "main",
+            "div",
+            "div",
+            "adev-tutorial"
+          ],
+          "html": "<a href=\"/tutorials/learn-angular#using-ai-for-development\" class=\"docs-anchor\" tabindex=\"-1\" aria-label=\"Link to Using AI for Development\" data-bf-oracle-id=\"bf-oracle-0-19\">Using AI for Development<docs-copy-link-button mattooltipposition=\"above\" class=\"mat-mdc-tooltip-trigger\" _nghost-ng-c3972380"
         },
         {
           "id": "bf-oracle-0-29",
           "tag": "div",
           "role": "separator",
-          "label": ""
+          "label": "",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "as-split",
+            "div",
+            "embedded-editor",
+            "div",
+            "div"
+          ],
+          "html": "<div _ngcontent-ng-c4291842499=\"\" role=\"separator\" tabindex=\"0\" assplitcustomeventsbehavior=\"\" class=\"as-split-gutter\" aria-orientation=\"vertical\" aria-valuenow=\"50\" aria-valuetext=\"50 percent\" style=\"grid-area: 2 / 1 / 2;\" data-bf-oracle-id=\"bf-oracle-0-29\"><!----><div _ngcontent-ng-c4291842499=\"\" "
         }
       ],
       "falsePositiveExamples": [],
@@ -2287,67 +2989,101 @@
           "id": "bf-oracle-0-72",
           "tag": "a",
           "role": null,
-          "label": "Link to Features that power your development"
+          "label": "Link to Features that power your development",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "div",
+            "div",
+            "main",
+            "docs-docs"
+          ],
+          "html": "<a href=\"/overview#features-that-power-your-development\" class=\"docs-anchor\" tabindex=\"-1\" aria-label=\"Link to Features that power your development\" data-bf-oracle-id=\"bf-oracle-0-72\">Features that power your development<docs-copy-link-button mattooltipposition=\"above\" class=\"mat-mdc-tooltip-trigger"
         },
         {
           "id": "bf-oracle-0-79",
           "tag": "a",
           "role": null,
-          "label": "Link to Develop applications faster than ever"
+          "label": "Link to Develop applications faster than ever",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "div",
+            "div",
+            "main",
+            "docs-docs"
+          ],
+          "html": "<a href=\"/overview#develop-applications-faster-than-ever\" class=\"docs-anchor\" tabindex=\"-1\" aria-label=\"Link to Develop applications faster than ever\" data-bf-oracle-id=\"bf-oracle-0-79\">Develop applications faster than ever<docs-copy-link-button mattooltipposition=\"above\" class=\"mat-mdc-tooltip-trig"
         },
         {
           "id": "bf-oracle-0-84",
           "tag": "a",
           "role": null,
-          "label": "Link to Ship with confidence"
+          "label": "Link to Ship with confidence",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "div",
+            "div",
+            "main",
+            "docs-docs"
+          ],
+          "html": "<a href=\"/overview#ship-with-confidence\" class=\"docs-anchor\" tabindex=\"-1\" aria-label=\"Link to Ship with confidence\" data-bf-oracle-id=\"bf-oracle-0-84\">Ship with confidence<docs-copy-link-button mattooltipposition=\"above\" class=\"mat-mdc-tooltip-trigger\" _nghost-ng-c3972380968=\"\" aria-label=\"Copy lin"
         },
         {
           "id": "bf-oracle-0-87",
           "tag": "a",
           "role": null,
-          "label": "Link to Works at any scale"
+          "label": "Link to Works at any scale",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "div",
+            "div",
+            "main",
+            "docs-docs"
+          ],
+          "html": "<a href=\"/overview#works-at-any-scale\" class=\"docs-anchor\" tabindex=\"-1\" aria-label=\"Link to Works at any scale\" data-bf-oracle-id=\"bf-oracle-0-87\">Works at any scale<docs-copy-link-button mattooltipposition=\"above\" class=\"mat-mdc-tooltip-trigger\" _nghost-ng-c3972380968=\"\" aria-label=\"Copy link to W"
         },
         {
           "id": "bf-oracle-0-93",
           "tag": "a",
           "role": null,
-          "label": "Link to Open-source first"
+          "label": "Link to Open-source first",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "div",
+            "div",
+            "main",
+            "docs-docs"
+          ],
+          "html": "<a href=\"/overview#open-source-first\" class=\"docs-anchor\" tabindex=\"-1\" aria-label=\"Link to Open-source first\" data-bf-oracle-id=\"bf-oracle-0-93\">Open-source first<docs-copy-link-button mattooltipposition=\"above\" class=\"mat-mdc-tooltip-trigger\" _nghost-ng-c3972380968=\"\" aria-label=\"Copy link to Open"
         },
         {
           "id": "bf-oracle-0-96",
           "tag": "a",
           "role": null,
-          "label": "Link to A thriving community"
+          "label": "Link to A thriving community",
+          "frameNumber": 0,
+          "inShadow": false,
+          "ancestors": [
+            "h2",
+            "div",
+            "div",
+            "main",
+            "docs-docs"
+          ],
+          "html": "<a href=\"/overview#a-thriving-community\" class=\"docs-anchor\" tabindex=\"-1\" aria-label=\"Link to A thriving community\" data-bf-oracle-id=\"bf-oracle-0-96\">A thriving community<docs-copy-link-button mattooltipposition=\"above\" class=\"mat-mdc-tooltip-trigger\" _nghost-ng-c3972380968=\"\" aria-label=\"Copy lin"
         }
       ],
       "falsePositiveExamples": [],
       "batch": 2
     }
-  ],
-  "batch2Summary": {
-    "attempted": 25,
-    "measured": 24,
-    "oracle": 5987,
-    "detected": 5171,
-    "matched": 4826,
-    "meanRecall": 0.888921065529365,
-    "meanPrecision": 0.9486347269149631,
-    "pooledRecall": 0.8060798396525806,
-    "pooledPrecision": 0.933281763682073
-  },
-  "pilotRemeasuredAt": "2026-09-26T09:08:44.975Z",
-  "baseline": "post-dispatch-14",
-  "pilotSummary": {
-    "attempted": 18,
-    "measured": 18,
-    "oracle": 3317,
-    "detected": 3173,
-    "matched": 2995,
-    "meanRecall": 0.9740564885940207,
-    "meanPrecision": 0.9364855605236334,
-    "pooledRecall": 0.9029243292131444,
-    "pooledPrecision": 0.9439016703435235
-  },
-  "pilotOriginalMeasuredAt": "2026-09-26T08:22:00.367Z",
-  "baselineProductCommit": "845af85"
+  ]
 }
